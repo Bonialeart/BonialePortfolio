@@ -173,6 +173,7 @@ nav ul li a:hover {
   color: #64ffda;
 }
 
+/* Estilos para la información del proyecto (Cliente, Año, Servicios) - MODIFICADO */
 .flex-row {
   display: flex;
   flex-wrap: wrap;
@@ -180,15 +181,19 @@ nav ul li a:hover {
   gap: 20px;
   position: absolute;
   /* Posicionamiento absoluto */
-  bottom: 50px;
+  bottom: -30px;
   /* Ajusta este valor para subir o bajar la información */
   left: 47.8%;
   transform: translateX(-50%);
   /* Centrar horizontalmente */
   width: 100%;
+  /* Ancho completo */
   box-sizing: border-box;
   padding: 0 20px;
+  /* Padding horizontal */
   z-index: 2;
+  /* Asegura que esté por encima del gradiente */
+}
 
 .project-meta-container {
   width: 100%;
@@ -1573,24 +1578,24 @@ footer {
   }
 
   /* Project Meta Info - Larger Screens */
-  .flex-row {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    position: absolute;
-    /* Posicionamiento absoluto */
-    bottom: 390px; /* Ajusta este valor para subir o bajar la información */
-    left: 48.5%;
-    transform: translateX(-50%);
-    /* Centrar horizontalmente */
-    width: 100%;
-    /* Ancho completo */
-    box-sizing: border-box;
-    padding: 0 20px;
-    /* Padding horizontal */
-    z-index: 2;
-    /* Asegura que esté por encima del gradiente */
+  @media screen and (min-width:  1920px) {
+    
+  }
+  @media screen and (width: 1920px) and (height: 1080px) {
+    .flex-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      position: absolute;
+      bottom: 390px; /* Ajusta este valor según sea necesario */
+      left: 47.0%;
+      transform: translateX(-50%);
+      width: 100%;
+      box-sizing: border-box;
+      padding: 0 20px;
+      z-index: 2;
+    }
   }
 
   .project-meta-header {
