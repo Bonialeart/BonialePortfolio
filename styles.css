@@ -1536,6 +1536,20 @@ footer {
 
 
 /* Responsive Design - Larger Screens (e.g., 1920x1080 and above) */
+/* Estilos para el contenedor del título de navegación */
+.nav-title-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Alinea horizontalmente al centro */
+  justify-content: center; /* Alinea verticalmente al centro */
+  text-align: center; /* Alinea el texto al centro */
+  height: 100%; /* Asegura que ocupe toda la altura del contenedor */
+  position: absolute; /* Permite usar top y left */
+  top: -250px; /* Ajusta según sea necesario */
+  left: 528px; /* Ajusta según sea necesario */
+}
+
+/* Responsive Design - Larger Screens (e.g., 1920x1080 and above) */
 @media (min-width: 1200px) {
   body {
     font-size: 16px; /* Slightly larger base font size */
@@ -1698,7 +1712,7 @@ footer {
   .index-about p {
     font-size: 2rem; /* Larger index about section paragraph */
   }
-    .index-about p2 {
+  .index-about p2 {
     font-size: 1.6rem; /* Larger index about section paragraph */
   }
 
@@ -1727,5 +1741,11 @@ footer {
   .gallery {
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Adjust min width of gallery items for larger screens */
     gap: 0; /* Keep original gap */
+  }
+
+  /* Estilos para el contenedor del título de navegación en pantallas grandes */
+  .nav-title-container {
+    top: -250px; /* Ajusta según sea necesario */
+    left: 528px; /* Ajusta según sea necesario */
   }
 }
