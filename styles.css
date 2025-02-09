@@ -1745,7 +1745,7 @@ footer {
 
   /* Estilos para el contenedor del título de navegación en pantallas grandes */
   .nav-title-container {
-    top: -250px; /* Ajusta según sea necesario */
-    left: 528px; /* Ajusta según sea necesario */
+    top: -450px; /* Ajusta según sea necesario */
+    left: 830px; /* Ajusta según sea necesario */
   }
 }
