@@ -1,0 +1,35 @@
+document.addEventListener("DOMContentLoaded", () => {
+  const gallery = document.getElementById("gallery");
+  const modal = document.getElementById("modal");
+  const modalImage = document.getElementById("modal-image");
+  const modalClose = document.getElementById("modal-close");
+
+  // Handle clicks on gallery items
+  gallery.addEventListener("click", (e) => {
+    const target = e.target.closest(".gallery-item"); // Find the closest parent with the class
+
+    if (target && target.dataset.src) {
+      openModal(target.dataset.src);
+    }
+  });
+
+  function openModal(imageSrc) {
+    modalImage.src = imageSrc; // Set the image source
+    modal.style.display = "flex"; // Show the modal
+  }
+
+  function closeModal() {
+    modal.style.display = "none"; // Hide the modal
+  }
+
+  // Close the modal when the close button is clicked
+  modalClose.addEventListener("click", closeModal);
+
+  // Close the modal if the user clicks outside the image
+  modal.addEventListener("click", (event) => {
+    if (event.target === modal) {
+      closeModal();
+    }
+  });
+});
+
