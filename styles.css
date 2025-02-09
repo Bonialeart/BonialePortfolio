@@ -173,7 +173,6 @@ nav ul li a:hover {
   color: #64ffda;
 }
 
-/* Estilos para la información del proyecto (Cliente, Año, Servicios) - MODIFICADO */
 .flex-row {
   display: flex;
   flex-wrap: wrap;
@@ -187,13 +186,9 @@ nav ul li a:hover {
   transform: translateX(-50%);
   /* Centrar horizontalmente */
   width: 100%;
-  /* Ancho completo */
   box-sizing: border-box;
   padding: 0 20px;
-  /* Padding horizontal */
   z-index: 2;
-  /* Asegura que esté por encima del gradiente */
-}
 
 .project-meta-container {
   width: 100%;
