@@ -1,33 +1,81 @@
-/* styles.css - Complete Responsive CSS */
+/* styles.css - CSS Responsivo Completo Optimizado */
+
+/* Resets y Estilos Generales */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px; /* Tamaño base para rem */
+  scroll-behavior: smooth; /* Añadido para scroll suave */
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #09101c;
+  color: #ccd6f6;
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh; /* Asegura que body siempre cubra la ventana */
+  display: flex;
+  flex-direction: column; /* Para footer sticky */
+}
+
+a {
+  color: #64ffda;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #ccd6f6;
+}
+
+.button {
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: 5px;
+  background-color: #64ffda;
+  color: #09101c;
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #45e2b4;
+  color: #09101c;
+}
 
 /* Estilos Generales de la Galería */
 .gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Default to responsive columns */
-  gap: 0; /* Adjust gap as needed - can increase for small screens if items are too close */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 0;
   padding: 0;
-  background: #01244a;
-  grid-auto-rows: 1fr; /* Ensure rows adjust to content height if needed, though aspect-ratio should handle height */
+  background-color: #01244a;
+  grid-auto-rows: 1fr; /* Para que las filas se ajusten al contenido */
 }
 
 .gallery-item {
   position: relative;
-  aspect-ratio: 1 / 1; /* Maintain square aspect ratio */
-  overflow: hidden; /* Prevent content overflow */
+  aspect-ratio: 1 / 1; /* Mantiene la proporción cuadrada */
+  overflow: hidden;
   border-radius: 0;
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
   cursor: pointer;
   margin: 0;
+  transition: transform 0.4s ease, box-shadow 0.4s ease; /* Agrupadas */
 }
 
 .gallery-item img {
+  display: block; /* Evita espacio extra debajo de la imagen */
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.4s ease;
   border-radius: 0;
-  display: block; /* Ensure image is a block-level element */
+  transition: transform 0.4s ease;
 }
 
 .gallery-item:hover {
@@ -39,7 +87,7 @@
   transform: scale(1.1);
 }
 
-/* Estilos para el contenedor flexbox */
+/* Estilos para el contenedor flexbox de galería y descripción */
 .gallery-and-description {
   display: flex;
   flex-direction: column;
@@ -47,14 +95,14 @@
   width: 100%;
 }
 
-/* Para que el texto ocupe un ancho decente */
+/* Ancho del texto de descripción */
 .detail-text {
   width: 80%;
-  text-align: left;
   margin-top: 20px;
+  text-align: left;
 }
 
-/* Estilos específicos para la galería en vertical (single-page-gallery) */
+/* Estilos específicos para galería vertical (single-page-gallery) */
 .single-page-gallery .gallery {
   display: flex;
   flex-direction: column;
@@ -85,67 +133,53 @@
   transform: scale(1.05);
 }
 
-/* Estilos Generales */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #09101c;
-  color: #ccd6f6;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-/* Estilo actualizado para el header */
+/* Header */
 header {
+  position: relative; /* Para el posicionamiento absoluto de .flex-row */
+  width: 100%;
   padding: 20px;
+  background-color: #09101c; /* Fondo base */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #09101c; /* Fondo blanco con transparencia */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil para dar profundidad */
-  backdrop-filter: blur(10px); /* Efecto de desenfoque para un look moderno */
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05); /* Borde inferior muy sutil */
-  position: relative; /* Fija el header en la parte superior al hacer scroll */
-  width: 100%;
-  }
-
-/* Estilos existentes para la sección izquierda del header */
-.header-left {
-  display: flex;  /* Alinea el logo y el texto horizontalmente */
-  align-items: center; /* Centra verticalmente el logo y el texto */
 }
 
-/* Estilos existentes para el contenido del header */
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
 .header-content {
+  margin-left: 10px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Alinea el texto a la izquierda */
-  margin-left: 10px; /* Espacio entre el logo y el texto */
+  align-items: flex-start;
 }
 
-/* Estilos para el logo del header */
 .header-logo {
-  width: 90px;  /* Ajusta el ancho del logo */
-  height: 90px; /* Ajusta la altura del logo */
-  display: flex;  /* Centra verticalmente */
+  width: 90px;
+  height: 90px;
+  display: flex;
   align-items: center;
 }
 
 .header-logo img {
-  max-width: 100%;  /* Asegura que el logo se ajuste al contenedor */
-  max-height: 100%; /* Asegura que el logo se ajuste al contenedor */
-  object-fit: contain; /* Hace que la imagen se ajuste sin distorsión */
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
 }
 
-/* Estilos para los títulos y subtítulos en el header */
 header h1 {
+  margin: 0;
   font-size: 1.3rem;
   font-weight: bold;
 }
 
 header p {
+  margin-top: 1px;
   font-size: 0.9rem;
   opacity: 0.8;
   color: hsl(225, 41%, 13%);
@@ -160,10 +194,11 @@ nav ul {
 }
 
 nav ul li a {
-  text-decoration: none;
-  color: #ccd6f6;
-  font-size: 0.9rem;
+  display: block; /* Mejora la área de click en links */
   padding: 10px 15px;
+  font-size: 0.9rem;
+  color: #ccd6f6;
+  text-decoration: none;
   transition: color 0.3s ease;
 }
 
@@ -171,33 +206,28 @@ nav ul li a:hover {
   color: #64ffda;
 }
 
-/* Estilos para la información del proyecto (Cliente, Año, Servicios) - MODIFICADO */
-.flex-row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  position: absolute;
-  /* Posicionamiento absoluto */
-  bottom: -30px;
-  /* Ajusta este valor para subir o bajar la información */
-  left: 47.8%;
-  transform: translateX(-50%);
-  /* Centrar horizontalmente */
-  width: 100%;
-  /* Ancho completo */
-  box-sizing: border-box;
-  padding: 0 20px;
-  /* Padding horizontal */
-  z-index: 2;
-  /* Asegura que esté por encima del gradiente */
-}
-
+/* Información del proyecto (Cliente, Año, Servicios) */
 .project-meta-container {
   width: 100%;
   max-width: 900px;
   margin: 0 auto;
 }
+
+.flex-row {
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  padding: 0 20px;
+  box-sizing: border-box;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
 
 .item-bordered {
   border-radius: 0;
@@ -213,10 +243,10 @@ nav ul li a:hover {
 }
 
 .project-meta-header {
+  margin-bottom: 5px;
   font-size: 1rem;
   font-weight: normal;
   color: #8892b0;
-  margin-bottom: 5px;
   text-transform: uppercase;
 }
 
@@ -226,24 +256,17 @@ nav ul li a:hover {
   line-height: 1.2;
 }
 
-/* Responsive: Ajustar para pantallas más pequeñas */
-@media (max-width: 768px) {
-  .project-meta-item {
-    min-width: 150px;
-    flex: 1 1 150px;
-  }
-}
-
 /* Modal Styles */
 .modal {
   display: none;
   position: fixed;
-  z-index: 1000;
   top: 0;
   left: 0;
+  z-index: 1000;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.9);
+  display: flex; /* Para centrar modal content */
   justify-content: center;
   align-items: center;
 }
@@ -252,26 +275,26 @@ nav ul li a:hover {
   display: flex;
   max-width: 70%;
   max-height: 90%;
-  border-radius: 10px;
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
-  background-color: #0a192f;
   padding: 10px;
+  border-radius: 10px;
+  background-color: #0a192f;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
 }
 
 .modal img {
   flex: 7;
   max-height: 70vh;
   border-radius: 10px;
-  box-shadow: 0 0px 0px rgba(0, 0, 0, 0.3);
   object-fit: contain;
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0.3); /* Shadow redundante, se puede quitar si no se usa */
 }
 
 .modal-description {
   flex: 3;
   padding-left: 0;
-  color: #ccd6f6;
   font-size: 1rem;
   line-height: 1.4;
+  color: #ccd6f6;
   overflow: auto;
 }
 
@@ -281,8 +304,8 @@ nav ul li a:hover {
 
 .modal-additional-images-carousel {
   position: relative;
-  overflow: hidden;
   margin-top: 20px;
+  overflow: hidden;
   width: 100%;
 }
 
@@ -294,9 +317,9 @@ nav ul li a:hover {
 .carousel-slide-container img {
   width: 100px;
   height: 100px;
-  object-fit: cover;
   margin: 5px;
   border-radius: 5px;
+  object-fit: cover;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   cursor: pointer;
   transition: transform 0.3s ease;
@@ -326,8 +349,8 @@ nav ul li a:hover {
 }
 
 .about h2 {
-  font-size: 2.5rem;
   margin-bottom: 20px;
+  font-size: 2.5rem;
   color: #6a11cb;
   text-align: center;
 }
@@ -336,8 +359,8 @@ nav ul li a:hover {
   display: flex;
   max-width: 800px;
   margin: 0 auto;
-  align-items: center;
   gap: 30px;
+  align-items: center;
 }
 
 .about-image {
@@ -349,30 +372,30 @@ nav ul li a:hover {
 }
 
 .about p {
+  max-width: 800px;
+  margin: 0 auto;
   font-size: 1.1rem;
   line-height: 1.6;
   color: #ccd6f6;
-  max-width: 800px;
-  margin: 0 auto;
 }
 
 /* Footer Styles */
 footer {
   padding: 20px;
+  margin-top: auto; /* Sticky footer */
   text-align: center;
-  margin-top: auto;
 }
 
 .social-icons {
+  margin-top: 10px;
   display: flex;
   justify-content: center;
   gap: 20px;
-  margin-top: 10px;
 }
 
 .social-icons a {
-  color: #64ffda;
   font-size: 2rem;
+  color: #64ffda;
   text-decoration: none;
   transition: color 0.3s ease;
 }
@@ -381,33 +404,25 @@ footer {
   color: #ccd6f6;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .gallery-item {
-    width: 250px;
-    height: 250px;
-  }
-}
-
 /* Contact Page Styles */
 .contact {
   padding: 60px 20px;
-  background-color: #0a192f;
-  text-align: center;
   max-width: 600px;
   margin: 0 auto;
+  background-color: #0a192f;
+  text-align: center;
 }
 
 .contact h2 {
+  margin-bottom: 20px;
   font-size: 2.5rem;
   color: #6a11cb;
-  margin-bottom: 20px;
 }
 
 .contact p {
+  margin-bottom: 30px;
   font-size: 1.1rem;
   color: #555;
-  margin-bottom: 30px;
 }
 
 .contact form {
@@ -417,29 +432,29 @@ footer {
 }
 
 .contact label {
-  color: #ccd6f6;
   display: block;
   margin-bottom: 5px;
+  color: #ccd6f6;
 }
 
 .contact input,
 .contact textarea {
   width: 100%;
   padding: 10px;
-  border-radius: 10px;
   border: 1px solid #ccd6f6;
+  border-radius: 10px;
   background-color: #f0f4f8;
   font-size: 1rem;
   color: #333;
-  transition: border-color 0.3s ease;
   box-sizing: border-box;
   margin-bottom: 15px;
+  transition: border-color 0.3s ease;
 }
 
 .contact input:focus,
 .contact textarea:focus {
-  border-color: #64ffda;
   outline: none;
+  border-color: #64ffda;
 }
 
 .contact textarea {
@@ -448,10 +463,10 @@ footer {
 
 .contact button {
   padding: 12px 20px;
-  background-color: #64ffda;
-  color: #09101c;
   border: none;
   border-radius: 10px;
+  background-color: #64ffda;
+  color: #09101c;
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -467,18 +482,18 @@ footer {
 
 /* Main Content Styling */
 main {
-  text-align: center;
   padding: 50px;
   margin-top: 50px;
   margin-bottom: 30px;
   border-radius: 10px;
+  text-align: center;
 }
 
 main h2 {
+  margin-bottom: 20px;
   font-size: 2em;
   color: #64ffda;
   text-align: center;
-  margin-bottom: 20px;
 }
 
 main p {
@@ -488,12 +503,12 @@ main p {
 
 /* Carousel Styles */
 .carousel-container {
-  width: 100%;
+  position: relative;
   max-width: 800px;
   margin: 0 auto;
-  position: relative;
   overflow: hidden;
   border-radius: 10px;
+  width: 100%;
 }
 
 .carousel-slide {
@@ -509,20 +524,19 @@ main p {
 
 .carousel-prev,
 .carousel-next {
-  cursor: pointer;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: auto;
   padding: 16px;
   color: #fff;
-  font-weight: bold;
   font-size: 1.5rem;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
-  user-select: none;
-  background-color: rgba(0, 0, 0, 0.3);
+  font-weight: bold;
   border: none;
+  border-radius: 0 3px 3px 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.6s ease;
 }
 
 .carousel-next {
@@ -539,90 +553,88 @@ main p {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
-.active {
-  display: block;
-}
-
-/* Carousel Dots */
 .carousel-dots {
-  text-align: center;
   margin-top: 15px;
+  text-align: center;
 }
 
 .dot {
-  cursor: pointer;
-  height: 10px;
-  width: 10px;
-  margin: 0 5px;
-  background-color: #bbb;
-  border-radius: 50%;
   display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin: 0 5px;
+  border-radius: 50%;
+  background-color: #bbb;
+  cursor: pointer;
   transition: background-color 0.6s ease;
 }
 
-.active {
+.dot.active {
   background-color: #717171;
 }
 
-/* Añadimos un estilo para la fecha y ajustamos el diseño general */
+.carousel-slide.active {
+  display: block;
+}
+
+/* Estilos proyecto-about-value */
 .project-about-value {
+  margin-top: 10px;
   font-size: 1rem;
   color: #64ffda;
-  margin-top: 10px;
   display: inline-block;
 }
 
-/* Estilos para los botones */
+/* Estilos para botones de detalle */
 .detail-buttons {
+  margin-top: 10px;
   display: flex;
   justify-content: center;
   gap: 10px;
-  margin-top: 10px;
 }
 
-/* Estilos para la galería de imágenes */
+/* Estilos para galería de imágenes en detalle */
 .image-gallery {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
 }
 
 .detail-image {
   width: 80%;
-  height: auto;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  object-fit: cover;
   margin-bottom: 20px;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* Estilos para la descripción */
+/* Estilos para la descripción detallada */
 .detail-description {
   width: 80%;
-  text-align: center;
   margin-top: 20px;
+  text-align: center;
 }
 
 .detail-description p {
+  margin-bottom: 15px;
   font-size: 1.1rem;
   line-height: 1.6;
-  margin-bottom: 15px;
   color: #ccd6f6;
 }
 
-/* Estilos para el Encabezado de Información (Inspiración West Studio) - MODIFICADO */
+/* Encabezado de Información (Inspiración West Studio) */
 .header-info-top {
+  margin-top: 2px;
   margin-bottom: 40px;
-  text-align: left; /* Alinea el contenido a la izquierda */
-  margin-left: 50px; /* Agrega un margen a la izquierda para separarlo del borde */
-  margin-top: 2px; /* Mueve el contenido hacia arriba */
+  margin-left: 50px;
+  text-align: left;
 }
 
 .intro-heading {
+  margin-bottom: 10px;
   font-size: 5rem;
   font-weight: 900;
-  margin-bottom: 10px;
   color: #ffffff;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -630,17 +642,17 @@ main p {
 
 .tag-list {
   display: flex;
-  justify-content: flex-start; /* Alinea los botones a la izquierda */
+  justify-content: flex-start;
   gap: 10px;
 }
 
 .button.tag {
   display: inline-block;
   padding: 8px 16px;
+  border-radius: 4px;
   background-color: #334756;
   color: #ccd6f6;
   text-decoration: none;
-  border-radius: 4px;
   font-size: 0.9rem;
   transition: background-color 0.3s ease;
 }
@@ -650,49 +662,33 @@ main p {
   color: #09101c;
 }
 
-/* Responsive (Ajusta según necesites) */
-@media (max-width: 768px) {
-  .detail-main {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .detail-image,
-  .detail-text {
-    width: 100%;
-  }
-}
-
-/* Estilos para la sección con imagen de fondo y gradiente */
+/* Sección con imagen de fondo y gradiente */
 .section-padding {
   padding: 0;
 }
 
 .page-header-section {
   position: relative;
-  overflow: hidden; /* Asegura que el gradiente no se salga del contenedor */
-  color: white; /* Asegura que el texto sea legible sobre la imagen */
-  /* Añade un padding inferior para evitar que el texto esté demasiado pegado al borde */
   padding-bottom: 120px;
+  overflow: hidden;
+  color: white;
 }
 
 .project-header {
-  /* Aquí puedes ajustar la altura mínima para la sección */
-  min-height: 400px;  /* Ajusta este valor */
+  min-height: 400px;
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start; /* Alinea el contenido a la izquierda */
-  position: relative;   /* Posiciona el contenido relativo al contenedor */
-  z-index: 1;          /* Asegura que el contenido esté por encima del gradiente */
+  align-items: flex-start;
 }
 
-/* Estilos para el contenedor con la información */
 .container {
-  width: 100%;
-  max-width: 1200px; /* Ajusta según tus necesidades */
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;  /* Añade un pequeño padding a los lados */
+  width: 100%;
+  padding: 0 20px;
 }
 
 /* Gradiente */
@@ -700,65 +696,23 @@ main p {
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 0;
   width: 100%;
   height: 100%;
   background: linear-gradient(to bottom, transparent 40%, #09101c 90%);
-  z-index: 0; /* Asegura que el gradiente esté detrás del contenido */
-}
-
-/* Reset & General Styles */
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: 'Roboto', sans-serif;
-  background-color: #09101c;
-  color: #ccd6f6;
-  line-height: 1.6;
-  overflow-x: hidden; /* Prevent horizontal scrolling */
-}
-
-a {
-  color: #64ffda;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-a:hover {
-  color: #ccd6f6;
-}
-
-.button {
-  display: inline-block;
-  padding: 12px 24px;
-  background-color: #64ffda;
-  color: #09101c;
-  border-radius: 5px;
-  text-decoration: none;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.button:hover {
-  background-color: #45e2b4;
-  color: #09101c;
 }
 
 
 /* Hero Section */
 .hero {
-  background: url('images/robot.jpg') center/cover no-repeat; /* Replace with your image */
-  height: 100vh; /* Adjust height as needed */
+  position: relative;
+  height: 100vh;
+  background: url('images/robot.jpg') center/cover no-repeat;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
   color: #fff;
-  position: relative;
-  /* Add margin to account for fixed header height */
-
 }
 
 .hero::before {
@@ -766,77 +720,72 @@ a:hover {
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 1;
   width: 100%;
   height: 100%;
-  background-image: linear-gradient(to bottom, rgba(9, 16, 28, 0.2), #09101c 90%); /* Gradient overlay */
-  z-index: 1;
+  background-image: linear-gradient(to bottom, rgba(9, 16, 28, 0.2), #09101c 90%);
 }
 
 .hero-content {
   position: relative;
   z-index: 2;
-  padding: 20px;
   max-width: 800px;
+  padding: 20px;
 }
 
 .hero h1 {
-  font-size: 4rem;
   margin-bottom: 20px;
+  font-size: 4rem;
   font-weight: bold;
 }
 
 .hero p {
-  font-size: 1.2rem;
   margin-bottom: 30px;
+  font-size: 1.2rem;
 }
 
 /* Projects Section */
 .projects {
   padding: 60px 20px;
-  text-align: center;
   scroll-margin-top: 100px;
+  text-align: center;
 }
 
 .projects h2 {
-  font-size: 2.5rem;
   margin-bottom: 40px;
+  font-size: 2.5rem;
   color: #8892b0;
 }
 
-/* Grid layout para distribuir los proyectos de forma atractiva */
 .project-grid {
+  max-width: 1200px;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 30px;
-  max-width: 1200px;
-  margin: 0 auto;
 }
 
-/* Diseño de cada proyecto (card) */
 .project-item {
-  background: #1e1e1e; /* Fondo oscuro para resaltar el contenido */
-  border: 1px solid rgba(255, 255, 255, 0.1); /* Borde sutil */
-  border-radius: 10px;  /* Bordes redondeados para suavizar la forma */
+  background-color: #1e1e1e;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
   overflow: hidden;
-  transition: opacity 1s ease-out, transform 1s ease-out, box-shadow 0.3s ease;
   opacity: 0;
   transform: translateY(50px);
+  transition: opacity 1s ease-out, transform 1s ease-out, box-shadow 0.3s ease; /* Agrupadas */
   will-change: opacity, transform;
 }
 
-/* Clase que activa el efecto de aparición al hacer scroll */
 .project-item.fade-in {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Efecto al pasar el cursor */
 .project-item:hover {
   transform: translateY(-5px) scale(1.02);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 }
 
-/* Imagen del proyecto */
 .project-item img {
   width: 100%;
   height: 200px;
@@ -844,74 +793,59 @@ a:hover {
   display: block;
 }
 
-/* Contenido textual del proyecto */
 .project-item h3 {
-  font-size: 1.5rem;
   margin: 20px 15px 10px;
+  font-size: 1.5rem;
   color: #ccd6f6;
 }
 
 .project-item p {
-  font-size: 1rem;
   margin: 0 15px 20px;
+  font-size: 1rem;
   color: #8892b0;
 }
 
-/* Opcional: retraso escalonado para la animación de aparición */
-.project-item:nth-child(1) {
-  transition-delay: 0.2s;
-}
-.project-item:nth-child(2) {
-  transition-delay: 0.4s;
-}
-.project-item:nth-child(3) {
-  transition-delay: 0.6s;
-}
-.project-item:nth-child(4) {
-  transition-delay: 0.8s;
-}
-/* Agrega más reglas nth-child si tienes más elementos */
-
-/* About Section */
-.about {
-  padding: 60px 20px;
-  background-color: hsl(218, 46%, 25%); /* Change to the main background color */
-  text-align: match-parent;
+/* About Section on index.html */
+.index-about {
+  padding: 4px 60px;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #09101c;
+  text-align: center;
 }
 
-.about h2 {
-  font-size: 2.5rem;
-  margin-bottom: 40px;
-  color: #ffffff;
-  text-align: center; /* Center the heading text */
-}
-
-.about p {
-  max-width: 800px;
-  margin: 0 auto;
-  font-size: 1.1rem;
+.index-about h2 {
+  margin-bottom: 30px;
+  font-size: 2.0rem;
   color: #8892b0;
+  text-align: center;
 }
-.about p2 {
+
+.index-about p {
   max-width: 800px;
   margin: 0 auto;
-  font-size: 1.4rem;
-  color: #f8f8f8;
+  font-size: 1.7rem;
+  font-weight: normal;
+  color: #8892b0;
+  text-align: center;
+}
+.index-about p2 {
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 1.3rem;
   font-weight: bold;
+  color: #f8f8f8;
 }
 
-/* Footer Styles */
-/* Estilos mejorados para el footer */
+/* Footer Styles Mejorados */
 footer {
+  padding: 40px 20px;
   background-color: #0a192f;
   color: #8892b0;
-  padding: 40px 20px;
-  text-align: center;
-  border-top: 1px solid rgba(136, 146, 176, 0.2); /* Línea superior sutil */
+  border-top: 1px solid rgba(136, 146, 176, 0.2);
   font-family: 'Work Sans', sans-serif;
+  text-align: center;
 }
 
-/* Contenedor centralizado para el contenido del footer */
 .footer-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -921,23 +855,20 @@ footer {
   gap: 20px;
 }
 
-/* Estilo para el logo o nombre de la marca en el footer */
 .footer-logo {
   font-size: 1.5rem;
   font-weight: bold;
   color: #ccd6f6;
 }
 
-/* Contenedor de enlaces sociales */
 .footer-social {
   display: flex;
   gap: 15px;
 }
 
-/* Enlaces sociales con efecto hover */
 .footer-social a {
-  color: #8892b0;
   font-size: 1.5rem;
+  color: #8892b0;
   text-decoration: none;
   transition: color 0.3s ease;
 }
@@ -946,146 +877,26 @@ footer {
   color: #64ffda;
 }
 
-/* Texto informativo o de derechos de autor */
 .footer-text {
-  font-size: 0.9rem;
   margin: 0;
+  font-size: 0.9rem;
   line-height: 1.5;
 }
 
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .hero h1 {
-    font-size: 3rem;
-  }
-
-  .hero p {
-    font-size: 1rem;
-  }
-
-  nav ul {
-    gap: 10px;
-  }
-
-  nav a {
-    padding: 8px 12px;
-  }
-}
-
-/* Projects Section */
-.projects {
-  padding: 60px 20px;
-  text-align: center;
-  scroll-margin-top: 100px;
-}
-
-.projects h2 {
-  font-size: 2.0rem;
-  margin-bottom: 40px;
-  color: #bbbbe4;
-}
-
-.project-grid {
-    display: flex;
-    flex-direction: column; /* Vertical layout */
-    gap: 30px;
-    max-width: 650px; /* Adjust max-width as needed */
-    margin: 0 auto;
-}
-.project-item {
-    background-color: #0a192f; /* Fondo oscuro */
-    border-radius: 8px;        /* Bordes redondeados */
-    overflow: hidden;           /* Para que la sombra y el borde respeten los bordes redondeados */
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease; /* Transiciones */
-    border: 1px solid transparent; /* Borde transparente por defecto */
-}
-
-.project-item:hover {
-    transform: translateY(-5px);    /* Eleva el recuadro al pasar el ratón */
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Sombra sutil */
-    border: 5px solid #da4343; /* Borde al pasar el ratón (color de acento) */
-}
-
-.project-item img {
-    width: 100%;
-    height: 600px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin-bottom: 0;
-}
-
-.project-item h3 {
-    font-size: 1.2rem;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    color: #ccd6f6;  /* Color del texto */
-    padding: 0 15px;   /* Añade padding al título */
-}
-
-.project-item.fade-in {
-    opacity: 1;
-    transform: translateY(0); /* Move to final position */
-}
-
-/* Gradiente */
-.gradient-block {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to bottom, transparent 40%, #09101c 90%);
-  z-index: 0; /* Asegura que el gradiente esté detrás del contenido */
-}
-
-/* About Section on index.html */
-.index-about {
-  padding: 4px 60px;
-  background-color: #09101c;
-  text-align: center;
-  font-family: 'Montserrat', sans-serif;
-}
-
-.index-about h2 {
-  font-size: 2.0rem;
-  margin-bottom: 30px;
-  color: #8892b0;
-  text-align: center; /* Center the heading text */
-}
-
-.index-about p {
-  max-width: 800px;
-  margin: 0 auto;
-  font-size: 1.7rem;
-  color: #8892b0;
-  font-weight: normal; /* Remove bold styling */
-  text-align: center; /* Center the paragraph text */
-}
-.index-about p2 {
-  max-width: 800px;
-  margin: 0 auto;
-  font-size: 1.3rem;
-  color: #f8f8f8;
-  font-weight: bold;
-}
-
 /* --- Loading Screen --- */
-/* (These styles are already included in the <head> of index.html,
-   but I leave them here in case you prefer to centralize everything in the CSS) */
-
 #loading-screen {
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 10000;
   width: 100%;
   height: 100%;
   background-color: #09101c;
-  z-index: 10000;
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: opacity 0.5s ease-out;
+  transition: opacity 0.5s ease-out, visibility 0.5s ease-out; /* Añadido visibility */
 }
 
 #loading-screen.hidden {
@@ -1094,30 +905,24 @@ footer {
 }
 
 .loader {
-  border: 8px solid rgba(243, 243, 243, 0.2); /* Borde ligeramente transparente */
-  border-top: 8px solid #64ffda;
-  border-radius: 50%;
   width: 60px;
   height: 60px;
+  border: 8px solid rgba(243, 243, 243, 0.2);
+  border-top: 8px solid #64ffda;
+  border-radius: 50%;
   animation: spin 2s linear infinite;
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  to { transform: rotate(360deg); }
 }
-/* --- Ocultar el botón de menú mientras carga --- */
-  /* Se agrega la clase "loading" al <body> para ocultar el menú durante la carga */
-  body.loading .menu-toggle {
-    display: none
-  }
 
-/* Estilos para el botón de menú (Hamburguesa - con SVG) */
+/* Estilos para el botón de menú Hamburguesa */
 .menu-toggle {
-  display: none; /* Oculto por defecto en pantallas grandes */
+  display: none; /* Oculto en desktop */
   cursor: pointer;
   position: relative;
-  z-index: 10; /* Para asegurar que esté por encima del resto */
+  z-index: 10;
   width: 30px;
   height: 24px;
 }
@@ -1125,14 +930,13 @@ footer {
 .menu-icon {
   width: 100%;
   height: 100%;
-  transition: transform 0.3s ease; /* Animación suave */
+  transition: transform 0.3s ease;
 }
 
 .menu-line {
-  transition: stroke-dashoffset 0.3s ease; /* Para la animación de las líneas */
+  transition: stroke-dashoffset 0.3s ease;
 }
 
-/* Animación del menú hamburguesa (X) */
 .menu-toggle.active .menu-line:nth-child(1) {
   transform: translateY(6px) rotate(45deg);
 }
@@ -1145,621 +949,679 @@ footer {
   transform: translateY(-6px) rotate(-45deg);
 }
 
-/* Estilos para el menú desplegable (inicialmente oculto) */
+/* Estilos menú desplegable */
 .main-nav {
-    display: flex; /* Usar flexbox para el diseño del menú */
-    position: fixed; /* Fijo para que se quede en la pantalla */
-    top: 0;
-    right: -300px; /* Inicialmente fuera de la pantalla */
-    width: 300px;
-    height: 100vh; /* Altura completa de la pantalla */
-    background-color: #0a192f; /* Fondo del menú */
-    z-index: 5; /* Asegura que esté por encima del contenido */
-    transition: right 0.3s ease; /* Animación de apertura y cierre */
-    padding: 20px; /* Espaciado interno */
+  position: fixed;
+  top: 0;
+  right: -300px; /* Oculto inicialmente */
+  z-index: 5;
+  width: 300px;
+  height: 100vh;
+  padding: 20px;
+  background-color: #0a192f;
+  display: flex; /* Flexbox para el menú */
+  transition: right 0.3s ease;
 }
+
 .close-btn {
+  position: relative;
+  display: flex; /* Para centrar contenido */
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   width: 80px;
   height: 80px;
-  position: relative;
-  /* Opcional: para centrar vertical y horizontalmente el contenido interno */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.close-btn-line {
-  position: absolute;
-  width: 40px;
-  height: 4px;
-  background-color: #fff;
-  top: 28%;
-  left: 138%;
-  transform-origin: center;
-}
-
-/* Primera línea inclinada a 45° */
-.close-btn-line:first-child {
-  transform: translate(-50%, -50%) rotate(45deg);
-}
-
-/* Segunda línea inclinada a -45° */
-.close-btn-line:last-child {
-  transform: translate(-50%, -50%) rotate(-45deg);
+  top: 22.8px;
+  left: 19.9px;
 }
 
 .nav-title-container {
-  display: flex;
+  position: absolute;
+  top: -150px; /* Ajuste inicial para pantallas más pequeñas */
+  left: 50%;
+  height: 80%; /* Altura ajustada para pantallas más pequeñas por defecto */
+  text-align: center;
+  display: flex; /* Flexbox para centrar vertical y horizontalmente */
   flex-direction: column;
-  align-items: center; /* Alinea horizontalmente al centro */
-  justify-content: center; /* Alinea verticalmente al centro */
-  text-align: center; /* Alinea el texto al centro */
-  height: 100%; /* Asegura que ocupe toda la altura del contenedor */
-  position: absolute; /* Permite usar top y left */
-  top: -250px; /* Ajusta según sea necesario */
-  left: 528px; /* Ajusta según sea necesario */
+  align-items: center;
+  justify-content: center;
+  transform: translateX(-50%); /* Centrar horizontalmente */
 }
-* Estilos para el menú de navegación */
+
 .navigation-menu {
   list-style: none;
-  padding: 0;
   margin: 0;
+  padding: 0;
 }
 
 .navigation-menu li {
   margin: 20px 0;
 }
 
-.navigation-menu a {
-  text-decoration: none;
-  color: #000; /* Asegura que el texto sea visible */
-  transition: transform 0.3s ease, color 0.3s ease; /* Añade una transición suave */
-}
-
-.navigation-menu a:hover {
-  transform: scale(2.2); /* Agranda las letras un poco */
-  color: #64ffda; /* Cambia el color del texto */
-}
-
 .navigation-menu li a {
-  color: #fff;
+  display: block; /* Área de click más grande */
   font-size: 2rem;
+  color: #fff;
   text-decoration: none;
+  transition: transform 0.3s ease, color 0.3s ease;
 }
 
-/* Responsive Adjustments */
-@media (max-width: 768px) { /* Target tablets and smaller */
+.navigation-menu li a:hover {
+  transform: scale(2.2);
+  color: #64ffda;
+}
+
+.close-btn-line {
+  position: absolute;
+  top: 28%;
+  left: 90%;
+  width: 30px;
+  height: 3px;
+  background-color: #fff;
+  transform-origin: center;
+}
+
+.close-btn-line:first-child {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.close-btn-line:last-child {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+
+/* Responsive Adjustments - Mobile First Approach */
+
+/* Default styles are for larger screens, overrides for smaller screens below */
+
+/* Media Query para pantallas extra grandes (pantallas muy grandes, desde 1920px) */
+@media (min-width: 1920px) {
   body {
-    font-size: 14px; /* Slightly reduce base font size */
+    font-size: 18px;
   }
-
   header {
-    padding: 15px; /* Reduce header padding */
+    padding: 40px;
   }
-
   .header-logo {
-    width: 70px; /* Smaller logo */
-    height: 70px;
+    width: 130px;
+    height: 130px;
   }
-
   header h1 {
-    font-size: 1.2rem; /* Slightly smaller header titles */
+    font-size: 1.8rem;
   }
-
   nav ul {
-    gap: 10px; /* Less gap in nav links */
+    gap: 40px;
   }
-
   nav ul li a {
-    font-size: 0.8rem; /* Smaller nav link font */
-    padding: 8px 12px; /* Smaller padding for nav links */
-  }
-
-  /* Project Meta Info - Responsive */
-  .flex-row {
-    position: static; /* Revert to static positioning for mobile layout flow */
-    transform: none; /* Remove centering transform */
-    left: auto;
-    right: auto;
-    bottom: auto;
-    margin-top: 20px; /* Add margin above on mobile */
-    padding: 0; /* Reset padding */
-    text-align: center; /* Center text on mobile */
-  }
-
-  .project-meta-container {
-    max-width: 100%; /* Full width on mobile */
-  }
-
-  .project-meta-item {
-    min-width: auto; /* Auto width for flexibility */
-    flex: 1 1 auto; /* Allow items to wrap */
-    margin-bottom: 10px; /* Add space between items if wrapping */
-  }
-
-  .project-meta-header {
-    font-size: 0.9rem; /* Smaller header */
-  }
-
-  .project-meta-content {
-    font-size: 0.8rem; /* Smaller content */
-  }
-
-  /* Modal Adjustments */
-  .modal-content-container {
-    flex-direction: column; /* Stack modal content vertically on mobile */
-    max-width: 95%; /* Make modal wider on small screens */
-    max-height: 95%; /* Make modal taller if needed */
-  }
-
-  .modal img {
-    max-height: 60vh; /* Adjust image height in modal on mobile */
-    flex: none; /* Reset flex for vertical stacking */
-    width: 100%; /* Image takes full width */
-  }
-
-  .modal-description {
-    flex: none; /* Reset flex for vertical stacking */
-    padding-left: 0;
-    padding-top: 20px; /* Add padding below image */
-    width: 100%; /* Description takes full width */
-  }
-
-  /* About Section Adjustments */
-  .about {
-    padding: 40px 15px; /* Reduce padding on about section */
-  }
-
-  .about h2 {
-    font-size: 2rem; /* Smaller about section heading */
-    margin-bottom: 15px;
-  }
-
-  .about p {
-    font-size: 1rem; /* Smaller about section paragraph */
-  }
-
-  .about-content {
-    flex-direction: column; /* Stack about content vertically */
-    align-items: center; /* Center items in about section */
-    gap: 20px; /* Adjust gap */
-  }
-
-  .about-image {
-    width: 180px; /* Smaller about image */
-    height: 180px;
-  }
-
-  /* Contact Section Adjustments */
-  .contact {
-    padding: 40px 15px; /* Reduce padding on contact section */
-  }
-
-  .contact h2 {
-    font-size: 2rem; /* Smaller contact section heading */
-  }
-
-  .contact p {
-    font-size: 1rem; /* Smaller contact section paragraph */
-    margin-bottom: 20px;
-  }
-
-  /* Main Content Adjustments */
-  main {
-    padding: 30px 15px; /* Reduce padding in main content */
-    margin-top: 30px; /* Reduce top margin */
-    margin-bottom: 20px; /* Reduce bottom margin */
-  }
-
-  main h2 {
-    font-size: 1.8rem; /* Smaller main content heading */
-  }
-
-  main p {
-    font-size: 1rem; /* Smaller main content paragraph */
-  }
-
-  /* Carousel Adjustments */
-  .carousel-container {
-    max-width: 95%; /* Wider carousel on mobile */
-  }
-
-  .carousel-prev,
-  .carousel-next {
-    padding: 12px; /* Smaller carousel control padding */
-    font-size: 1.2rem; /* Smaller carousel control font */
-  }
-
-  /* Header Info Top (Project Detail Page Header) */
-  .header-info-top {
-    margin-left: 15px; /* Adjust left margin */
-    margin-top: 0;
-    text-align: center; /* Center text on mobile */
-  }
-
-  .intro-heading {
-    font-size: 3rem; /* Smaller main heading */
-  }
-
-  .tag-list {
-    justify-content: center; /* Center tags on mobile */
-  }
-
-  /* Single Page Gallery Adjustments */
-  .single-page-gallery .gallery {
-    padding: 10px; /* Reduce gallery padding on detail pages */
-    gap: 10px;
-  }
-
-  .single-page-gallery .gallery-item {
-    width: 95%; /* Make detail page gallery items wider on mobile */
-  }
-
-  /* Hero Section Adjustments */
-  .hero {
-    height: auto; /* Auto height for hero section on mobile */
-    padding: 80px 20px; /* Add padding to hero content */
-    text-align: center; /* Center hero text */
-  }
-
-  .hero h1 {
-    font-size: 3rem; /* Smaller hero heading */
-  }
-
-  .hero p {
-    font-size: 1.1rem; /* Smaller hero paragraph */
-  }
-
-  /* Projects Section on Index Page */
-  .projects {
-    padding: 40px 15px; /* Reduce padding on projects section */
-  }
-
-  .projects h2 {
-    font-size: 2rem; /* Smaller projects section heading */
-    margin-bottom: 30px;
-  }
-
-  .project-grid {
-    grid-template-columns: 1fr; /* Single column grid on mobile */
-    gap: 20px; /* Adjust gap */
-  }
-    .project-item img {
-    height: 400px; /* Adjust image height for mobile */
-  }
-
-  /* Index About Section Adjustments */
-  .index-about {
-    padding: 30px 15px; /* Reduce padding on index about section */
-  }
-
-  .index-about h2 {
-    font-size: 2rem; /* Smaller index about section heading */
-    margin-bottom: 20px;
-  }
-
-  .index-about p {
-    font-size: 1.2rem; /* Smaller index about section paragraph */
-  }
-    .index-about p2 {
-    font-size: 1.3rem; /* Smaller index about section paragraph */
-  }
-
-  /* Footer Adjustments */
-  footer {
-    padding: 30px 15px; /* Reduce footer padding */
-  }
-
-  .footer-container {
-    gap: 15px; /* Reduce footer container gap */
-  }
-
-  .footer-logo {
-    font-size: 1.3rem; /* Smaller footer logo */
-  }
-
-  .footer-social a {
-    font-size: 1.3rem; /* Smaller social icons */
-  }
-
-  .footer-text {
-    font-size: 0.8rem; /* Smaller footer text */
-  }
-
-  /* Gallery Adjustments */
-  .gallery {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Adjust min width of gallery items */
-    gap: 5px; /* Reduce gap between gallery items */
-  }
-
-  .gallery-item {
-    aspect-ratio: 1 / 1; /* Maintain square aspect ratio */
-  }
-  .gallery-item:hover {
-    transform: none; /* Disable hover transform on small screens */
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); /* Keep box-shadow if you like */
-  }
-
-  .gallery-item:hover img {
-    transform: scale(1.0); /* Disable image scale on hover for small screens */
-  }
-}
-
-/* Responsive Design - Phones and smaller screens */
-@media (max-width: 480px) {
-  .header-content {
-    display: none;
-  }
-    .intro-heading {
-    font-size: 2rem;
-  }
-  .hero h1 {
-    font-size: 2.5rem;
-  }
-  .hero p {
-    font-size: 1rem;
-  }
-    .index-about p {
-    font-size: 1.1rem;
-  }
-    .index-about p2 {
     font-size: 1.2rem;
+    padding: 15px 25px;
   }
-    .project-item img {
-    height: 300px;
-  }
-  .navigation-menu li a {
-    font-size: 1.5rem;
-  }
-
-  /* Gallery Adjustments for Phones */
-  .gallery {
-    grid-template-columns: 1fr; /* Force single column for phones to prevent squeezing and potential overlap */
-    gap: 20px; /* Increase gap for better spacing between items on phones */
-  }
-  .gallery-item {
-    aspect-ratio: 16 / 9; /* Change aspect ratio to be more landscape-oriented on phones if desired, or keep 1/1 */
-    /* width: 100%;  Not needed as grid-template-columns: 1fr; makes it full width */
-  }
-  .gallery-item:hover {
-    transform: none; /* Disable hover transform on small screens */
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); /* Keep box-shadow if you like */
-  }
-
-  .gallery-item:hover img {
-    transform: scale(1.0); /* Disable image scale on hover for small screens */
-  }
-}
-
-
-/* Responsive Design - Larger Screens (e.g., 1920x1080 and above) */
-/* Estilos para el contenedor del título de navegación */
-.nav-title-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Alinea horizontalmente al centro */
-  justify-content: center; /* Alinea verticalmente al centro */
-  text-align: center; /* Alinea el texto al centro */
-  height: 100%; /* Asegura que ocupe toda la altura del contenedor */
-  position: absolute; /* Permite usar top y left */
-  top: -250px; /* Ajusta según sea necesario */
-  left: 528px; /* Ajusta según sea necesario */
-}
-
-/* Responsive Design - Larger Screens (e.g., 1920x1080 and above) */
-@media (min-width: 1200px) {
-  body {
-    font-size: 16px; /* Slightly larger base font size */
-  }
-
-  header {
-    padding: 30px; /* Increase header padding */
-  }
-
-  .header-logo {
-    width: 110px; /* Larger logo */
-    height: 110px;
-  }
-
-  header h1 {
-    font-size: 1.6rem; /* Larger header titles */
-  }
-
-  nav ul {
-    gap: 30px; /* More gap in nav links */
-  }
-
-  nav ul li a {
-    font-size: 1.1rem; /* Larger nav link font */
-    padding: 12px 20px; /* Larger padding for nav links */
-  }
-
-  /* Project Meta Info - Larger Screens */
-  @media screen and (min-width:  1920px) {
-    
-  }
-  @media screen and (width: 1920px) and (height: 1080px) {
-    .flex-row {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-      position: absolute;
-      bottom: 390px; /* Ajusta este valor según sea necesario */
-      left: 47.0%;
-      transform: translateX(-50%);
-      width: 100%;
-      box-sizing: border-box;
-      padding: 0 20px;
-      z-index: 2;
-    }
-  }
-
-  .project-meta-header {
-    font-size: 1.2rem; /* Larger header */
-  }
-
-  .project-meta-content {
-    font-size: 1rem; /* Larger content */
-  }
-
-  /* Modal Adjustments */
-  .modal-content-container {
-    max-width: 60%; /* Slightly narrower modal on large screens */
-  }
-
-  .modal img {
-    max-height: 80vh; /* Adjust image height in modal on larger screens */
-  }
-
-  .modal-description {
-    font-size: 1.1rem; /* Larger description font in modal */
-  }
-
-  /* About Section Adjustments */
   .about {
-    padding: 80px 20px; /* Increase padding on about section */
+    padding: 100px 30px;
   }
-
   .about h2 {
-    font-size: 3rem; /* Larger about section heading */
-    margin-bottom: 30px;
-  }
-
-  .about p {
-    font-size: 1.2rem; /* Larger about section paragraph */
-  }
-
-  .about-image {
-    width: 300px; /* Larger about image */
-    height: 300px;
-  }
-
-  /* Contact Section Adjustments */
-  .contact h2 {
-    font-size: 3rem; /* Larger contact section heading */
-  }
-
-  .contact p {
-    font-size: 1.2rem; /* Larger contact section paragraph */
+    font-size: 3.5rem;
     margin-bottom: 40px;
   }
-
-  /* Main Content Adjustments */
-  main {
-    padding: 70px 20px; /* Increase padding in main content */
-    margin-top: 70px; /* Increase top margin */
-    margin-bottom: 50px; /* Increase bottom margin */
+  .about p {
+    font-size: 1.4rem;
   }
-
-  main h2 {
-    font-size: 2.5rem; /* Larger main content heading */
+  .about-image {
+    width: 350px;
+    height: 350px;
   }
-
-  main p {
-    font-size: 1.3rem; /* Larger main content paragraph */
+  .contact h2 {
+    font-size: 3.5rem;
   }
-
-  /* Carousel Adjustments */
-  .carousel-prev,
-  .carousel-next {
-    padding: 20px; /* Larger carousel control padding */
-    font-size: 1.8rem; /* Larger carousel control font */
-  }
-
-  /* Header Info Top (Project Detail Page Header) */
-  .header-info-top {
-    margin-left: 80px; /* Adjust left margin for larger screens */
-  }
-
-  .intro-heading {
-    font-size: 7rem; /* Larger main heading for big screens */
-  }
-
-  .tag-list {
-    gap: 15px; /* Increase gap between tags */
-  }
-
-  .button.tag {
-    padding: 10px 20px; /* Larger tag button padding */
-    font-size: 1rem; /* Larger tag button font */
-  }
-
-  /* Hero Section Adjustments */
-  .hero h1 {
-    font-size: 5rem; /* Larger hero heading */
-  }
-
-  .hero p {
-    font-size: 1.4rem; /* Larger hero paragraph */
-  }
-
-  /* Projects Section on Index Page */
-  .projects h2 {
-    font-size: 3rem; /* Larger projects section heading */
+  .contact p {
+    font-size: 1.4rem;
     margin-bottom: 50px;
   }
-
+  main {
+    padding: 90px 30px;
+    margin-top: 90px;
+    margin-bottom: 70px;
+  }
+  main h2 {
+    font-size: 3rem;
+  }
+  main p {
+    font-size: 1.5rem;
+  }
+  .carousel-prev,
+  .carousel-next {
+    padding: 25px;
+    font-size: 2rem;
+  }
+  .header-info-top {
+    margin-left: 80px;
+  }
+  .intro-heading {
+    font-size: 9rem;
+  }
+  .hero h1 {
+    font-size: 7rem;
+  }
+  .hero p {
+    font-size: 1.6rem;
+  }
+  .projects h2 {
+    font-size: 3.5rem;
+    margin-bottom: 60px;
+  }
   .project-grid {
-    gap: 40px; /* Increase gap between project items */
+    gap: 50px;
   }
-
   .project-item h3 {
-    font-size: 1.8rem; /* Larger project item heading */
+    font-size: 2rem;
   }
-
   .project-item p {
-    font-size: 1.1rem; /* Larger project item paragraph */
+    font-size: 1.2rem;
   }
-
-  /* Index About Section Adjustments */
   .index-about {
-    padding: 50px 60px; /* Increase padding on index about section */
+    padding: 70px 80px;
   }
-
   .index-about h2 {
-    font-size: 2.5rem; /* Larger index about section heading */
-    margin-bottom: 40px;
+    font-size: 3rem;
+    margin-bottom: 50px;
   }
-
   .index-about p {
-    font-size: 2rem; /* Larger index about section paragraph */
+    font-size: 2.5rem;
   }
   .index-about p2 {
-    font-size: 1.6rem; /* Larger index about section paragraph */
+    font-size: 1.8rem;
   }
-
-  /* Footer Adjustments */
   footer {
-    padding: 50px 20px; /* Increase footer padding */
+    padding: 70px 30px;
   }
-
   .footer-container {
-    gap: 20px; /* Increase footer container gap */
+    gap: 30px;
   }
-
   .footer-logo {
-    font-size: 1.8rem; /* Larger footer logo */
+    font-size: 2rem;
   }
-
   .footer-social a {
-    font-size: 1.8rem; /* Larger social icons */
+    font-size: 2rem;
   }
-
   .footer-text {
-    font-size: 1rem; /* Larger footer text */
+    font-size: 1.1rem;
   }
-
-  /* Gallery Adjustments */
   .gallery {
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Adjust min width of gallery items for larger screens */
-    gap: 0; /* Keep original gap */
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   }
-
-  /* Estilos para el contenedor del título de navegación en pantallas grandes */
   .nav-title-container {
-    top: -450px; /* Ajusta según sea necesario */
-    left: 830px; /* Ajusta según sea necesario */
+    top: -450px;
+    left: 830px;
+  }
+  .close-btn-line {
+    width: 50px;
+    height: 6px;
+    left: 100%;
+  }
+}
+
+
+/* Media Query para pantallas grandes (desktops, desde 1200px) */
+@media (min-width: 1200px) and (max-width: 1919px) {
+  body {
+    font-size: 16px;
+  }
+  header {
+    padding: 30px;
+  }
+  .header-logo {
+    width: 110px;
+    height: 110px;
+  }
+  header h1 {
+    font-size: 1.6rem;
+  }
+  nav ul {
+    gap: 30px;
+  }
+  nav ul li a {
+    font-size: 1.1rem;
+    padding: 12px 20px;
+  }
+  .project-meta-header {
+    font-size: 1.2rem;
+  }
+  .project-meta-content {
+    font-size: 1rem;
+  }
+  .modal-content-container {
+    max-width: 60%;
+  }
+  .modal img {
+    max-height: 80vh;
+  }
+  .modal-description {
+    font-size: 1.1rem;
+  }
+  .about {
+    padding: 80px 20px;
+  }
+  .about h2 {
+    font-size: 3rem;
+    margin-bottom: 30px;
+  }
+  .about p {
+    font-size: 1.2rem;
+  }
+  .about-image {
+    width: 300px;
+    height: 300px;
+  }
+  .contact h2 {
+    font-size: 3rem;
+  }
+  .contact p {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+  }
+  main {
+    padding: 70px 20px;
+    margin-top: 70px;
+    margin-bottom: 50px;
+  }
+  main h2 {
+    font-size: 2.5rem;
+  }
+  main p {
+    font-size: 1.3rem;
+  }
+  .carousel-prev,
+  .carousel-next {
+    padding: 20px;
+    font-size: 1.8rem;
+  }
+  .header-info-top {
+    margin-left: 80px;
+  }
+  .intro-heading {
+    font-size: 7rem;
+  }
+  .hero h1 {
+    font-size: 5rem;
+  }
+  .hero p {
+    font-size: 1.4rem;
+  }
+  .projects h2 {
+    font-size: 3rem;
+    margin-bottom: 50px;
+  }
+  .project-grid {
+    gap: 40px;
+  }
+  .project-item h3 {
+    font-size: 1.8rem;
+  }
+  .project-item p {
+    font-size: 1.1rem;
+  }
+  .index-about {
+    padding: 50px 60px;
+  }
+  .index-about h2 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+  }
+  .index-about p {
+    font-size: 2rem;
+  }
+  .index-about p2 {
+    font-size: 1.6rem;
+  }
+  footer {
+    padding: 50px 20px;
+  }
+  .footer-container {
+    gap: 20px;
+  }
+  .footer-logo {
+    font-size: 1.8rem;
+  }
+  .footer-social a {
+    font-size: 1.8rem;
+  }
+  .footer-text {
+    font-size: 1rem;
+  }
+  .gallery {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  }
+  .nav-title-container {
+    top: -250px;
+    left: 528px;
+  }
+  .close-btn-line {
+    width: 40px;
+    height: 4px;
+    left: 100%;
+  }
+}
+
+
+/* Media Query para pantallas medianas (tabletas, desde 768px) */
+@media (min-width: 768px) and (max-width: 1199px) {
+  body {
+    font-size: 15px;
+  }
+  header {
+    padding: 25px;
+  }
+  .header-logo {
+    width: 90px;
+    height: 90px;
+  }
+  header h1 {
+    font-size: 1.5rem;
+  }
+  nav ul {
+    gap: 20px;
+  }
+  nav ul li a {
+    font-size: 1rem;
+    padding: 10px 15px;
+  }
+  .modal-content-container {
+    max-width: 85%;
+  }
+  .about {
+    padding: 60px 20px;
+  }
+  .about h2 {
+    font-size: 2.5rem;
+    margin-bottom: 25px;
+  }
+  .about p {
+    font-size: 1.1rem;
+  }
+  .about-image {
+    width: 250px;
+    height: 250px;
+  }
+  .contact h2 {
+    font-size: 2.5rem;
+  }
+  .contact p {
+    font-size: 1.1rem;
+    margin-bottom: 35px;
+  }
+  main {
+    padding: 60px 20px;
+    margin-top: 65px;
+    margin-bottom: 45px;
+  }
+  main h2 {
+    font-size: 2.2rem;
+  }
+  main p {
+    font-size: 1.2rem;
+  }
+  .carousel-prev,
+  .carousel-next {
+    padding: 18px;
+    font-size: 1.6rem;
+  }
+  .header-info-top {
+    margin-left: 50px;
+  }
+  .intro-heading {
+    font-size: 5rem;
+  }
+  .hero h1 {
+    font-size: 4rem;
+  }
+  .hero p {
+    font-size: 1.2rem;
+  }
+  .projects h2 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+  }
+  .project-grid {
+    gap: 30px;
+  }
+  .project-item h3 {
+    font-size: 1.6rem;
+  }
+  .project-item p {
+    font-size: 1.05rem;
+  }
+  .index-about {
+    padding: 40px 30px;
+  }
+  .index-about h2 {
+    font-size: 2.2rem;
+    margin-bottom: 35px;
+  }
+  .index-about p {
+    font-size: 1.6rem;
+  }
+  .index-about p2 {
+    font-size: 1.2rem;
+  }
+  footer {
+    padding: 40px 20px;
+  }
+  .footer-container {
+    gap: 18px;
+  }
+  .footer-logo {
+    font-size: 1.6rem;
+  }
+  .footer-social a {
+    font-size: 1.6rem;
+  }
+  .footer-text {
+    font-size: 0.95rem;
+  }
+  .gallery {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+  .nav-title-container {
+    top: -200px;
+    left: 50%;
+  }
+  .close-btn-line {
+    width: 35px;
+    height: 3.5px;
+    left: 92%;
+  }
+}
+
+
+/* Media Query para pantallas pequeñas (móviles, hasta 767px) */
+@media (max-width: 767px) {
+  body {
+    font-size: 14px;
+  }
+  header {
+    padding: 15px;
+  }
+  .header-logo {
+    width: 70px;
+    height: 70px;
+  }
+  header h1 {
+    font-size: 1.2rem;
+  }
+  nav ul {
+    gap: 10px;
+  }
+  nav ul li a {
+    font-size: 0.8rem;
+    padding: 8px 12px;
+  }
+  .project-meta-header {
+    font-size: 0.9rem;
+  }
+  .project-meta-content {
+    font-size: 0.8rem;
+  }
+  .modal-content-container {
+    flex-direction: column;
+    max-width: 95%;
+    max-height: 95%;
+  }
+  .modal img {
+    max-height: 60vh;
+    flex: none;
+    width: 100%;
+  }
+  .modal-description {
+    flex: none;
+    padding-left: 0;
+    padding-top: 20px;
+    width: 100%;
+  }
+  .about {
+    padding: 40px 15px;
+  }
+  .about h2 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+  }
+  .about p {
+    font-size: 1rem;
+  }
+  .about-image {
+    width: 180px;
+    height: 180px;
+  }
+  .contact {
+    padding: 40px 15px;
+  }
+  .contact h2 {
+    font-size: 2rem;
+  }
+  .contact p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+  main {
+    padding: 30px 15px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+  }
+  main h2 {
+    font-size: 1.8rem;
+  }
+  main p {
+    font-size: 1rem;
+  }
+  .carousel-prev,
+  .carousel-next {
+    padding: 12px;
+    font-size: 1.2rem;
+  }
+  .header-info-top {
+    margin-left: 15px;
+    margin-top: 0;
+    text-align: center;
+  }
+  .intro-heading {
+    font-size: 3rem;
+  }
+  .tag-list {
+    justify-content: center;
+  }
+  .button.tag {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+  }
+  .single-page-gallery .gallery {
+    padding: 10px;
+    gap: 10px;
+  }
+  .single-page-gallery .gallery-item {
+    width: 95%;
+  }
+  .hero {
+    height: auto;
+    padding: 80px 20px;
+    text-align: center;
+  }
+  .hero h1 {
+    font-size: 3rem;
+  }
+  .hero p {
+    font-size: 1.1rem;
+  }
+  .projects {
+    padding: 40px 15px;
+  }
+  .projects h2 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+  }
+  .project-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .project-item img {
+    height: 400px;
+  }
+  .index-about {
+    padding: 30px 15px;
+  }
+  .index-about h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  .index-about p {
+    font-size: 1.2rem;
+  }
+  .index-about p2 {
+    font-size: 1.3rem;
+  }
+  footer {
+    padding: 30px 15px;
+  }
+  .footer-container {
+    gap: 15px;
+  }
+  .footer-logo {
+    font-size: 1.3rem;
+  }
+  .footer-social a {
+    font-size: 1.3rem;
+  }
+  .footer-text {
+    font-size: 0.8rem;
+  }
+  .gallery {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 5px;
+  }
+  .gallery-item {
+    aspect-ratio: 1 / 1;
+  }
+  .gallery-item:hover {
+    transform: none;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  }
+  .gallery-item:hover img {
+    transform: scale(1.0);
+  }
+  .nav-title-container {
+    top: -100px;
+    left: 50%;
+  }
+  .close-btn-line {
+    width: 25px;
+    height: 2.5px;
+    left: 95%;
+  }
+  .nav-title-container {
+    top: -100px; /* Ajuste para móviles */
+    left: 50%; /* Centrado para móviles */
+  }
+  .close-btn-line {
+    width: 25px; /* Tamaño reducido para móviles */
+    height: 2.5px; /* Grosor reducido para móviles */
+    left: 95%; /* Ajustado para móviles */
   }
 }
