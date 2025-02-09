@@ -1,3 +1,5 @@
+/* styles.css - Complete Responsive CSS */
+
 /* Estilos Generales de la Galería */
 .gallery {
   display: grid;
@@ -874,7 +876,7 @@ a:hover {
 .about {
   padding: 60px 20px;
   background-color: hsl(218, 46%, 25%); /* Change to the main background color */
-  text-align: match-parent; 
+  text-align: match-parent;
 }
 
 .about h2 {
@@ -1042,7 +1044,7 @@ footer {
   padding: 4px 60px;
   background-color: #09101c;
   text-align: center;
-  font-family: 'Montserrat', sans-serif; 
+  font-family: 'Montserrat', sans-serif;
 }
 
 .index-about h2 {
@@ -1059,6 +1061,13 @@ footer {
   color: #8892b0;
   font-weight: normal; /* Remove bold styling */
   text-align: center; /* Center the paragraph text */
+}
+.index-about p2 {
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 1.3rem;
+  color: #f8f8f8;
+  font-weight: bold;
 }
 
 /* --- Loading Screen --- */
@@ -1100,7 +1109,7 @@ footer {
 /* --- Ocultar el botón de menú mientras carga --- */
   /* Se agrega la clase "loading" al <body> para ocultar el menú durante la carga */
   body.loading .menu-toggle {
-    display: none 
+    display: none
   }
 
 /* Estilos para el botón de menú (Hamburguesa - con SVG) */
@@ -1217,4 +1226,290 @@ footer {
   color: #fff;
   font-size: 2rem;
   text-decoration: none;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) { /* Target tablets and smaller */
+  body {
+    font-size: 14px; /* Slightly reduce base font size */
+  }
+
+  header {
+    padding: 15px; /* Reduce header padding */
+  }
+
+  .header-logo {
+    width: 70px; /* Smaller logo */
+    height: 70px;
+  }
+
+  header h1 {
+    font-size: 1.2rem; /* Slightly smaller header titles */
+  }
+
+  nav ul {
+    gap: 10px; /* Less gap in nav links */
+  }
+
+  nav ul li a {
+    font-size: 0.8rem; /* Smaller nav link font */
+    padding: 8px 12px; /* Smaller padding for nav links */
+  }
+
+  /* Project Meta Info - Responsive */
+  .flex-row {
+    position: static; /* Revert to static positioning for mobile layout flow */
+    transform: none; /* Remove centering transform */
+    left: auto;
+    right: auto;
+    bottom: auto;
+    margin-top: 20px; /* Add margin above on mobile */
+    padding: 0; /* Reset padding */
+    text-align: center; /* Center text on mobile */
+  }
+
+  .project-meta-container {
+    max-width: 100%; /* Full width on mobile */
+  }
+
+  .project-meta-item {
+    min-width: auto; /* Auto width for flexibility */
+    flex: 1 1 auto; /* Allow items to wrap */
+    margin-bottom: 10px; /* Add space between items if wrapping */
+  }
+
+  .project-meta-header {
+    font-size: 0.9rem; /* Smaller header */
+  }
+
+  .project-meta-content {
+    font-size: 0.8rem; /* Smaller content */
+  }
+
+  /* Modal Adjustments */
+  .modal-content-container {
+    flex-direction: column; /* Stack modal content vertically on mobile */
+    max-width: 95%; /* Make modal wider on small screens */
+    max-height: 95%; /* Make modal taller if needed */
+  }
+
+  .modal img {
+    max-height: 60vh; /* Adjust image height in modal on mobile */
+    flex: none; /* Reset flex for vertical stacking */
+    width: 100%; /* Image takes full width */
+  }
+
+  .modal-description {
+    flex: none; /* Reset flex for vertical stacking */
+    padding-left: 0;
+    padding-top: 20px; /* Add padding below image */
+    width: 100%; /* Description takes full width */
+  }
+
+  /* About Section Adjustments */
+  .about {
+    padding: 40px 15px; /* Reduce padding on about section */
+  }
+
+  .about h2 {
+    font-size: 2rem; /* Smaller about section heading */
+    margin-bottom: 15px;
+  }
+
+  .about p {
+    font-size: 1rem; /* Smaller about section paragraph */
+  }
+
+  .about-content {
+    flex-direction: column; /* Stack about content vertically */
+    align-items: center; /* Center items in about section */
+    gap: 20px; /* Adjust gap */
+  }
+
+  .about-image {
+    width: 180px; /* Smaller about image */
+    height: 180px;
+  }
+
+  /* Contact Section Adjustments */
+  .contact {
+    padding: 40px 15px; /* Reduce padding on contact section */
+  }
+
+  .contact h2 {
+    font-size: 2rem; /* Smaller contact section heading */
+  }
+
+  .contact p {
+    font-size: 1rem; /* Smaller contact section paragraph */
+    margin-bottom: 20px;
+  }
+
+  /* Main Content Adjustments */
+  main {
+    padding: 30px 15px; /* Reduce padding in main content */
+    margin-top: 30px; /* Reduce top margin */
+    margin-bottom: 20px; /* Reduce bottom margin */
+  }
+
+  main h2 {
+    font-size: 1.8rem; /* Smaller main content heading */
+  }
+
+  main p {
+    font-size: 1rem; /* Smaller main content paragraph */
+  }
+
+  /* Carousel Adjustments */
+  .carousel-container {
+    max-width: 95%; /* Wider carousel on mobile */
+  }
+
+  .carousel-prev,
+  .carousel-next {
+    padding: 12px; /* Smaller carousel control padding */
+    font-size: 1.2rem; /* Smaller carousel control font */
+  }
+
+  /* Header Info Top (Project Detail Page Header) */
+  .header-info-top {
+    margin-left: 15px; /* Adjust left margin */
+    margin-top: 0;
+    text-align: center; /* Center text on mobile */
+  }
+
+  .intro-heading {
+    font-size: 3rem; /* Smaller main heading */
+  }
+
+  .tag-list {
+    justify-content: center; /* Center tags on mobile */
+  }
+
+  /* Single Page Gallery Adjustments */
+  .single-page-gallery .gallery {
+    padding: 10px; /* Reduce gallery padding on detail pages */
+    gap: 10px;
+  }
+
+  .single-page-gallery .gallery-item {
+    width: 95%; /* Make detail page gallery items wider on mobile */
+  }
+
+  /* Hero Section Adjustments */
+  .hero {
+    height: auto; /* Auto height for hero section on mobile */
+    padding: 80px 20px; /* Add padding to hero content */
+    text-align: center; /* Center hero text */
+  }
+
+  .hero h1 {
+    font-size: 3rem; /* Smaller hero heading */
+  }
+
+  .hero p {
+    font-size: 1.1rem; /* Smaller hero paragraph */
+  }
+
+  /* Projects Section on Index Page */
+  .projects {
+    padding: 40px 15px; /* Reduce padding on projects section */
+  }
+
+  .projects h2 {
+    font-size: 2rem; /* Smaller projects section heading */
+    margin-bottom: 30px;
+  }
+
+  .project-grid {
+    grid-template-columns: 1fr; /* Single column grid on mobile */
+    gap: 20px; /* Adjust gap */
+  }
+    .project-item img {
+    height: 400px; /* Adjust image height for mobile */
+  }
+
+  /* Index About Section Adjustments */
+  .index-about {
+    padding: 30px 15px; /* Reduce padding on index about section */
+  }
+
+  .index-about h2 {
+    font-size: 2rem; /* Smaller index about section heading */
+    margin-bottom: 20px;
+  }
+
+  .index-about p {
+    font-size: 1.2rem; /* Smaller index about section paragraph */
+  }
+    .index-about p2 {
+    font-size: 1.3rem; /* Smaller index about section paragraph */
+  }
+
+  /* Footer Adjustments */
+  footer {
+    padding: 30px 15px; /* Reduce footer padding */
+  }
+
+  .footer-container {
+    gap: 15px; /* Reduce footer container gap */
+  }
+
+  .footer-logo {
+    font-size: 1.3rem; /* Smaller footer logo */
+  }
+
+  .footer-social a {
+    font-size: 1.3rem; /* Smaller social icons */
+  }
+
+  .footer-text {
+    font-size: 0.8rem; /* Smaller footer text */
+  }
+
+  /* Gallery Adjustments */
+  .gallery {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Adjust min width of gallery items */
+    gap: 5px; /* Reduce gap between gallery items */
+  }
+
+  .gallery-item {
+    aspect-ratio: 1 / 1; /* Maintain square aspect ratio */
+  }
+  .gallery-item:hover {
+    transform: none; /* Disable hover transform on small screens */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); /* Keep box-shadow if you like */
+  }
+
+  .gallery-item:hover img {
+    transform: scale(1.0); /* Disable image scale on hover for small screens */
+  }
+}
+
+/* Adjustments for even smaller screens (Phones) */
+@media (max-width: 480px) { /* Target phones */
+  .header-content {
+    display: none; /* Hide header content if too narrow */
+  }
+    .intro-heading {
+    font-size: 2rem; /* Even smaller main heading for very small screens */
+  }
+  .hero h1 {
+    font-size: 2.5rem; /* Even smaller hero heading */
+  }
+  .hero p {
+    font-size: 1rem; /* Even smaller hero paragraph */
+  }
+    .index-about p {
+    font-size: 1.1rem; /* Even smaller index about section paragraph */
+  }
+    .index-about p2 {
+    font-size: 1.2rem; /* Even smaller index about section paragraph */
+  }
+    .project-item img {
+    height: 300px; /* Further reduce image height for very small screens */
+  }
+  .navigation-menu li a {
+    font-size: 1.5rem; /* Smaller nav menu font on phones */
+  }
 }
