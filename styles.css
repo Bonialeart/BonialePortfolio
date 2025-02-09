@@ -142,13 +142,11 @@ header {
 /* Estilos para los títulos y subtítulos en el header */
 header h1 {
   font-size: 1.3rem;
-  margin: 0;
   font-weight: bold;
 }
 
 header p {
   font-size: 0.9rem;
-  margin-top: 1px;
   opacity: 0.8;
   color: hsl(225, 41%, 13%);
 }
