@@ -1633,7 +1633,7 @@ footer {
     left: 95%; /* Ajustado para móviles */
   }
   .flex-row {
-    bottom: -40px; /* Ajuste más sutil para móviles */
+    bottom: 230px; /* Ajuste más sutil para móviles */
     width: 95%;
     padding: 0 10px;
     gap: 10px;
@@ -1810,7 +1810,7 @@ footer {
   }
   
   .flex-row {
-    bottom: 10px;
+    bottom: 250px;
     width: 100%;
     padding: 0 8px;
     gap: 8px;
