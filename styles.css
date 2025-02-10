@@ -215,10 +215,10 @@ nav ul li a:hover {
 
 .flex-row {
   position: absolute;
-  bottom: -30px;
+  bottom: -50px;
   left: 50%;
   transform: translateX(-50%);
-  width: min(90%, 1200px); /* Limita el ancho máximo pero permite que se ajuste en pantallas pequeñas */
+  width: min(90%, 1200px);
   padding: 0 20px;
   box-sizing: border-box;
   z-index: 2;
@@ -1624,7 +1624,7 @@ footer {
     left: 95%; /* Ajustado para móviles */
   }
   .flex-row {
-    bottom: -20px; /* Ajuste más sutil para móviles */
+    bottom: -40px; /* Ajusta este valor para móviles */
     width: 95%;
     padding: 0 10px;
     gap: 10px;
