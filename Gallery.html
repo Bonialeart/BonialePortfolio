@@ -230,6 +230,7 @@
       position: relative;
       overflow: hidden;
       display: block;
+      aspect-ratio: 1; /* Mantiene las imágenes cuadradas */
     }
 
     .gallery-item img {
@@ -269,6 +270,49 @@
       text-align: center;
       padding: 20px;
       margin: 0;
+    }
+
+    .gallery-item {
+      transition: all 0.3s ease-in-out;
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Asegúrate de que todos los items de la galería tengan el atributo data-category */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 0; /* Eliminado el espacio entre imágenes */
+      padding: 0; /* Eliminado el padding */
+    }
+
+    /* Mejora la apariencia de los botones de filtro */
+    .gallery-filters {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 8px 16px;
+      border: 2px solid #64ffda;
+      background: transparent;
+      color: #64ffda;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: "Work Sans", sans-serif;
+      border-radius: 4px;
+    }
+
+    .filter-btn:hover {
+      background: rgba(100, 255, 218, 0.1);
+    }
+
+    .filter-btn.active {
+      background: #64ffda;
+      color: #09101c;
     }
   </style>
 </head>
@@ -538,11 +582,22 @@
           const filterValue = button.getAttribute('data-filter');
 
           galleryItems.forEach(item => {
-            if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
-              item.classList.remove('hidden');
-            } else {
-              item.classList.add('hidden');
-            }
+            // Agregar animación de fade out
+            item.style.opacity = '0';
+            item.style.transform = 'scale(0.95)';
+            
+            setTimeout(() => {
+              if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                item.style.display = 'block';
+                // Agregar animación de fade in
+                setTimeout(() => {
+                  item.style.opacity = '1';
+                  item.style.transform = 'scale(1)';
+                }, 50);
+              } else {
+                item.style.display = 'none';
+              }
+            }, 300);
           });
         });
       });
