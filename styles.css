@@ -387,13 +387,13 @@ nav ul li a:hover {
 /* Efectos de animación */
 .fade-slide-right {
   opacity: 0;
-  transform: translateX(-100px);
+  transform: translateX(-150px);
   transition: all 1.2s cubic-bezier(0.33, 1, 0.68, 1);
 }
 
 .fade-slide-left {
   opacity: 0;
-  transform: translateX(100px);
+  transform: translateX(150px);
   transition: all 1.2s cubic-bezier(0.33, 1, 0.68, 1);
 }
 
@@ -408,13 +408,13 @@ nav ul li a:hover {
 .fade-slide-right.fade-up,
 .fade-slide-right.fade-down {
   opacity: 0;
-  transform: translateX(-100px);
+  transform: translateX(-150px);
 }
 
 .fade-slide-left.fade-up,
 .fade-slide-left.fade-down {
   opacity: 0;
-  transform: translateX(100px);
+  transform: translateX(150px);
 }
 
 /* Animaciones de texto */
@@ -424,14 +424,17 @@ nav ul li a:hover {
 
 .reveal-text {
   opacity: 0;
-  transform: translateX(50px);
+  transform: translateX(100px);
   transition: all 1.2s cubic-bezier(0.33, 1, 0.68, 1);
   transition-delay: 0.3s;
 }
 
 .about-title {
+  font-family: "Rubik Mono One", serif;
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
   opacity: 0;
-  transform: translateX(50px);
+  transform: translateX(100px);
   transition: all 1.2s cubic-bezier(0.33, 1, 0.68, 1);
   transition-delay: 0.2s;
 }
@@ -2015,13 +2018,13 @@ footer {
 .fade-slide-right.fade-up,
 .fade-slide-right.fade-down {
   opacity: 0;
-  transform: translateX(-150px); /* Sale hacia la izquierda */
+  transform: translateX(-150px);
 }
 
 .fade-slide-left.fade-up,
 .fade-slide-left.fade-down {
   opacity: 0;
-  transform: translateX(150px); /* Sale hacia la derecha */
+  transform: translateX(150px);
 }
 
 /* Efecto de revelación de texto */
@@ -2067,16 +2070,30 @@ footer {
 
 /* Ajustes responsive */
 @media (max-width: 768px) {
-  .fade-slide-right {
-    transform: translateX(-100px);
-  }
-  
+  .fade-slide-right,
   .fade-slide-left {
-    transform: translateX(100px);
+    transform: translateY(50px);
   }
   
   .fade-slide-right.visible,
   .fade-slide-left.visible {
-    transform: translateX(0);
+    transform: translateY(0);
+  }
+  
+  .fade-slide-right.fade-up,
+  .fade-slide-right.fade-down,
+  .fade-slide-left.fade-up,
+  .fade-slide-left.fade-down {
+    transform: translateY(50px);
+  }
+  
+  .reveal-text,
+  .about-title {
+    transform: translateY(30px);
+  }
+  
+  .reveal-text.visible,
+  .about-title.visible {
+    transform: translateY(0);
   }
 }
