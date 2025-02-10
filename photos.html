@@ -337,110 +337,121 @@
     @media (max-width: 768px) {
       /* Ajuste del menú hamburguesa */
       .menu-toggle {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        width: 40px;
-        height: 40px;
-        padding: 8px;
+        display: block;
+        cursor: pointer;
+        width: 50px;
+        height: 50px;
+        position: relative;
         z-index: 1100;
+        padding: 10px;
       }
 
       .menu-toggle-line {
-        height: 3px;
-        margin: 6px 0;
+        background-color: #fff;
+        height: 4px;
+        width: 100%;
+        margin: 8px 0;
+        transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        position: relative;
       }
 
       /* Ajuste del overlay del menú */
       .menu-overlay {
-        padding-top: 80px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(9, 16, 28, 0.85);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        z-index: 9998;
       }
 
-      .nav-title-container {
-        position: static;
-        text-align: center;
+      .menu-overlay .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 20px;
+        color: #fff;
+      }
+
+      .navigation-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
         margin-bottom: 40px;
       }
 
+      .nav-title-container {
+        text-align: center;
+        top: 30%;
+        left: 160px;
+        position: relative;
+      }
+
       .nav-title {
-        font-size: 1.5rem;
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 5px;
+      }
+
+      .nav-subtitle {
+        font-size: 1rem;
+        opacity: 0.8;
+      }
+
+      .nav-block {
+        position: relative;
+        text-align: center;
+        font-family: "Rubik Mono One", serif;
+        z-index: 1;
       }
 
       .navigation-menu {
-        text-align: center;
+        list-style: none;
+        padding: 0;
+        margin: 0;
       }
 
       .navigation-menu li {
-        margin: 25px 0;
+        margin: 20px 0;
       }
 
       .navigation-menu li a {
-        font-size: 1.5rem;
         display: inline-block;
-        padding: 10px;
+        color: #fff;
+        font-size: 2rem;
+        text-decoration: none;
+        transition: transform 0.3s ease, color 0.3s ease;
       }
 
-      /* Ajuste de los filtros */
-      .gallery-filters {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background: rgba(10, 25, 47, 0.95);
-        backdrop-filter: blur(10px);
-        margin: 0;
-        padding: 15px;
-        z-index: 1000;
-        display: flex;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        gap: 10px;
-      }
-
-      .filter-btn {
-        flex: 0 0 auto;
-        padding: 8px 16px;
-        font-size: 0.75rem;
-        white-space: nowrap;
-      }
-
-      /* Ajuste de la galería */
-      .gallery {
-        margin-bottom: 70px; /* Espacio para los filtros fijos */
-      }
-
-      .gallery-item {
-        aspect-ratio: 1/1;
-      }
-
-      .gallery-item .overlay h3 {
-        font-size: 1.2rem;
+      .navigation-menu li a:hover {
+        transform: scale(1.1);
+        color: #64ffda;
       }
     }
 
     /* Ajustes adicionales para pantallas muy pequeñas */
     @media (max-width: 480px) {
-      .menu-toggle {
-        top: 15px;
-        right: 15px;
+      .nav-title-container {
+        left: 0;
+        text-align: center;
       }
 
       .nav-title {
-        font-size: 1.2rem;
+        font-size: 1.5rem;
       }
 
       .nav-subtitle {
         font-size: 0.8rem;
       }
 
-      .navigation-menu li a {
-        font-size: 1.2rem;
+      .navigation-menu li {
+        margin: 15px 0;
       }
 
-      .filter-btn {
-        padding: 6px 14px;
-        font-size: 0.7rem;
+      .navigation-menu li a {
+        font-size: 1.5rem;
       }
     }
 
@@ -454,11 +465,6 @@
       .filter-btn:hover {
         transform: none;
         box-shadow: none;
-      }
-
-      /* Mejora del scroll horizontal de filtros */
-      .gallery-filters::-webkit-scrollbar {
-        display: none;
       }
     }
   </style>
