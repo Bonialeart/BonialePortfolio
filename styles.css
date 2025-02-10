@@ -341,13 +341,35 @@ nav ul li a:hover {
 
 /* About Section */
 .about {
+  background-color: #0a192f; /* Color base oscuro elegante */
+  position: relative;
+  overflow: hidden;
   padding: 80px 20px;
   min-height: 100vh;
   display: flex;
   align-items: center;
 }
 
+/* Añadimos un sutil gradiente para dar profundidad */
+.about::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(10, 25, 47, 0.95) 0%,
+    rgba(17, 34, 64, 0.97) 100%
+  );
+  z-index: 1;
+}
+
+/* Aseguramos que el contenido esté por encima del gradiente */
 .about-container {
+  position: relative;
+  z-index: 2;
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
@@ -377,11 +399,13 @@ nav ul li a:hover {
 .about-title {
   font-size: clamp(2rem, 4vw, 2.5rem);
   margin-bottom: clamp(1rem, 3vw, 1.5rem);
+  color: #64ffda; /* Color accent que ya usas */
 }
 
 .reveal-text {
   font-size: clamp(1rem, 2vw, 1.2rem);
   line-height: 1.6;
+  color: #a8b2d1; /* Color claro para mejor legibilidad */
 }
 
 /* Efectos de animación */
