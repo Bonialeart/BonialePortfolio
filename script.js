@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   // Almacenar la posición anterior del scroll
   let lastScroll = 0;
+  const isMobile = window.innerWidth <= 768;
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -14,14 +15,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const isText = element.classList.contains('fade-slide-left');
       
       if (entry.isIntersecting) {
-        // Añadir visibilidad con delay para la imagen
+        // Añadir visibilidad con delays ajustados para móvil
         if (isImage) {
           setTimeout(() => {
             element.classList.add('visible');
             element.classList.remove('fade-up', 'fade-down');
-          }, 100);
+          }, isMobile ? 200 : 100);
         }
-        // Añadir visibilidad con delay para el texto
+        // Añadir visibilidad con delays ajustados para móvil
         if (isText) {
           setTimeout(() => {
             element.classList.add('visible');
@@ -30,9 +31,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const title = element.querySelector('.about-title');
             const text = element.querySelector('.reveal-text');
             
-            if (title) title.classList.add('visible');
-            if (text) text.classList.add('visible');
-          }, 300);
+            if (title) {
+              setTimeout(() => title.classList.add('visible'), isMobile ? 300 : 200);
+            }
+            if (text) {
+              setTimeout(() => text.classList.add('visible'), isMobile ? 400 : 300);
+            }
+          }, isMobile ? 300 : 200);
         }
       } else {
         // Remover visibilidad cuando sale del viewport
@@ -53,12 +58,17 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }, {
-    threshold: 0.2,
-    rootMargin: '-50px'
+    threshold: isMobile ? 0.1 : 0.2,
+    rootMargin: isMobile ? '-30px' : '-50px'
   });
 
   // Observar los elementos
   document.querySelectorAll('.fade-slide-right, .fade-slide-left').forEach(el => {
     observer.observe(el);
+  });
+
+  // Actualizar isMobile en resize
+  window.addEventListener('resize', () => {
+    isMobile = window.innerWidth <= 768;
   });
 }); 
