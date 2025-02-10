@@ -218,7 +218,7 @@ nav ul li a:hover {
   bottom: -30px;
   left: 50%;
   transform: translateX(-50%);
-  width: 100%;
+  width: min(90%, 1200px); /* Limita el ancho máximo pero permite que se ajuste en pantallas pequeñas */
   padding: 0 20px;
   box-sizing: border-box;
   z-index: 2;
@@ -227,7 +227,6 @@ nav ul li a:hover {
   justify-content: center;
   gap: 20px;
 }
-
 
 .item-bordered {
   border-radius: 0;
@@ -1623,5 +1622,11 @@ footer {
     width: 25px; /* Tamaño reducido para móviles */
     height: 2.5px; /* Grosor reducido para móviles */
     left: 95%; /* Ajustado para móviles */
+  }
+  .flex-row {
+    bottom: -20px; /* Ajuste más sutil para móviles */
+    width: 95%;
+    padding: 0 10px;
+    gap: 10px;
   }
 }
