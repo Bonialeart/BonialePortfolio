@@ -279,6 +279,97 @@
       flex: 0 0 100%;
     }
   }
+
+  /* Ajustes generales de espaciado para secciones */
+  section {
+    padding: 100px 0;
+    position: relative;
+  }
+
+  /* Espaciado específico para la sección hero */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin-bottom: 50px;
+  }
+
+  /* Ajustes para la sección about */
+  .about {
+    background-color: #f8f9fa;
+    margin: 100px 0;
+    padding: 120px 0;
+  }
+
+  /* Ajustes para la sección projects */
+  .projects {
+    padding: 120px 0;
+  }
+
+  .projects h2 {
+    margin-bottom: 60px;
+    text-align: center;
+  }
+
+  .project-grid {
+    gap: 40px;
+    margin-bottom: 60px;
+  }
+
+  /* Ajustes para la sección de Instagram */
+  .instagram-showcase {
+    padding: 120px 0;
+    background-color: transparent;
+    margin-top: 100px;
+  }
+
+  .instagram-header {
+    margin-bottom: 60px;
+    text-align: center;
+  }
+
+  .instagram-title {
+    color: #fff;
+    font-family: "Rubik Mono One", serif;
+    margin-bottom: 15px;
+  }
+
+  .instagram-subtitle {
+    color: #64ffda;
+    font-family: "Work Sans", serif;
+    opacity: 0.8;
+  }
+
+  .instagram-container {
+    margin-bottom: 60px;
+  }
+
+  /* Ajustes para el footer */
+  footer {
+    padding: 80px 0;
+    margin-top: 100px;
+  }
+
+  /* Ajustes de espaciado para dispositivos móviles */
+  @media (max-width: 768px) {
+    section {
+      padding: 60px 0;
+    }
+
+    .about, .projects, .instagram-showcase {
+      padding: 80px 0;
+    }
+
+    .projects h2 {
+      margin-bottom: 40px;
+    }
+
+    footer {
+      padding: 60px 0;
+    }
+  }
   </style>
 </head>
 <body>
@@ -501,7 +592,15 @@
   <script>
     function scrollToProjects() {
       const projectsSection = document.getElementById('projects');
-      projectsSection.scrollIntoView({ behavior: 'smooth' });
+      // Ajustamos el offset para que el scroll se detenga un poco antes de la sección
+      const offset = 80; // Puedes ajustar este valor según necesites
+      const elementPosition = projectsSection.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
     }
   </script>
 </body>
