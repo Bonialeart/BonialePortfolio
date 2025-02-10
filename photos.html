@@ -305,49 +305,137 @@
     /* Ajustes para optimizar la visualización de fotografías */
     .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 20px;
-      padding: 20px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0; /* Eliminamos el gap entre imágenes */
+      padding: 0; /* Eliminamos el padding */
       max-width: 1400px;
       margin: 0 auto;
     }
 
     .gallery-item {
-      aspect-ratio: 3/2;
+      aspect-ratio: 1/1;
       position: relative;
       overflow: hidden;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      border-radius: 0; /* Eliminamos el border-radius */
+      background: #0a192f;
     }
 
     .gallery-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-
-    .gallery-item:hover img {
-      transform: scale(1.05);
-    }
-
-    .gallery-item .overlay {
-      background: rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(3px);
-    }
-
-    .gallery-item .overlay h3 {
-      font-size: 1.2rem;
-      font-weight: 500;
-      letter-spacing: 1px;
+      transition: all 0.3s ease;
     }
 
     /* Ajustes responsive */
+    @media (max-width: 1200px) {
+      .gallery {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
     @media (max-width: 768px) {
       .gallery {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        gap: 15px;
-        padding: 15px;
+        grid-template-columns: 1fr;
+        gap: 0;
+        padding: 0;
+      }
+    }
+
+    /* Ajustes para móviles */
+    @media (max-width: 768px) {
+      /* Ajuste del menú hamburguesa */
+      .menu-toggle {
+        width: 40px;
+        height: 40px;
+        padding: 8px;
+      }
+
+      .menu-toggle-line {
+        height: 3px;
+        margin: 6px 0;
+      }
+
+      /* Ajuste del overlay del menú */
+      .nav-title-container {
+        left: 0;
+        text-align: center;
+      }
+
+      .nav-title {
+        font-size: 1.5rem;
+      }
+
+      .navigation-menu li a {
+        font-size: 1.5rem;
+      }
+
+      /* Ajuste de los filtros */
+      .gallery-filters {
+        margin: 1rem auto;
+        padding: 0 10px;
+      }
+
+      .filter-btn {
+        padding: 8px 16px;
+        font-size: 0.75rem;
+        margin: 4px;
+      }
+
+      /* Ajuste de la galería */
+      .gallery {
+        padding: 1rem;
+        gap: 1rem;
+      }
+
+      .gallery-item .overlay h3 {
+        font-size: 1.2rem;
+        padding: 10px;
+      }
+    }
+
+    /* Ajustes adicionales para pantallas muy pequeñas */
+    @media (max-width: 480px) {
+      .nav-title {
+        font-size: 1.2rem;
+      }
+
+      .nav-subtitle {
+        font-size: 0.8rem;
+      }
+
+      .navigation-menu li {
+        margin: 15px 0;
+      }
+
+      .navigation-menu li a {
+        font-size: 1.2rem;
+      }
+
+      /* Ajuste para que los filtros se vean mejor en pantallas pequeñas */
+      .gallery-filters {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+      }
+
+      .filter-btn {
+        width: 100%;
+        max-width: 200px;
+        margin: 2px auto;
+      }
+    }
+
+    /* Mejoras en el rendimiento para dispositivos móviles */
+    @media (hover: none) {
+      .gallery-item .overlay {
+        opacity: 1;
+        background: rgba(9, 16, 28, 0.5);
+      }
+
+      .filter-btn:hover {
+        transform: none;
+        box-shadow: none;
       }
     }
   </style>
@@ -419,7 +507,7 @@
     </div>
 
     <!-- Galería de Fotografías -->
-    <a href="/Nenufares.html" class="gallery-item" data-category="Paisajes">
+    <a href="/Nenufares.html" class="gallery-item" data-category="landscape">
       <img src="images/photos/Nenufar1.jpg" alt="Nenúfar 1" />
       <div class="overlay">
         <h3>NENÚFARES</h3>
@@ -427,10 +515,11 @@
       </div>
     </a>
 
-    <a href="foto2-detalles.html" class="gallery-item" data-category="landscape">
-      <img src="images/photos/landscape1.jpg" alt="Paisaje Montañoso" />
+    <a href="panama.html" class="gallery-item" data-category="landscape">
+      <img src="images/photos/panama1.jpg" alt="Panama urban photos" />
       <div class="overlay">
-        <h3>Amanecer en la Montaña</h3>
+        <h3>PANAMÁ</h3>
+
       </div>
     </a>
 
