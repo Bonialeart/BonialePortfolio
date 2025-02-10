@@ -24,11 +24,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"/>
-<meta name="description" content="Portafolio de arte digital, ilustraciones y concept art de Boniale">
-<meta name="keywords" content="arte digital, ilustración, concept art, portfolio, diseño">
-<link rel="preload" as="image" href="images/Monja.jpg">
-<link rel="preload" as="image" href="images/robot.jpg">
 
 <style>  /* --- Estilos para el menú hamburguesa --- */
  .menu-toggle {
@@ -177,8 +172,6 @@
     }
 
     .filter-btn {
-      position: relative;
-      overflow: hidden;
       background: transparent;
       border: 1px solid #64ffda; /* Borde más fino */
       color: #64ffda;
@@ -193,20 +186,10 @@
       text-transform: uppercase;
     }
 
-    .filter-btn::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background-color: #64ffda;
-      transform: scaleX(0);
-      transition: transform 0.3s ease;
-    }
-
-    .filter-btn:hover::after {
-      transform: scaleX(1);
+    .filter-btn:hover {
+      background: rgba(100, 255, 218, 0.1);
+      transform: translateY(-1px); /* Elevación más sutil */
+      box-shadow: 0 2px 8px rgba(100, 255, 218, 0.15);
     }
 
     .filter-btn.active {
@@ -287,43 +270,6 @@
       padding: 20px;
       margin: 0;
     }
-
-    /* Estilos para los filtros activos y animaciones */
-    .filter-btn.active {
-      background: #64ffda;
-      color: #09101c;
-      font-weight: 600;
-      box-shadow: 0 2px 8px rgba(100, 255, 218, 0.25);
-    }
-
-    .clear-filters {
-      background-color: #ff6464 !important;
-      color: white !important;
-      border-color: #ff6464 !important;
-    }
-
-    .clear-filters:hover {
-      background-color: #ff4747 !important;
-    }
-
-    .gallery-item {
-      transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-
-    .gallery-item.hidden {
-      display: none;
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
   </style>
 </head>
 <body>
@@ -390,48 +336,31 @@
       <button class="filter-btn" data-filter="illustration">Ilustración</button>
       <button class="filter-btn" data-filter="concept">Concept Art</button>
       <button class="filter-btn" data-filter="sketch">Bocetos</button>
-      <!-- Agregar botón para limpiar filtros -->
-      <button class="filter-btn clear-filters" style="display: none;">Limpiar filtros</button>
     </div>
 
     <!-- Galería de Imágenes -->
-    <a href="images/Monja.jpg" 
-       data-fancybox="gallery" 
-       data-caption="Crimson Requiem" 
-       class="gallery-item" 
-       data-category="illustration">
+    <a href="imagen1-detalles.html" class="gallery-item" data-category="illustration">
       <img src="images/Monja.jpg" alt="Crimson Requiem" />
       <div class="overlay">
         <h3>Crimson Requiem</h3>
       </div>
     </a>
 
-    <a href="images/robot.jpg" 
-       data-fancybox="gallery" 
-       data-caption="AURORA" 
-       class="gallery-item" 
-       data-category="3d">
-      <img src="images/robot.jpg" alt="AURORA" />
+    <a href="imagen2-detalles.html" class="gallery-item" data-category="3d">
+      <img src="images/robot.jpg" alt="Artwork 1" />
       <div class="overlay">
         <h3>AURORA</h3>
       </div>
     </a>
 
-    <a href="images/Collage.jpg" 
-       data-fancybox="gallery" 
-       data-caption="Sketches/Portrait" 
-       class="gallery-item" 
-       data-category="sketch">
-      <img src="images/Collage.jpg" alt="Sketches/Portrait" />
+    <a href="imagen3-detalles.html" class="gallery-item" data-category="sketch">
+      <img src="images/Collage.jpg" alt="Artwork 2" />
       <div class="overlay">
         <h3>Sketches/Portrait</h3>
       </div>
     </a>
 
-    <a href="images/placeholder3.jpg" 
-       data-fancybox="gallery" 
-       data-caption="Artwork 3" 
-       class="gallery-item">
+    <a href="imagen4-detalles.html" class="gallery-item">
       <img src="images/placeholder3.jpg" alt="Artwork 3" />
       <div class="overlay">
         <h3>Artwork 3</h3>
@@ -439,110 +368,77 @@
     </a>
 
     <!-- Repite el patrón para las demás imágenes -->
-    <a href="images/placeholder4.jpg" 
-       data-fancybox="gallery" 
-       data-caption="Artwork 4" 
-       class="gallery-item">
+    <a href="imagen5-detalles.html" class="gallery-item">
       <img src="images/placeholder4.jpg" alt="Artwork 4" />
       <div class="overlay">
         <h3>Artwork 4</h3>
       </div>
     </a>
 
-    <a href="images/placeholder5.jpg" 
-       data-fancybox="gallery" 
-       data-caption="Artwork 5" 
-       class="gallery-item">
+    <a href="imagen6-detalles.html" class="gallery-item">
       <img src="images/placeholder5.jpg" alt="Artwork 5" />
       <div class="overlay">
         <h3>Artwork 5</h3>
       </div>
     </a>
 
-    <a href="images/placeholder6.jpg" 
-       data-fancybox="gallery" 
-       data-caption="Artwork 6" 
-       class="gallery-item">
+    <a href="imagen7-detalles.html" class="gallery-item">
       <img src="images/placeholder6.jpg" alt="Artwork 6" />
       <div class="overlay">
         <h3>Artwork 6</h3>
       </div>
     </a>
 
-    <a href="images/placeholder7.jpg" 
-       data-fancybox="gallery" 
-       data-caption="Artwork 7" 
-       class="gallery-item">
+    <a href="imagen8-detalles.html" class="gallery-item">
       <img src="images/placeholder7.jpg" alt="Artwork 7" />
       <div class="overlay">
         <h3>Artwork 7</h3>
       </div>
     </a>
 
-    <a href="images/placeholder8.jpg" 
-       data-fancybox="gallery" 
-       data-caption="Artwork 8" 
-       class="gallery-item">
+    <a href="imagen9-detalles.html" class="gallery-item">
       <img src="images/placeholder8.jpg" alt="Artwork 8" />
       <div class="overlay">
         <h3>Artwork 8</h3>
       </div>
     </a>
 
-    <a href="images/placeholder9.jpg" 
-       data-fancybox="gallery" 
-       data-caption="Artwork 9" 
-       class="gallery-item">
+    <a href="imagen10-detalles.html" class="gallery-item">
       <img src="images/placeholder9.jpg" alt="Artwork 9" />
       <div class="overlay">
         <h3>Artwork 9</h3>
       </div>
     </a>
 
-    <a href="images/placeholder10.jpg" 
-       data-fancybox="gallery" 
-       data-caption="Artwork 10" 
-       class="gallery-item">
+    <a href="imagen11-detalles.html" class="gallery-item">
       <img src="images/placeholder10.jpg" alt="Artwork 10" />
       <div class="overlay">
         <h3>Artwork 10</h3>
       </div>
     </a>
 
-    <a href="images/placeholder11.jpg" 
-       data-fancybox="gallery" 
-       data-caption="Artwork 11" 
-       class="gallery-item">
+    <a href="imagen12-detalles.html" class="gallery-item">
       <img src="images/placeholder11.jpg" alt="Artwork 11" />
       <div class="overlay">
         <h3>Artwork 11</h3>
       </div>
     </a>
 
-    <a href="images/placeholder12.jpg" 
-       data-fancybox="gallery" 
-       data-caption="Artwork 12" 
-       class="gallery-item">
+    <a href="imagen13-detalles.html" class="gallery-item">
       <img src="images/placeholder12.jpg" alt="Artwork 12" />
       <div class="overlay">
         <h3>Artwork 12</h3>
       </div>
     </a>
 
-    <a href="images/placeholder13.jpg" 
-       data-fancybox="gallery" 
-       data-caption="Artwork 13" 
-       class="gallery-item">
+    <a href="imagen14-detalles.html" class="gallery-item">
       <img src="images/placeholder13.jpg" alt="Artwork 13" />
       <div class="overlay">
         <h3>Artwork 13</h3>
       </div>
     </a>
 
-    <a href="images/placeholder14.jpg" 
-       data-fancybox="gallery" 
-       data-caption="Artwork 14" 
-       class="gallery-item">
+    <a href="imagen15-detalles.html" class="gallery-item">
       <img src="images/placeholder14.jpg" alt="Artwork 14" />
       <div class="overlay">
         <h3>Artwork 14</h3>
@@ -583,7 +479,6 @@
         </svg>
       </a>
     </div>
-    <p class="footer-text">© 2025 Boniale. Todos los derechos reservados.</p>
   </footer>
   <script>
     // Manejo de la pantalla de carga
@@ -632,63 +527,23 @@
     document.addEventListener('DOMContentLoaded', function() {
       const filterButtons = document.querySelectorAll('.filter-btn');
       const galleryItems = document.querySelectorAll('.gallery-item');
-      const clearFiltersBtn = document.querySelector('.clear-filters');
-      let activeFilters = new Set();
 
       filterButtons.forEach(button => {
         button.addEventListener('click', () => {
+          // Remover clase active de todos los botones
+          filterButtons.forEach(btn => btn.classList.remove('active'));
+          // Agregar clase active al botón clickeado
+          button.classList.add('active');
+
           const filterValue = button.getAttribute('data-filter');
 
-          // Si es el botón "Todos", limpiamos los filtros
-          if (filterValue === 'all') {
-            activeFilters.clear();
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-            clearFiltersBtn.style.display = 'none';
-          } else {
-            // Removemos "Todos" de los filtros activos
-            filterButtons.find(btn => btn.getAttribute('data-filter') === 'all')
-              .classList.remove('active');
-
-            // Toggle del filtro actual
-            if (button.classList.contains('active')) {
-              button.classList.remove('active');
-              activeFilters.delete(filterValue);
-            } else {
-              button.classList.add('active');
-              activeFilters.add(filterValue);
-            }
-
-            // Mostrar/ocultar botón de limpiar filtros
-            clearFiltersBtn.style.display = activeFilters.size > 0 ? 'inline-block' : 'none';
-          }
-
-          // Aplicar filtros
           galleryItems.forEach(item => {
-            const itemCategory = item.getAttribute('data-category');
-            if (activeFilters.size === 0 || activeFilters.has(itemCategory)) {
+            if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
               item.classList.remove('hidden');
-              // Agregar animación de aparición
-              item.style.animation = 'fadeInUp 0.6s ease forwards';
             } else {
               item.classList.add('hidden');
             }
           });
-        });
-      });
-
-      // Evento para el botón de limpiar filtros
-      clearFiltersBtn.addEventListener('click', () => {
-        activeFilters.clear();
-        filterButtons.forEach(btn => btn.classList.remove('active'));
-        filterButtons.find(btn => btn.getAttribute('data-filter') === 'all')
-          .classList.add('active');
-        clearFiltersBtn.style.display = 'none';
-
-        // Mostrar todos los items
-        galleryItems.forEach(item => {
-          item.classList.remove('hidden');
-          item.style.animation = 'fadeInUp 0.6s ease forwards';
         });
       });
     });
