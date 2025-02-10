@@ -75,33 +75,50 @@
       display: none !important;
     }
   
-  /* --- Estilos para el menú hamburguesa --- */
+  /* --- Estilos para el menú hamburguesa y su transformación --- */
   .menu-toggle {
-      display: block;
-      cursor: pointer;
-      width: 40px;
-      height: 40px;
-      position: relative;
-      z-index: 1100;
-      transition: transform 0.3s ease;
-    }
-    .menu-toggle-line {
-      background-color: #fff;
-      height: 4px;
-      width: 100%;
-      margin: 6px 0;
-      transition: all 0.3s ease;
-    }
-    /* Transformación a "X" */
-    .menu-toggle.open .menu-toggle-line:nth-child(1) {
-      transform: translateY(10px) rotate(45deg);
-    }
-    .menu-toggle.open .menu-toggle-line:nth-child(2) {
-      opacity: 0;
-    }
-    .menu-toggle.open .menu-toggle-line:nth-child(3) {
-      transform: translateY(-10px) rotate(-45deg);
-    }
+    display: block;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    position: relative;
+    z-index: 1100;
+    padding: 10px;
+  }
+  .menu-toggle-line {
+    background-color: #fff;
+    height: 4px;
+    width: 100%;
+    margin: 8px 0;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    position: relative;
+  }
+  /* Transformación de las líneas cuando el menú está abierto */
+  .menu-toggle.open .menu-toggle-line:first-child {
+    transform: translateY(12px) rotate(45deg);
+    background-color: #64ffda;
+  }
+  .menu-toggle.open .menu-toggle-line:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  .menu-toggle.open .menu-toggle-line:last-child {
+    transform: translateY(-12px) rotate(-45deg);
+    background-color: #64ffda;
+  }
+  /* Efecto hover cuando el menú está cerrado */
+  .menu-toggle:hover .menu-toggle-line {
+    background-color: #64ffda;
+  }
+  .menu-toggle:hover .menu-toggle-line:first-child {
+    transform: translateX(8px);
+  }
+  .menu-toggle:hover .menu-toggle-line:nth-child(2) {
+    transform: translateX(-8px);
+  }
+  .menu-toggle:hover .menu-toggle-line:last-child {
+    transform: translateX(8px);
+  }
 
     /* ------------------------------
        Menu Overlay (pestaña de menú) 
@@ -112,7 +129,9 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(9, 16, 28, 0.95);
+      background-color: rgba(9, 16, 28, 0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       display: none;
       opacity: 0;
       transition: opacity 0.4s ease;
@@ -380,6 +399,54 @@
       padding: 60px 0;
     }
   }
+
+  .main-content {
+    transition: filter 0.4s ease;
+  }
+
+  body.menu-open .main-content {
+    filter: blur(5px);
+  }
+
+  /* --- Estilos para el botón de cierre --- */
+  .close-btn {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    z-index: 1100;
+  }
+
+  .close-btn-line {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    height: 3px;
+    background-color: #fff;
+    transition: transform 0.3s ease;
+  }
+
+  .close-btn-line:first-child {
+    transform: rotate(45deg);
+  }
+
+  .close-btn-line:last-child {
+    transform: rotate(-45deg);
+  }
+
+  .close-btn:hover .close-btn-line {
+    background-color: #64ffda;
+    transform-origin: center;
+  }
+
+  .close-btn:hover .close-btn-line:first-child {
+    transform: rotate(225deg);
+  }
+
+  .close-btn:hover .close-btn-line:last-child {
+    transform: rotate(135deg);
+  }
   </style>
 </head>
 <body>
@@ -422,11 +489,11 @@
           <div class="nav-title">Boniale Portfolio</div>
           <div class="nav-subtitle">Concept/illustrations</div>
         </div>
-<!-- Botón de cierre (estilo "X") dentro del overlay -->
-<div class="close-btn" id="menu-overlay-close">
-  <span class="close-btn-line"></span>
-  <span class="close-btn-line"></span>
-</div>
+        <!-- Botón de cierre actualizado -->
+        <div class="close-btn" id="menu-overlay-close">
+          <span class="close-btn-line"></span>
+          <span class="close-btn-line"></span>
+        </div>
       </div>
     </div>
     <!-- Menú de enlaces -->
@@ -628,6 +695,22 @@
 
       requestAnimationFrame(animation);
     }
+  </script>
+
+  <!-- Agregar botón en el header -->
+  <button id="theme-toggle" class="theme-toggle">
+    <i class="fas fa-moon"></i>
+  </button>
+
+  <!-- JavaScript para el toggle -->
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      const icon = themeToggle.querySelector('i');
+      icon.classList.toggle('fa-moon');
+      icon.classList.toggle('fa-sun');
+    });
   </script>
 </body>
 </html>
