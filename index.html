@@ -91,7 +91,7 @@
       margin: 6px 0;
       transition: all 0.3s ease;
     }
-    /* Transformación a “X” */
+    /* Transformación a "X" */
     .menu-toggle.open .menu-toggle-line:nth-child(1) {
       transform: translateY(10px) rotate(45deg);
     }
@@ -208,6 +208,76 @@
       margin: 0;
       font-family: "Work Sans", serif;
     }
+
+  .scroll-arrow {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: pointer;
+    animation: bounce 2s infinite;
+    width: 40px;
+    height: 40px;
+    color: #fff;
+    transition: color 0.3s ease;
+    z-index: 10;
+  }
+
+  .scroll-arrow:hover {
+    color: #64ffda;
+  }
+
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateX(-50%) translateY(0);
+    }
+    40% {
+      transform: translateX(-50%) translateY(-10px);
+    }
+    60% {
+      transform: translateX(-50%) translateY(-5px);
+    }
+  }
+
+  .about-container {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .about-image-container {
+    flex: 0 0 40%;
+  }
+
+  .about-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+
+  .about-text {
+    flex: 0 0 60%;
+  }
+
+  @media (max-width: 768px) {
+    .about-container {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .about-image-container {
+      flex: 0 0 100%;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .about-text {
+      flex: 0 0 100%;
+    }
+  }
   </style>
 </head>
 <body>
@@ -250,7 +320,7 @@
           <div class="nav-title">Boniale Portfolio</div>
           <div class="nav-subtitle">Concept/illustrations</div>
         </div>
-<!-- Botón de cierre (estilo “X”) dentro del overlay -->
+<!-- Botón de cierre (estilo "X") dentro del overlay -->
 <div class="close-btn" id="menu-overlay-close">
   <span class="close-btn-line"></span>
   <span class="close-btn-line"></span>
@@ -273,16 +343,28 @@
   <!-- Sección Hero -->
   <section class="hero">
     <div class="hero-content">
-      <h1>Where Imagination Takes Shape</h1>
-      <p></p>
+      <h1>Boniale Portfolio</h1>
+      <p>Concept/illustrations</p>
     </div>
     <div class="gradient-block"></div>
+    <div class="scroll-arrow" onclick="scrollToProjects()">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 5v14M5 12l7 7 7-7"/>
+      </svg>
+    </div>
   </section>
 
   <!-- Sección About -->
   <section id="about" class="about index-about">
-    <h2></h2>
-    <p>Boniale: An artist who crafts visions from the depths of dreaming. Within each piece, a story whispers through the brushstrokes, inviting you into a tapestry of myth and beauty. My pen dances across the canvas, capturing the fleeting expressions and hidden truths of a world only glimpsed in reverie.</p>
+    <div class="about-container">
+      <div class="about-image-container">
+        <img src="images/mifoto.jpg" alt="Tu foto" class="about-image">
+      </div>
+      <div class="about-text">
+        <h2></h2>
+        <p>Boniale: An artist who crafts visions from the depths of dreaming. Within each piece, a story whispers through the brushstrokes, inviting you into a tapestry of myth and beauty. My pen dances across the canvas, capturing the fleeting expressions and hidden truths of a world only glimpsed in reverie.</p>
+      </div>
+    </div>
   </section>
 
   <!-- Sección Projects -->
@@ -392,6 +474,13 @@
     });
   </script>
   <script src="Fade-In Effect.js"></script>
+
+  <script>
+    function scrollToProjects() {
+      const projectsSection = document.getElementById('projects');
+      projectsSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
 </body>
 </html>
 
