@@ -1157,6 +1157,12 @@ footer {
     height: 6px;
     left: 100%;
   }
+  .flex-row {
+    bottom: 80px;
+    width: min(85%, 1400px);
+    padding: 0 40px;
+    gap: 40px;
+  }
 }
 
 
@@ -1299,6 +1305,9 @@ footer {
     height: 4px;
     left: 100%;
   }
+  .flex-row {
+    bottom: -30px;
+  }
 }
 
 
@@ -1433,7 +1442,7 @@ footer {
 
 
 /* Media Query para pantallas pequeñas (móviles, hasta 767px) */
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   body {
     font-size: 14px;
   }
@@ -1624,9 +1633,23 @@ footer {
     left: 95%; /* Ajustado para móviles */
   }
   .flex-row {
-    bottom: -40px; /* Ajusta este valor para móviles */
+    bottom: -40px; /* Ajuste más sutil para móviles */
     width: 95%;
     padding: 0 10px;
     gap: 10px;
+  }
+}
+
+/* Media Query específico para resolución 1440px */
+@media (width: 1440px) {
+  .flex-row {
+    bottom: 60px;
+  }
+}
+
+/* Media Query específico para resolución cercana a 1440px */
+@media (min-width: 1430px) and (max-width: 1450px) {
+  .flex-row {
+    bottom: 80px;
   }
 }
