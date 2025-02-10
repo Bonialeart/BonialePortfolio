@@ -306,54 +306,156 @@
     .gallery {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 0;
-      padding: 0;
+      gap: 0; /* Eliminamos el gap entre imágenes */
+      padding: 0; /* Eliminamos el padding */
       max-width: 1400px;
       margin: 0 auto;
     }
 
     .gallery-item {
+      aspect-ratio: 1/1;
       position: relative;
       overflow: hidden;
-      aspect-ratio: 1/1;
-      width: 100%;
+      border-radius: 0; /* Eliminamos el border-radius */
+      background: #0a192f;
     }
 
     .gallery-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center;
-      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: all 0.3s ease;
     }
 
-    /* Ajustes responsive para la galería */
-    @media (max-width: 768px) {
+    /* Ajustes responsive */
+    @media (max-width: 1200px) {
       .gallery {
         grid-template-columns: repeat(2, 1fr);
       }
+    }
 
-      .gallery-item {
-        width: 100vw;
-        height: 100vw;
+    @media (max-width: 768px) {
+      /* Ajuste del menú hamburguesa */
+      .menu-toggle {
+        display: block;
+        cursor: pointer;
+        width: 50px;
+        height: 50px;
+        position: relative;
+        z-index: 1100;
+        padding: 10px;
       }
 
-      .gallery-item img {
+      .menu-toggle-line {
+        background-color: #fff;
+        height: 4px;
+        width: 100%;
+        margin: 8px 0;
+        transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        position: relative;
+      }
+
+      /* Ajuste del overlay del menú */
+      .menu-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
         width: 100%;
         height: 100%;
-        object-fit: cover;
-        object-position: center;
+        background-color: rgba(9, 16, 28, 0.85);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        z-index: 9998;
+    }
+    .menu-overlay.open {
+      display: block;
+      opacity: 1;
+    }
+
+      .menu-overlay .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 20px;
+        color: #fff;
+      }
+
+      .navigation-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 40px;
+      }
+
+      .nav-title-container {
+        text-align: center;
+        top: 30%;
+        left: 160px;
+        position: relative;
+      }
+
+      .nav-title {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 5px;
+      }
+
+      .nav-subtitle {
+        font-size: 1rem;
+        opacity: 0.8;
+      }
+
+      .nav-block {
+        position: relative;
+        text-align: center;
+        font-family: "Rubik Mono One", serif;
+        z-index: 1;
+      }
+
+      .navigation-menu {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .navigation-menu li {
+        margin: 20px 0;
+      }
+
+      .navigation-menu li a {
+        display: inline-block;
+        color: #fff;
+        font-size: 2rem;
+        text-decoration: none;
+        transition: transform 0.3s ease, color 0.3s ease;
+      }
+
+      .navigation-menu li a:hover {
+        transform: scale(1.1);
+        color: #64ffda;
       }
     }
 
+    /* Ajustes adicionales para pantallas muy pequeñas */
     @media (max-width: 480px) {
-      .gallery {
-        grid-template-columns: 1fr;
+      .nav-title-container {
+        left: 0;
+        text-align: center;
       }
 
-      .gallery-item {
-        width: 100vw;
-        height: 100vw;
+      .nav-title {
+        font-size: 1.5rem;
+      }
+
+      .nav-subtitle {
+        font-size: 0.8rem;
+      }
+
+      .navigation-menu li {
+        margin: 15px 0;
+      }
+
+      .navigation-menu li a {
+        font-size: 1.5rem;
       }
     }
 
