@@ -2196,3 +2196,106 @@ footer {
     transform: translateY(0);
   }
 }
+
+/* Estilos específicos para la página About */
+.about-page {
+  background-color: #0a192f;
+  min-height: 100vh;
+  padding: 120px 2rem 6rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 6rem;
+  align-items: center;
+}
+
+.about-page h2 {
+  text-align: center;
+  color: #64ffda;
+  font-family: 'Rubik Mono One', sans-serif;
+  font-size: 3rem;
+  margin-bottom: 6rem;
+}
+
+.about-page-image-container {
+  position: relative;
+}
+
+.about-page-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.about-page-text {
+  color: #a8b2d1;
+}
+
+.about-page-title {
+  color: #64ffda;
+  font-family: 'Rubik Mono One', sans-serif;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.about-page .reveal-text {
+  font-family: 'Work Sans', sans-serif;
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #a8b2d1;
+}
+
+.about-page .contact-email {
+  margin-top: 3rem;
+  color: #64ffda;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 1.3rem;
+}
+
+/* Media queries específicos para la página About */
+@media (max-width: 1024px) {
+  .about-page-container {
+    gap: 4rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-page {
+    padding: 100px 1.5rem 4rem;
+  }
+
+  .about-page-container {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .about-page-image-container {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .about-page h2 {
+    font-size: 2.5rem;
+    margin-bottom: 4rem;
+  }
+
+  .about-page-title {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .about-page .reveal-text {
+    text-align: center;
+  }
+
+  .about-page .contact-email {
+    text-align: center;
+  }
+}
