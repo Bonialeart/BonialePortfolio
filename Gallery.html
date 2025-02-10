@@ -211,16 +211,29 @@
       }
     }
 
-    /* Animación para los elementos filtrados */
+    /* Optimización de las animaciones existentes */
     .gallery-item {
-      transition: opacity 0.3s ease, transform 0.3s ease;
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
+    .gallery-item img {
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .gallery-item .overlay {
+      transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+
+    /* Optimización de las animaciones de filtrado */
     .gallery-item.hidden {
       opacity: 0;
-      transform: scale(0.8);
-      pointer-events: none;
-      position: absolute;
+      transform: scale(0.95);
+      transition: opacity 0.3s ease,
+                  transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     /* Estilos para el overlay de las imágenes */
@@ -234,7 +247,6 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.3s ease;
     }
 
     .gallery-item .overlay {
@@ -248,8 +260,6 @@
       align-items: center;
       justify-content: center;
       opacity: 0;
-      transition: opacity 0.3s ease;
-      backdrop-filter: blur(5px);
     }
 
     .gallery-item:hover .overlay {
