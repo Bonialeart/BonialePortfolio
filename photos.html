@@ -335,20 +335,15 @@
     }
 
     @media (max-width: 768px) {
-      .gallery {
-        grid-template-columns: 1fr;
-        gap: 0;
-        padding: 0;
-      }
-    }
-
-    /* Ajustes para móviles */
-    @media (max-width: 768px) {
       /* Ajuste del menú hamburguesa */
       .menu-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
         width: 40px;
         height: 40px;
         padding: 8px;
+        z-index: 1100;
       }
 
       .menu-toggle-line {
@@ -357,45 +352,80 @@
       }
 
       /* Ajuste del overlay del menú */
+      .menu-overlay {
+        padding-top: 80px;
+      }
+
       .nav-title-container {
-        left: 0;
+        position: static;
         text-align: center;
+        margin-bottom: 40px;
       }
 
       .nav-title {
         font-size: 1.5rem;
       }
 
+      .navigation-menu {
+        text-align: center;
+      }
+
+      .navigation-menu li {
+        margin: 25px 0;
+      }
+
       .navigation-menu li a {
         font-size: 1.5rem;
+        display: inline-block;
+        padding: 10px;
       }
 
       /* Ajuste de los filtros */
       .gallery-filters {
-        margin: 1rem auto;
-        padding: 0 10px;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(10, 25, 47, 0.95);
+        backdrop-filter: blur(10px);
+        margin: 0;
+        padding: 15px;
+        z-index: 1000;
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        gap: 10px;
       }
 
       .filter-btn {
+        flex: 0 0 auto;
         padding: 8px 16px;
         font-size: 0.75rem;
-        margin: 4px;
+        white-space: nowrap;
       }
 
       /* Ajuste de la galería */
       .gallery {
-        padding: 1rem;
-        gap: 1rem;
+        margin-bottom: 70px; /* Espacio para los filtros fijos */
+      }
+
+      .gallery-item {
+        aspect-ratio: 1/1;
       }
 
       .gallery-item .overlay h3 {
         font-size: 1.2rem;
-        padding: 10px;
       }
     }
 
     /* Ajustes adicionales para pantallas muy pequeñas */
     @media (max-width: 480px) {
+      .menu-toggle {
+        top: 15px;
+        right: 15px;
+      }
+
       .nav-title {
         font-size: 1.2rem;
       }
@@ -404,25 +434,13 @@
         font-size: 0.8rem;
       }
 
-      .navigation-menu li {
-        margin: 15px 0;
-      }
-
       .navigation-menu li a {
         font-size: 1.2rem;
       }
 
-      /* Ajuste para que los filtros se vean mejor en pantallas pequeñas */
-      .gallery-filters {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 8px;
-      }
-
       .filter-btn {
-        width: 100%;
-        max-width: 200px;
-        margin: 2px auto;
+        padding: 6px 14px;
+        font-size: 0.7rem;
       }
     }
 
@@ -436,6 +454,11 @@
       .filter-btn:hover {
         transform: none;
         box-shadow: none;
+      }
+
+      /* Mejora del scroll horizontal de filtros */
+      .gallery-filters::-webkit-scrollbar {
+        display: none;
       }
     }
   </style>
