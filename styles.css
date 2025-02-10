@@ -343,8 +343,47 @@ nav ul li a:hover {
 /* About Section */
 .about {
   padding: 60px 20px;
-  background-color: hwb(211 39% 5%);
+  /* Opción 1: Gradiente suave */
+  background: linear-gradient(135deg, #0a192f 0%, #112240 100%);
+  
+  /* Opción 2: Gradiente con efecto de profundidad */
+  /*background: linear-gradient(
+    135deg,
+    #1a1f2e 0%,
+    #0f1624 50%,
+    #0a192f 100%
+  );*/
+  
+  /* Opción 3: Fondo oscuro con textura sutil */
+  /*background-color: #0a192f;
+  background-image: 
+    radial-gradient(at 47% 33%, hsl(215, 50%, 15%) 0, transparent 59%), 
+    radial-gradient(at 82% 65%, hsl(218, 45%, 18%) 0, transparent 55%);*/
+
+  /* Opción 4: Gradiente moderno con acentos */
+  /*background: linear-gradient(
+    150deg,
+    #0a192f 0%,
+    #112240 45%,
+    #1d2d50 100%
+  );*/
   text-align: left;
+}
+
+/* Mejora opcional: Añadir un sutil efecto de brillo */
+.about::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at 50% 0%,
+    rgba(100, 255, 218, 0.05) 0%,
+    transparent 50%
+  );
+  pointer-events: none;
 }
 
 .about h2 {

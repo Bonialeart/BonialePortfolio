@@ -166,6 +166,313 @@
       margin: 0;
       font-family: "Work Sans", serif;
     }
+
+    .skills-container, .services-grid, .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      padding: 2rem 0;
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .timeline-item {
+      padding: 2rem;
+      border-left: 2px solid #64ffda;
+      margin-left: 2rem;
+      position: relative;
+    }
+
+    .testimonial-card {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 2rem;
+      border-radius: 8px;
+      backdrop-filter: blur(10px);
+    }
+
+    .service-card {
+      padding: 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      transition: transform 0.3s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+    }
+
+    /* Estilos generales para secciones */
+    section {
+      padding: 6rem 2rem;
+      position: relative;
+    }
+
+    section h2 {
+      font-family: 'Rubik Mono One', sans-serif;
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      text-align: center;
+      color: #64ffda;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    /* Estilos para la sección de habilidades */
+    .skills-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .skill-category {
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 15px;
+      padding: 2rem;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(100, 255, 218, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .skill-category:hover {
+      transform: translateY(-5px);
+      border-color: rgba(100, 255, 218, 0.3);
+    }
+
+    .skill-category h3 {
+      font-family: 'Work Sans', sans-serif;
+      color: #64ffda;
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .skill-category ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .skill-category li {
+      padding: 0.8rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 1.1rem;
+      color: #fff;
+      text-align: center;
+    }
+
+    /* Estilos para la línea de tiempo */
+    .timeline {
+      max-width: 900px;
+      margin: 4rem auto;
+      position: relative;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 2px;
+      background: linear-gradient(to bottom, transparent, #64ffda, transparent);
+    }
+
+    .timeline-item {
+      padding: 2rem 0 2rem 3rem;
+      position: relative;
+      margin-bottom: 2rem;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -6px;
+      top: 2.5rem;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: #64ffda;
+      box-shadow: 0 0 20px rgba(100, 255, 218, 0.5);
+    }
+
+    .timeline-item .date {
+      font-family: 'Rubik Mono One', sans-serif;
+      color: #64ffda;
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .timeline-item .content {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 2rem;
+      border-radius: 10px;
+      border: 1px solid rgba(100, 255, 218, 0.1);
+    }
+
+    /* Estilos para testimonios */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .testimonial-card {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 2.5rem;
+      border-radius: 15px;
+      border: 1px solid rgba(100, 255, 218, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(100, 255, 218, 0.3);
+    }
+
+    .testimonial-card .quote {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+      font-style: italic;
+      color: #fff;
+    }
+
+    .testimonial-card .author {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 1rem;
+    }
+
+    .testimonial-card .name {
+      color: #64ffda;
+      font-weight: bold;
+      margin-bottom: 0.3rem;
+    }
+
+    .testimonial-card .company {
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+
+    /* Estilos para servicios */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .service-card {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 2.5rem;
+      border-radius: 15px;
+      border: 1px solid rgba(100, 255, 218, 0.1);
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(100, 255, 218, 0.3);
+      box-shadow: 0 10px 30px rgba(100, 255, 218, 0.1);
+    }
+
+    .service-card h3 {
+      color: #64ffda;
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      font-family: 'Work Sans', sans-serif;
+    }
+
+    .service-card p {
+      color: #fff;
+      line-height: 1.6;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      section {
+        padding: 4rem 1rem;
+      }
+      
+      section h2 {
+        font-size: 2rem;
+      }
+      
+      .timeline-item {
+        padding-left: 2rem;
+      }
+      
+      .service-card,
+      .testimonial-card,
+      .skill-category {
+        padding: 1.5rem;
+      }
+    }
+
+    .software-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 2rem;
+      padding: 1rem;
+    }
+
+    .software-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .software-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .software-item img {
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+      margin-bottom: 0.5rem;
+      filter: grayscale(100%) brightness(150%);
+      transition: filter 0.3s ease;
+    }
+
+    .software-item:hover img {
+      filter: grayscale(0%) brightness(100%);
+    }
+
+    .software-item span {
+      font-size: 0.9rem;
+      color: #fff;
+      opacity: 0.8;
+      transition: opacity 0.3s ease;
+    }
+
+    .software-item:hover span {
+      opacity: 1;
+      color: #64ffda;
+    }
+
+    @media (max-width: 768px) {
+      .software-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .software-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
   </style>
 </head>
 <body>
@@ -237,6 +544,56 @@
     </p2>
     Bonialeart@gmail.com
     </p2>
+  </section>
+
+  <section id="skills" class="skills">
+    <h2>Habilidades</h2>
+    <div class="skills-container">
+      <div class="skill-category">
+        <h3>Software</h3>
+        <div class="software-grid">
+          <div class="software-item">
+            <img src="images/logos/clipstudio.png" alt="Clip Studio Paint">
+            <span>Clip Studio Paint</span>
+          </div>
+          <div class="software-item">
+            <img src="images/logos/photoshop.png" alt="Adobe Photoshop">
+            <span>Photoshop</span>
+          </div>
+          <div class="software-item">
+            <img src="images/logos/illustrator.png" alt="Adobe Illustrator">
+            <span>Illustrator</span>
+          </div>
+          <div class="software-item">
+            <img src="images/logos/davinci.png" alt="DaVinci Resolve">
+            <span>DaVinci Resolve</span>
+          </div>
+          <div class="software-item">
+            <img src="images/logos/premiere.png" alt="Adobe Premiere">
+            <span>Premiere</span>
+          </div>
+        </div>
+      </div>
+      <div class="skill-category">
+        <h3>Especialidades</h3>
+        <ul>
+          <li>Concept Art</li>
+          <li>Character Design</li>
+          <!-- Añade tus especialidades -->
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="services">
+    <h2>Servicios</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <h3>Concept Art</h3>
+        <p>Descripción del servicio que ofreces</p>
+      </div>
+      <!-- Añade más service-card según tus servicios -->
+    </div>
   </section>
 
   <footer>
