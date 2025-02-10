@@ -1044,9 +1044,10 @@ footer {
 }
 
 .navigation-menu li a:hover {
-  transform: scale(2.2);
+  transform: scale(1.5);
   color: #64ffda;
 }
+
 
 .close-btn-line {
   position: absolute;
