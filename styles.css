@@ -50,6 +50,7 @@ a:hover {
 
 /* Estilos Generales de la Galería */
 .gallery {
+  margin-top: 80px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 0;
@@ -214,12 +215,10 @@ nav ul li a:hover {
 }
 
 .flex-row {
-  position: absolute;
-  bottom: -50px;
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative;
   width: min(90%, 1200px);
-  padding: 0 20px;
+  margin: -50px auto 50px;
+  padding: 20px;
   box-sizing: border-box;
   z-index: 2;
   display: flex;
@@ -1672,10 +1671,10 @@ footer {
     left: 95%; /* Ajustado para móviles */
   }
   .flex-row {
-    bottom: 230px; /* Ajuste más sutil para móviles */
+    margin: -30px auto 30px;
     width: 95%;
-    padding: 0 10px;
-    gap: 10px;
+    padding: 15px;
+    gap: 15px;
   }
 }
 
@@ -1849,15 +1848,33 @@ footer {
   }
   
   .flex-row {
-    bottom: 250px;
+    margin: -20px auto 40px; /* Ajustamos para móviles */
     width: 100%;
-    padding: 0 8px;
-    gap: 8px;
+    padding: 10px;
+    gap: 10px;
     flex-direction: column; /* Apila los elementos verticalmente */
   }
   
   .project-meta-item {
-    min-width: 100%; /* Ocupa todo el ancho disponible */
+    width: 100%;
     padding: 8px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .flex-row {
+    margin: -20px auto 20px;
+    width: 100%;
+    padding: 10px;
+    gap: 10px;
+    flex-direction: column;
+  }
+  
+  .gallery {
+    margin-top: 40px; /* Ajustamos para móviles */
+  }
+  
+  .project-meta-item {
+    width: 100%;
   }
 }
