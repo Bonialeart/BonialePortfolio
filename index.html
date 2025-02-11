@@ -4,8 +4,31 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Boniale Portfolio</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <!-- Precargar recursos críticos -->
+  <link rel="preload" href="styles.css" as="style">
+  <link rel="preload" href="script.js" as="script">
+  <link rel="preload" href="images/logo.png" as="image" type="image/png" fetchpriority="high">
+  
+  <!-- Preconectar a orígenes externos -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  
+  <!-- Cargar CSS no crítico de manera asíncrona -->
+  <link rel="stylesheet" href="styles.css" media="print" onload="this.media='all'">
+  
+  <!-- Consolidar fuentes en una sola llamada -->
+  <link href="https://fonts.googleapis.com/css2?family=Rubik+Mono+One&family=Work+Sans:wght@400;700&family=Lato:wght@400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  
+  <!-- Cargar Font Awesome de manera optimizada -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" 
+        integrity="sha512-..." 
+        crossorigin="anonymous" 
+        referrerpolicy="no-referrer"
+        media="print" 
+        onload="this.media='all'">
+  
   <!-- Fuentes y otros enlaces -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -335,16 +358,106 @@
   /* Ajustes para la sección projects */
   .projects {
     padding: 120px 0;
-  }
-
-  .projects h2 {
-    margin-bottom: 60px;
-    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
   }
 
   .project-grid {
-    gap: 40px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
     margin-bottom: 60px;
+  }
+
+  .project-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    aspect-ratio: 4/3;
+  }
+
+  .project-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .project-item-link {
+    text-decoration: none;
+    color: #fff;
+    display: block;
+  }
+
+  .project-item-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 2rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    transform: translateY(100%);
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .project-item-type {
+    font-size: 0.9rem;
+    color: #64ffda;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .project-item-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .project-item-link:hover .project-item-content {
+    transform: translateY(0);
+  }
+
+  .project-item-link:hover img {
+    transform: scale(1.1);
+  }
+
+  .projects-header {
+    text-align: left;
+    margin-bottom: 3rem;
+  }
+
+  .projects-title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-family: "Rubik Mono One", serif;
+  }
+
+  .see-all-link {
+    display: inline-block;
+    color: #64ffda;
+    text-decoration: none;
+    font-size: 1rem;
+    margin-top: 2rem;
+    transition: color 0.3s ease;
+  }
+
+  .see-all-link:hover {
+    color: #fff;
+  }
+
+  @media (max-width: 768px) {
+    .project-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .projects {
+      padding: 60px 20px;
+    }
+    
+    .projects-title {
+      font-size: 2rem;
+    }
   }
 
   /* Ajustes para la sección de Instagram */
@@ -447,33 +560,315 @@
   .close-btn:hover .close-btn-line:last-child {
     transform: rotate(135deg);
   }
-  </style>
+
+  .main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(9, 16, 28, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 1000;
+    padding: 1rem 0;
+    transition: all 0.3s ease;
+  }
+
+  .nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
+  }
+
+  .logo {
+    position: absolute;
+    left: -120%;
+    top: 65%;
+    transform: translateY(-50%);
+    z-index: 1001;
+  }
+
+  .logo img {
+    height: 85px;
+    width: auto;
+    transition: transform 0.3s ease;
+  }
+
+  .logo img:hover {
+    transform: scale(1.05);
+  }
+
+  .nav-links {
+    margin-left: auto;
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    padding: 0;
+  }
+
+  .nav-links .has-dropdown {
+    position: relative;
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(9, 16, 28, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 0.8rem 0;
+    border-radius: 4px;
+    min-width: 150px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+    z-index: 1000;
+  }
+
+  .dropdown-menu::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid rgba(9, 16, 28, 0.95);
+  }
+
+  .has-dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    margin-top: 0.5rem;
+  }
+
+  .dropdown-menu li {
+    padding: 0.5rem 1.5rem;
+  }
+
+  .dropdown-menu a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.95rem;
+    white-space: nowrap;
+    display: block;
+    transition: color 0.3s ease;
+  }
+
+  .dropdown-menu a:hover {
+    color: #64ffda;
+  }
+
+  .dropdown-menu a::after {
+    display: none;
+  }
+
+  /* Mantener los estilos existentes para los enlaces principales */
+  .nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-family: "Work Sans", serif;
+    font-size: 1rem;
+    position: relative;
+    padding: 0.5rem 0;
+    transition: color 0.3s ease;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #64ffda;
+    transition: width 0.3s ease;
+  }
+
+  .nav-links a:hover {
+    color: #64ffda;
+  }
+
+  .nav-links a:hover::after {
+    width: 100%;
+  }
+
+  /* Efecto de scroll */
+  .main-header.scrolled {
+    padding: 0.5rem 0;
+    background: rgba(9, 16, 28, 0.95);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .nav-container {
+      padding: 0 1rem;
+    }
+    
+    .nav-links {
+      gap: 1rem;
+    }
+    
+    .nav-links a {
+      font-size: 0.9rem;
+    }
+  }
+
+  /* Efecto de desenfoque al hacer scroll */
+  .blur-header {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background: rgba(9, 16, 28, 0.85);
+    transition: all 0.3s ease;
+  }
+
+  /* Efecto de revelación al scroll */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+  }
+
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Efecto de texto gradiente animado */
+  .gradient-text {
+    background: linear-gradient(45deg, #64ffda, #0a192f, #64ffda);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient 3s linear infinite;
+  }
+
+  @keyframes gradient {
+    to {
+      background-position: 200% center;
+    }
+  }
+
+  /* Efecto hover para imágenes */
+  .hover-effect {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hover-effect::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(100, 255, 218, 0.2);
+    transform: translateY(100%);
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .hover-effect:hover::after {
+    transform: translateY(0);
+  }
+
+  /* Efecto de cursor personalizado */
+  .custom-cursor {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #64ffda;
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.2s ease;
+  }
+
+  .custom-cursor.hover {
+    transform: scale(1.5);
+    background-color: rgba(100, 255, 218, 0.1);
+  }
+
+  .main-header, .logo, .logo img {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+  }
+ </style>
+
+  <!-- Precargar fuentes críticas -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap" as="style">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;700&display=swap" as="style">
+  
+  <!-- Consolidar las fuentes en una sola llamada -->
+  <link href="https://fonts.googleapis.com/css2?family=Rubik+Mono+One&family=Work+Sans:wght@400;700&family=Lato:wght@400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  
+  <!-- Precargar imágenes críticas -->
+  <link rel="preload" as="image" href="images/logo.png">
+  
+  <!-- Agregar lazy loading para imágenes -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const images = document.querySelectorAll('img[data-src]');
+      const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            img.src = img.dataset.src;
+            img.removeAttribute('data-src');
+            imageObserver.unobserve(img);
+          }
+        });
+      });
+      
+      images.forEach(img => imageObserver.observe(img));
+    });
+  </script>
 </head>
-<body>
+<body class="loading">
   <!-- Pantalla de carga -->
   <div id="loading-screen">
     <div class="loading-logo">
       <div class="loading-circle"></div>
     </div>
   </div>
+  
+  <!-- Resto del contenido -->
+  <div class="main-content">
+    <!-- Tu contenido aquí -->
+  </div>
 
   <!-- Header y menú hamburguesa -->
-  <header>
-    <div class="header-left">
-      <div class="header-logo">
-        <a href="index.html">
-          <img src="images/logo.png" alt="Logo de Boniale" />
-        </a>
-      </div>
-      <div class="header-content">
-        <!-- Contenido adicional del header -->
-      </div>
-    </div>
-    <!-- Botón de menú hamburguesa (al hacer clic se abrirá el overlay) -->
-    <div class="menu-toggle" id="menu-toggle">
-      <div class="menu-toggle-line"></div>
-      <div class="menu-toggle-line"></div>
-      <div class="menu-toggle-line"></div>
+  <header class="main-header">
+    <div class="nav-container">
+      <a href="index.html" class="logo" style="opacity: 1 !important; visibility: visible !important;">
+        <img 
+          src="images/logo.png" 
+          alt="Boniale Logo" 
+          width="85" 
+          height="85" 
+          fetchpriority="high"
+          style="opacity: 1 !important; visibility: visible !important;"
+        >
+      </a>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li class="has-dropdown">
+          <a href="/Gallery.html">Gallery</a>
+          <ul class="dropdown-menu">
+            <li><a href="/photos.html">Photos</a></li>
+          </ul>
+        </li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+      </ul>
     </div>
   </header>
   
@@ -513,7 +908,7 @@
   <!-- Sección Hero -->
   <section class="hero">
     <div class="hero-content">
-      <h1>Boniale Portfolio</h1>
+      <h1 class="gradient-text">Boniale Portfolio</h1>
       <p>Concept/illustrations</p>
     </div>
     <div class="gradient-block"></div>
@@ -543,24 +938,49 @@
 
   <!-- Sección Projects -->
   <section id="projects" class="projects">
-    <h2>Featured Projects</h2>
+    <div class="projects-header">
+      <h2 class="projects-title">Selected Work</h2>
+      <a href="/Gallery.html" class="see-all-link">See all</a>
+    </div>
+    
     <div class="project-grid">
-      <a href="imagen1-detalles.html" class="project-item-link">
-        <div class="project-item">
-          <img src="images/Monja.jpg" alt="Project 1">
-          <h3>Crimson Requiem</h3>
+      <a href="imagen1-detalles.html" class="project-item-link reveal">
+        <div class="project-item hover-effect">
+          <img src="images/Monja.jpg" alt="Crimson Requiem" loading="lazy">
+          <div class="project-item-content">
+            <div class="project-item-type">Digital Art</div>
+            <h3 class="project-item-title">Crimson Requiem</h3>
+          </div>
         </div>
       </a>
-      <a href="imagen2-detalles.html" class="project-item-link">
-        <div class="project-item">
-          <img src="images/robot.jpg" alt="Project 2">
-          <h3>AURORA</h3>
+      
+      <a href="imagen2-detalles.html" class="project-item-link reveal">
+        <div class="project-item hover-effect">
+          <img src="images/robot.jpg" alt="AURORA" loading="lazy">
+          <div class="project-item-content">
+            <div class="project-item-type">Concept Art</div>
+            <h3 class="project-item-title">AURORA</h3>
+          </div>
         </div>
       </a>
-      <a href="imagen3-detalles.html" class="project-item-link">
-        <div class="project-item">
-          <img src="images/Collage.jpg" alt="Project 3">
-          <h3>Sketches/Portraits</h3>
+      
+      <a href="imagen3-detalles.html" class="project-item-link reveal">
+        <div class="project-item hover-effect">
+          <img src="images/Collage.jpg" alt="Sketches/Portraits" loading="lazy">
+          <div class="project-item-content">
+            <div class="project-item-type">Illustration</div>
+            <h3 class="project-item-title">Sketches/Portraits</h3>
+          </div>
+        </div>
+      </a>
+      
+      <a href="imagen4-detalles.html" class="project-item-link reveal">
+        <div class="project-item hover-effect">
+          <img src="images/tu-cuarta-imagen.jpg" alt="Otro Proyecto" loading="lazy">
+          <div class="project-item-content">
+            <div class="project-item-type">Digital Art</div>
+            <h3 class="project-item-title">Otro Proyecto</h3>
+          </div>
         </div>
       </a>
     </div>
@@ -650,26 +1070,7 @@
     });
   </script>
 
-  <script>
-    // Abrir overlay del menú al hacer clic en la hamburguesa
-    document.addEventListener("DOMContentLoaded", function () {
-      const menuToggle = document.getElementById("menu-toggle");
-      const menuOverlay = document.getElementById("menu-overlay");
-      const menuOverlayClose = document.getElementById("menu-overlay-close");
-
-      // Al hacer clic en la hamburguesa se abre el overlay y se transforma el botón a "X"
-      menuToggle.addEventListener("click", function () {
-        menuOverlay.classList.add("open");
-        menuToggle.classList.add("open");
-      });
-      // Al hacer clic en el botón de cierre del overlay se cierra éste
-      menuOverlayClose.addEventListener("click", function () {
-        menuOverlay.classList.remove("open");
-        menuToggle.classList.remove("open");
-      });
-    });
-  </script>
-  <script src="Fade-In Effect.js"></script>
+   <script src="Fade-In Effect.js"></script>
 
   <script>
     function scrollToProjects() {
@@ -702,22 +1103,26 @@
     }
   </script>
 
-  <!-- Agregar botón en el header -->
-  <button id="theme-toggle" class="theme-toggle">
-    <i class="fas fa-moon"></i>
-  </button>
+    <script src="script.js"></script>
 
-  <!-- JavaScript para el toggle -->
   <script>
-    const themeToggle = document.getElementById('theme-toggle');
-    themeToggle.addEventListener('click', () => {
-      document.body.classList.toggle('dark-mode');
-      const icon = themeToggle.querySelector('i');
-      icon.classList.toggle('fa-moon');
-      icon.classList.toggle('fa-sun');
+    document.addEventListener('DOMContentLoaded', () => {
+      const header = document.querySelector('.main-header');
+      
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      });
     });
   </script>
-  <script src="script.js"></script>
+
+  <!-- Elementos con parallax -->
+  <div class="decorative-element parallax" data-speed="2">
+    <!-- Elemento decorativo -->
+  </div>
 </body>
 </html>
 

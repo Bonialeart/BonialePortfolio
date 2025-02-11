@@ -24,304 +24,33 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap" rel="stylesheet">
-
-<style>
-  body.loading .menu-toggle {
-    display: none !important;
-  }
-
-  /* --- Estilos para el menú hamburguesa y su transformación --- */
-  .menu-toggle {
-    display: block;
-    cursor: pointer;
-    width: 50px;
-    height: 50px;
-    position: relative;
-    z-index: 1100;
-    padding: 10px;
-  }
-  
-  .menu-toggle-line {
-    background-color: #fff;
-    height: 4px;
-    width: 100%;
-    margin: 8px 0;
-    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    position: relative;
-  }
-  
-  /* Transformación de las líneas cuando el menú está abierto */
-  .menu-toggle.open .menu-toggle-line:first-child {
-    transform: translateY(12px) rotate(45deg);
-    background-color: #64ffda;
-  }
-  
-  .menu-toggle.open .menu-toggle-line:nth-child(2) {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  
-  .menu-toggle.open .menu-toggle-line:last-child {
-    transform: translateY(-12px) rotate(-45deg);
-    background-color: #64ffda;
-  }
-  
-  /* Efecto hover cuando el menú está cerrado */
-  .menu-toggle:hover .menu-toggle-line {
-    background-color: #64ffda;
-  }
-  
-  .menu-toggle:hover .menu-toggle-line:first-child {
-    transform: translateX(8px);
-  }
-  
-  .menu-toggle:hover .menu-toggle-line:nth-child(2) {
-    transform: translateX(-8px);
-  }
-  
-  .menu-toggle:hover .menu-toggle-line:last-child {
-    transform: translateX(8px);
-  }
-
-  /* ------------------------------ 
-     Menu Overlay (pestaña de menú) 
-  ------------------------------- */
-  .menu-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(9, 16, 28, 0.85);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    display: none;
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    z-index: 9998;
-  }
-  
-  .menu-overlay.open {
-    display: block;
-    opacity: 1;
-  }
-  
-  .menu-overlay .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 40px 20px;
-    color: #fff;
-  }
-  
-  /* Barra de navegación interna */
-  .navigation-bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 40px;
-  }
-  
-  .navigation-bar img {
-    max-height: 50px;
-  }
-  
-  .nav-title-container {
-    text-align: center;
-    top: 30%;
-    left: 160px;
-    position: relative;
-  }
-  
-  .nav-title {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 5px;
-  }
-  
-  .nav-subtitle {
-    font-size: 1rem;
-    opacity: 0.8;
-  }
-  
-  /* Menú de enlaces en el overlay */
-  .nav-block {
-    position: relative;
-    text-align: center;
-    font-family: "Rubik Mono One", serif;
-    z-index: 1;
-  }
-  
-  .navigation-menu {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .navigation-menu li {
-    margin: 20px 0;
-  }
-  
-  .navigation-menu li a {
-    display: inline-block;
-    color: #fff;
-    font-size: 2rem;
-    text-decoration: none;
-    transition: transform 0.3s ease, color 0.3s ease;
-  }
-  
-  .navigation-menu li a:hover {
-    transform: scale(1.1);
-    color: #64ffda;
-  }
-
-  /* ------------------------------
-       Opcional: Ajustes para el body y contenido
-    ------------------------------- */
-    body {
-      margin: 0;
-      font-family: "Work Sans", serif;
-    }
-
-    /* Estilos mejorados para los filtros */
-    .gallery-filters {
-      text-align: center;
-      margin: 4rem auto 3rem;
-      padding: 0 20px;
-      max-width: 800px; /* Limita el ancho para mejor legibilidad */
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 12px; /* Espaciado uniforme entre botones */
-    }
-
-    .filter-btn {
-      background: transparent;
-      border: 1.5px solid #64ffda;
-      color: #64ffda;
-      padding: 10px 24px;
-      cursor: pointer;
-      font-family: "Work Sans", sans-serif;
-      font-size: 0.85rem;
-      font-weight: 500;
-      letter-spacing: 0.5px;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      border-radius: 50px; /* Botones más redondeados */
-      text-transform: uppercase;
-    }
-
-    .filter-btn:hover {
-      background: rgba(100, 255, 218, 0.1);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(100, 255, 218, 0.15);
-    }
-
-    .filter-btn.active {
-      background: #64ffda;
-      color: #09101c;
-      font-weight: 600;
-      box-shadow: 0 4px 12px rgba(100, 255, 218, 0.25);
-    }
-
-    /* Asegura que los botones se vean bien en móviles */
-    @media (max-width: 768px) {
-      .gallery-filters {
-        margin: 2rem auto 2rem;
-      }
-      
-      .filter-btn {
-        padding: 8px 16px;
-        font-size: 0.8rem;
-      }
-    }
-
-    /* Optimización de las animaciones existentes */
-    .gallery-item {
-      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .gallery-item img {
-      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .gallery-item .overlay {
-      transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .gallery-item:hover img {
-      transform: scale(1.05);
-    }
-
-    /* Optimización de las animaciones de filtrado */
-    .gallery-item.hidden {
-      opacity: 0;
-      transform: scale(0.95);
-      transition: opacity 0.3s ease,
-                  transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    /* Estilos para el overlay de las imágenes */
-    .gallery-item {
-      position: relative;
-      overflow: hidden;
-      display: block;
-    }
-
-    .gallery-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .gallery-item .overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(9, 16, 28, 0.7); /* Color oscuro semi-transparente */
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-    }
-
-    .gallery-item:hover .overlay {
-      opacity: 1;
-    }
-
-    .gallery-item:hover img {
-      transform: scale(1.05);
-    }
-
-    .gallery-item .overlay h3 {
-      color: #fff;
-      font-family: "Work Sans", sans-serif;
-      font-size: 1.5rem;
-      text-align: center;
-      padding: 20px;
-      margin: 0;
-    }
-  </style>
 </head>
 <body>
 
   <!-- Header y menú hamburguesa -->
-  <header>
-    <div class="header-left">
-      <div class="header-logo">
-        <a href="index.html">
-          <img src="images/logo.png" alt="Logo de Boniale" />
-        </a>
-      </div>
-      <div class="header-content">
-        <!-- Contenido adicional del header -->
-      </div>
-    </div>
-    <!-- Botón de menú hamburguesa (al hacer clic se abrirá el overlay) -->
-    <div class="menu-toggle" id="menu-toggle">
-      <div class="menu-toggle-line"></div>
-      <div class="menu-toggle-line"></div>
-      <div class="menu-toggle-line"></div>
+  <header class="main-header">
+    <div class="nav-container">
+      <a href="index.html" class="logo" style="opacity: 1 !important; visibility: visible !important;">
+        <img 
+          src="images/logo.png" 
+          alt="Boniale Logo" 
+          width="85" 
+          height="85" 
+          fetchpriority="high"
+          style="opacity: 1 !important; visibility: visible !important;"
+        >
+      </a>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li class="has-dropdown">
+          <a href="/Gallery.html">Gallery</a>
+          <ul class="dropdown-menu">
+            <li><a href="/photos.html">Photos</a></li>
+          </ul>
+        </li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+      </ul>
     </div>
   </header>
   
@@ -332,16 +61,16 @@
       <div class="navigation-bar">
         <a href="/" class="w-inline-block">
           <!-- Puedes usar tu logo o un icono aquí -->
-                  </a>
+                 </a>
         <div class="nav-title-container">
           <div class="nav-title">Boniale Portfolio</div>
           <div class="nav-subtitle">Concept/illustrations</div>
         </div>
-<!-- Botón de cierre (estilo "X") dentro del overlay -->
-<div class="close-btn" id="menu-overlay-close">
-  <span class="close-btn-line"></span>
-  <span class="close-btn-line"></span>
-</div>
+        <!-- Botón de cierre actualizado -->
+        <div class="close-btn" id="menu-overlay-close">
+          <span class="close-btn-line"></span>
+          <span class="close-btn-line"></span>
+        </div>
       </div>
     </div>
     <!-- Menú de enlaces -->
@@ -535,26 +264,6 @@
   </script>
 
   <script>
-    // Abrir overlay del menú al hacer clic en la hamburguesa
-    document.addEventListener("DOMContentLoaded", function () {
-      const menuToggle = document.getElementById("menu-toggle");
-      const menuOverlay = document.getElementById("menu-overlay");
-      const menuOverlayClose = document.getElementById("menu-overlay-close");
-
-      // Al hacer clic en la hamburguesa se abre el overlay y se transforma el botón a "X"
-      menuToggle.addEventListener("click", function () {
-        menuOverlay.classList.add("open");
-        menuToggle.classList.add("open");
-      });
-      // Al hacer clic en el botón de cierre del overlay se cierra éste
-      menuOverlayClose.addEventListener("click", function () {
-        menuOverlay.classList.remove("open");
-        menuToggle.classList.remove("open");
-      });
-    });
-  </script>
-
-  <script>
     document.addEventListener('DOMContentLoaded', function() {
       const filterButtons = document.querySelectorAll('.filter-btn');
       const galleryItems = document.querySelectorAll('.gallery-item');
@@ -581,6 +290,19 @@
   </script>
 
   <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const header = document.querySelector('.main-header');
+      
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      });
+    });
+  </script>
   <script src="galeria.js"></script>
 </body>
 </html>
