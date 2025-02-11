@@ -140,17 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('resize', () => {
     isMobile = window.innerWidth <= 768;
   });
-
-  // Cursor personalizado
-  const cursor = document.createElement('div');
-  cursor.classList.add('custom-cursor');
-  document.body.appendChild(cursor);
-
-  document.addEventListener('mousemove', (e) => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-  });
-
+  
   // Efecto hover en elementos interactivos
   const interactiveElements = document.querySelectorAll('a, button, .project-item');
   interactiveElements.forEach(el => {
