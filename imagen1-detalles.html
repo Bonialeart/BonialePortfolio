@@ -24,35 +24,73 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap" rel="stylesheet">
+
+  <!-- Precargar recursos críticos -->
+  <link rel="preload" href="styles.css" as="style">
+  <link rel="preload" href="script.js" as="script">
+  <link rel="preload" href="images/logo.png" as="image" type="image/png" fetchpriority="high">
 </head>
 <body>
 
-  <!-- Reemplazar el header existente con el nuevo -->
+  <!-- Header y menú hamburguesa -->
   <header class="main-header">
     <div class="nav-container">
-      <a href="/" class="logo">
+      <a href="index.html" class="logo" style="opacity: 1 !important; visibility: visible !important;">
         <img 
           src="images/logo.png" 
           alt="Boniale Logo" 
           width="85" 
           height="85" 
           fetchpriority="high"
+          style="opacity: 1 !important; visibility: visible !important;"
         >
       </a>
-      <nav>
-        <ul class="nav-links">
-          <li><a href="/">Home</a></li>
-          <li class="has-dropdown">
-            <a href="/Gallery.html">Gallery</a>
-            <ul class="dropdown-menu">
-              <li><a href="/photos.html">Photos</a></li>
-            </ul>
-          </li>
-          <li><a href="/about.html">About</a></li>
-          <li><a href="/contact.html">Contact</a></li>
-        </ul>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li class="has-dropdown">
+          <a href="/Gallery.html">Gallery</a>
+          <ul class="dropdown-menu">
+            <li><a href="/photos.html">Photos</a></li>
+          </ul>
+        </li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+  
+<!-- Overlay del menú (inicialmente oculto) -->
+<div class="menu-overlay" id="menu-overlay">
+  <div class="container menu-overlay-container">
+    <div class="nav-section">
+      <div class="navigation-bar">
+        <a href="/" class="w-inline-block">
+          <!-- Puedes usar tu logo o un icono aquí -->
+                 </a>
+        <div class="nav-title-container">
+          <div class="nav-title">Boniale Portfolio</div>
+          <div class="nav-subtitle">Concept/illustrations</div>
+        </div>
+        <!-- Botón de cierre actualizado -->
+        <div class="close-btn" id="menu-overlay-close">
+          <span class="close-btn-line"></span>
+          <span class="close-btn-line"></span>
+        </div>
       </div>
-    </header>
+    </div>
+    <!-- Menú de enlaces -->
+    <div class="nav-block">
+      <ul class="navigation-menu">
+        <li><a href="/">Home</a></li>
+        <li><a href="/Gallery.html">Gallery</a></li>
+        <li><a href="/photos.html">Photos</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+      </ul>
+      <!-- Aquí podrías agregar enlaces adicionales, formularios de búsqueda, etc. -->
+    </div>
+  </div>
+</div>
     
   <div id="Page-Top" class="section-padding page-header-section project-header" style="background-image: url('images/Monja.jpg');">
       <div class="container header-info-top">
@@ -140,50 +178,47 @@
         </svg>
       </div>
     </footer>
-    <script>
-      // Manejo de la pantalla de carga
-      window.addEventListener("load", function () {
-        const minDisplayTime = 2500;
-        const loadingScreen = document.getElementById("loading-screen");
-        const startTime = Date.now();
-        function fadeOutLoadingScreen() {
-          const elapsedTime = Date.now() - startTime;
-          if (elapsedTime >= minDisplayTime) {
-            loadingScreen.classList.add("hidden");
-            // Quitar la clase "loading" para mostrar el botón del menú
-            document.body.classList.remove("loading");
-            loadingScreen.addEventListener("transitionend", function () {
-              loadingScreen.remove();
-            });
-          } else {
-            setTimeout(fadeOutLoadingScreen, 100);
-          }
-        }
-        fadeOutLoadingScreen();
-      });
-    </script>
-  
-    <script>
-      // Abrir overlay del menú al hacer clic en la hamburguesa
-      document.addEventListener("DOMContentLoaded", function () {
-        const menuToggle = document.getElementById("menu-toggle");
-        const menuOverlay = document.getElementById("menu-overlay");
-        const menuOverlayClose = document.getElementById("menu-overlay-close");
-  
-        // Al hacer clic en la hamburguesa se abre el overlay y se transforma el botón a "X"
-        menuToggle.addEventListener("click", function () {
-          menuOverlay.classList.add("open");
-          menuToggle.classList.add("open");
-        });
-        // Al hacer clic en el botón de cierre del overlay se cierra éste
-        menuOverlayClose.addEventListener("click", function () {
-          menuOverlay.classList.remove("open");
-          menuToggle.classList.remove("open");
-        });
-      });
-    </script>
 
-  </div> <!-- detail-container -->
+  <!-- Scripts necesarios -->
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const header = document.querySelector('.main-header');
+      
+      // Forzar la posición inicial del header
+      const initializeHeader = () => {
+        header.style.position = 'fixed';
+        header.style.top = '2.5rem';
+        
+        if (window.innerWidth <= 768) {
+          header.style.top = '1.5rem';
+        }
+      };
+
+      initializeHeader();
+
+      const checkScroll = () => {
+        if (window.scrollY > 50) {
+          header.classList.add('scrolled');
+          header.style.top = window.innerWidth <= 768 ? '1rem' : '1.5rem';
+        } else {
+          header.classList.remove('scrolled');
+          header.style.top = window.innerWidth <= 768 ? '1.5rem' : '2.5rem';
+        }
+      };
+
+      checkScroll();
+      
+      window.addEventListener('scroll', () => {
+        requestAnimationFrame(checkScroll);
+      }, { passive: true });
+
+      window.addEventListener('resize', () => {
+        initializeHeader();
+        checkScroll();
+      });
+    });
+  </script>
 
 </body>
 </html>

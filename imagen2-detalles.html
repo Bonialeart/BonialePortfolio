@@ -4,7 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AURORA - Boniale Portfolio</title>
-  <link rel="stylesheet" href="styles.css">
+  
+  <!-- Precargar recursos críticos -->
+  <link rel="preload" href="styles.css" as="style">
+  <link rel="preload" href="script.js" as="script">
+  <link rel="preload" href="images/logo.png" as="image" type="image/png" fetchpriority="high">
+   
+  <!-- Preconectar a orígenes externos -->
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+   
+   <!-- Cargar CSS no crítico de manera asíncrona -->
+   <link rel="stylesheet" href="styles.css" media="print" onload="this.media='all'">
+   
   <!-- Fuentes y otros enlaces -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,33 +40,33 @@
 </head>
 <body>
 
-  <!-- Reemplazar el header existente con el nuevo -->
+  <!-- Header y menú hamburguesa -->
   <header class="main-header">
     <div class="nav-container">
-      <a href="/" class="logo">
+      <a href="index.html" class="logo" style="opacity: 1 !important; visibility: visible !important;">
         <img 
           src="images/logo.png" 
           alt="Boniale Logo" 
           width="85" 
           height="85" 
           fetchpriority="high"
+          style="opacity: 1 !important; visibility: visible !important;"
         >
       </a>
-      <nav>
-        <ul class="nav-links">
-          <li><a href="/">Home</a></li>
-          <li class="has-dropdown">
-            <a href="/Gallery.html">Gallery</a>
-            <ul class="dropdown-menu">
-              <li><a href="/photos.html">Photos</a></li>
-            </ul>
-          </li>
-          <li><a href="/about.html">About</a></li>
-          <li><a href="/contact.html">Contact</a></li>
-        </ul>
-      </div>
-    </header>
-    
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li class="has-dropdown">
+          <a href="/Gallery.html">Gallery</a>
+          <ul class="dropdown-menu">
+            <li><a href="/photos.html">Photos</a></li>
+          </ul>
+        </li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+  
 <!-- Overlay del menú (inicialmente oculto) -->
 <div class="menu-overlay" id="menu-overlay">
   <div class="container menu-overlay-container">
@@ -61,32 +74,46 @@
       <div class="navigation-bar">
         <a href="/" class="w-inline-block">
           <!-- Puedes usar tu logo o un icono aquí -->
-          <img src="images/logo.png" alt="Logo" />
-        </a>
+                 </a>
         <div class="nav-title-container">
           <div class="nav-title">Boniale Portfolio</div>
           <div class="nav-subtitle">Concept/illustrations</div>
         </div>
-<!-- Botón de cierre (estilo "X") dentro del overlay -->
-<div class="close-btn" id="menu-overlay-close">
-  <span class="close-btn-line"></span>
-  <span class="close-btn-line"></span>
-</div>
+        <!-- Botón de cierre actualizado -->
+        <div class="close-btn" id="menu-overlay-close">
+          <span class="close-btn-line"></span>
+          <span class="close-btn-line"></span>
+        </div>
       </div>
     </div>
+    <!-- Menú de enlaces -->
+    <div class="nav-block">
+      <ul class="navigation-menu">
+        <li><a href="/">Home</a></li>
+        <li><a href="/Gallery.html">Gallery</a></li>
+        <li><a href="/photos.html">Photos</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+      </ul>
+      <!-- Aquí podrías agregar enlaces adicionales, formularios de búsqueda, etc. -->
+    </div>
+  </div>
+</div>
+
 
   <div id="Page-Top" class="section-padding page-header-section project-header" style="background-image: url('images/robot.jpg');">
       <div class="container header-info-top">
         <h1 class="intro-heading">AURORA</h1>
         <div class="tag-list">
           <a href="#" class="button tag">Concept Art</a>
-          <a href="#" class="button tag">3d</a>
+          <a href="#" class="button tag">3D</a>
         </div>
       </div>
       <div class="gradient-block"></div>
     </div>
 
 <main class="detail-main">
+
 
   <div class="flex-row project-meta-container">
     <div class="item-bordered project-meta-item">
@@ -102,6 +129,7 @@
       <div class="project-meta-content">Illustration, Concept Art, 3d, 3d Modeling</div>
     </div>
   </div>
+
 
   <div class="gallery-and-description">
     <section class="single-page-gallery">
@@ -125,6 +153,7 @@
   </div>
 </main>
 
+
     <footer>
       <div class="social-icons">
         <a href="https://www.artstation.com/boniale" target="_blank" aria-label="Artstation">
@@ -146,6 +175,7 @@
       c2.04,2.04,4.88,3.22,7.77,3.22c2.9,0,5.73-1.18,7.78-3.22c2.05-2.05,3.22-4.89,3.22-7.78c0-2.9-1.17-5.74-3.22-7.78
       C135.661,29.421,132.821,28.251,129.921,28.251z"/>
           </svg>
+        </a>
         <a href="https://x.com/BonialeArt" target="_blank" aria-label="X (Twitter)">
           <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
             <path d="M459.4 151.7c.3 4.5 .3 9.1 .3 13.6 0 138.7-105.6 298.6-298.6 298.6-59.5 0-114.7-17.4-161.1-47.1 8.4 1 16.6 1.3 25.3 1.3 49.1 0 94.2-16.6 130.3-44.8-46.1-1-84.7-31.2-98.1-72.8 6.5 1 13 1.6 19.8 1.6 23.6 0 45.7-7.9 63.9-21-47.9-9.7-84.1-51.9-84.1-101.3 0-22.4 5.9-41.3 15.8-56.3 48.9 59.8 121.5 97.9 206.2 101.7-1.6-7.9-2.6-15.9-2.6-24 0-57.8 46.8-104.9 104.9-104.9 30.2 0 57.5 12.7 76.7 33.1 23.7-4.5 46.5-13.3 66.6-25.3-7.8 24.4-24.4 44.8-46.1 57.9 21.3-2.6 41.6-7.9 60.4-15.6-14.7 20.8-33.3 39.5-54 54.9z"/>
@@ -157,50 +187,58 @@
         </svg>
       </div>
     </footer>
-    <script>
-      // Manejo de la pantalla de carga
-      window.addEventListener("load", function () {
-        const minDisplayTime = 2500;
-        const loadingScreen = document.getElementById("loading-screen");
-        const startTime = Date.now();
-        function fadeOutLoadingScreen() {
-          const elapsedTime = Date.now() - startTime;
-          if (elapsedTime >= minDisplayTime) {
-            loadingScreen.classList.add("hidden");
-            // Quitar la clase "loading" para mostrar el botón del menú
-            document.body.classList.remove("loading");
-            loadingScreen.addEventListener("transitionend", function () {
-              loadingScreen.remove();
-            });
-          } else {
-            setTimeout(fadeOutLoadingScreen, 100);
-          }
+
+  <!-- Scripts necesarios -->
+  <script>
+    function scrollToProjects() {
+      const projectsSection = document.getElementById('projects');
+      const offset = 80;
+      
+      // Animación de scroll más suave con easing
+      const startPosition = window.pageYOffset;
+      const targetPosition = projectsSection.getBoundingClientRect().top + startPosition - offset;
+      const distance = targetPosition - startPosition;
+      const duration = 1000; // Duración en milisegundos
+      let start = null;
+
+      function animation(currentTime) {
+        if (start === null) start = currentTime;
+        const timeElapsed = currentTime - start;
+        const progress = Math.min(timeElapsed / duration, 1);
+        
+        // Función de easing
+        const easing = t => t<.5 ? 4*t*t*t : (t-1)*(2*t-2)*(2*t-2)+1;
+        
+        window.scrollTo(0, startPosition + (distance * easing(progress)));
+
+        if (timeElapsed < duration) {
+          requestAnimationFrame(animation);
         }
-        fadeOutLoadingScreen();
-      });
-    </script>
-  
-    <script>
-      // Abrir overlay del menú al hacer clic en la hamburguesa
-      document.addEventListener("DOMContentLoaded", function () {
-        const menuToggle = document.getElementById("menu-toggle");
-        const menuOverlay = document.getElementById("menu-overlay");
-        const menuOverlayClose = document.getElementById("menu-overlay-close");
-  
-        // Al hacer clic en la hamburguesa se abre el overlay y se transforma el botón a "X"
-        menuToggle.addEventListener("click", function () {
-          menuOverlay.classList.add("open");
-          menuToggle.classList.add("open");
-        });
-        // Al hacer clic en el botón de cierre del overlay se cierra éste
-        menuOverlayClose.addEventListener("click", function () {
-          menuOverlay.classList.remove("open");
-          menuToggle.classList.remove("open");
-        });
-      });
-    </script>
+      }
 
-  </div> <!-- detail-container -->
+      requestAnimationFrame(animation);
+    }
+  </script>
 
+    <script src="script.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const header = document.querySelector('.main-header');
+      
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      });
+    });
+  </script>
+
+  <!-- Elementos con parallax -->
+  <div class="decorative-element parallax" data-speed="2">
+    <!-- Elemento decorativo -->
+  </div>
 </body>
 </html>
