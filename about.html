@@ -26,154 +26,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap" rel="stylesheet">
 
 <style>     
-body
-.loading .menu-toggle {
-  display: none !important;
-}
 
-/* --- Estilos para el menú hamburguesa y su transformación --- */
-.menu-toggle {
-display: block;
-cursor: pointer;
-width: 50px;
-height: 50px;
-position: relative;
-z-index: 1100;
-padding: 10px;
-}
-.menu-toggle-line {
-background-color: #fff;
-height: 4px;
-width: 100%;
-margin: 8px 0;
-transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-position: relative;
-}
-/* Transformación de las líneas cuando el menú está abierto */
-.menu-toggle.open .menu-toggle-line:first-child {
-transform: translateY(12px) rotate(45deg);
-background-color: #64ffda;
-}
-.menu-toggle.open .menu-toggle-line:nth-child(2) {
-opacity: 0;
-transform: translateX(-20px);
-}
-.menu-toggle.open .menu-toggle-line:last-child {
-transform: translateY(-12px) rotate(-45deg);
-background-color: #64ffda;
-}
-/* Efecto hover cuando el menú está cerrado */
-.menu-toggle:hover .menu-toggle-line {
-background-color: #64ffda;
-}
-.menu-toggle:hover .menu-toggle-line:first-child {
-transform: translateX(8px);
-}
-.menu-toggle:hover .menu-toggle-line:nth-child(2) {
-transform: translateX(-8px);
-}
-.menu-toggle:hover .menu-toggle-line:last-child {
-transform: translateX(8px);
-}
-
-/* ------------------------------
-   Menu Overlay (pestaña de menú) 
-------------------------------- */
-.menu-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(9, 16, 28, 0.85);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  display: none;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  z-index: 9998;
-}
-.menu-overlay.open {
-  display: block;
-  opacity: 1;
-}
-.menu-overlay .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 40px 20px;
-  color: #fff;
-}
-/* Barra de navegación interna */
-.navigation-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 40px;
-}
-.navigation-bar img {
-  max-height: 50px;
-}
-.nav-title-container {
-  text-align: center;
-  top: 30%; /* Ajusta el valor según sea necesario */
-left: 160px; /* Ajusta el valor según sea necesario */
-position: relative; /* Asegúrate de que la posición sea relativa o absoluta */
-}
-
-.nav-title {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 5px;
-}
-.nav-subtitle {
-  font-size: 1rem;
-  opacity: 0.8;
-}
-/* Botón de cierre en el overlay */
-.menu-toggle-close {
-  cursor: pointer;
-  width: 40px;
-  height: 40px;
-  position: relative;
-  transition: transform 0.3s ease;
-}
-.menu-toggle-close .menu-toggle-line {
-  background-color: #fff;
-  height: 4px;
-  width: 100%;
-  margin: 6px 0;
-  transition: all 0.3s ease;
-}
-/* ------------------------------
-   Menú de enlaces en el overlay 
-------------------------------- */
-.nav-block {
-  position: relative; /* Asegura que no haya elementos superpuestos */
-  text-align: center;
-  font-family: "Rubik Mono One", serif;
-  z-index: 1; /* Asegura que esté por encima de otros elementos */
-}
-.navigation-menu {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.navigation-menu li {
-  margin: 20px 0;
-}
-.navigation-menu li a {
-display: inline-block; /* Permite aplicar transformaciones correctamente */
-color: #fff;
-font-size: 2rem;
-text-decoration: none;
-transition: transform 0.3s ease, color 0.3s ease; /* Añadimos transición para transform y color */
-}
-.navigation-menu li a:hover {
-.navigation-menu li a:hover {
-transform: scale(1.1); /* Escala el enlace al 110% de su tamaño original */
-color: #64ffda;
-}
-} 
     /* Puedes agregar estilos adicionales para otros enlaces, búsqueda, etc. */
 
     /* ------------------------------
@@ -493,58 +346,36 @@ color: #64ffda;
   </style>
 </head>
 <body>
-  <!-- Header y menú hamburguesa -->
-  <header>
-    <div class="header-left">
-      <div class="header-logo">
-        <a href="index.html">
-          <img src="images/logo.png" alt="Logo de Boniale" />
-        </a>
-      </div>
-      <div class="header-content">
-        <!-- Contenido adicional del header -->
-      </div>
-    </div>
-    <!-- Botón de menú hamburguesa (al hacer clic se abrirá el overlay) -->
-    <div class="menu-toggle" id="menu-toggle">
-      <div class="menu-toggle-line"></div>
-      <div class="menu-toggle-line"></div>
-      <div class="menu-toggle-line"></div>
+
+  <header class="main-header">
+    <div class="nav-container">
+      <a href="index.html" class="logo" style="opacity: 1 !important; visibility: visible !important;">
+        <img 
+          src="images/logo.png" 
+          alt="Boniale Logo" 
+          width="85" 
+          height="85" 
+          fetchpriority="high"
+          style="opacity: 1 !important; visibility: visible !important;"
+        >
+      </a>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li class="has-dropdown">
+          <a href="/Gallery.html">Gallery</a>
+          <ul class="dropdown-menu">
+            <li><a href="/photos.html">Photos</a></li>
+          </ul>
+        </li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+      </ul>
     </div>
   </header>
   
 <!-- Overlay del menú (inicialmente oculto) -->
 <div class="menu-overlay" id="menu-overlay">
-  <div class="container menu-overlay-container">
-    <div class="nav-section">
-      <div class="navigation-bar">
-        <a href="/" class="w-inline-block">
-          <!-- Puedes usar tu logo o un icono aquí -->
-          
-        </a>
-        <div class="nav-title-container">
-          <div class="nav-title">Boniale Portfolio</div>
-          <div class="nav-subtitle">Concept/illustrations</div>
-        </div>
-<!-- Botón de cierre (estilo "X") dentro del overlay -->
-<div class="close-btn" id="menu-overlay-close">
-  <span class="close-btn-line"></span>
-  <span class="close-btn-line"></span>
-</div>
-      </div>
-    </div>
-    <!-- Menú de enlaces -->
-    <div class="nav-block">
-      <ul class="navigation-menu">
-        <li><a href="/">Home</a></li>
-        <li><a href="/Gallery.html">Gallery</a></li>
-        <li><a href="/photos.html">Photos</a></li>
-        <li><a href="/about.html">About</a></li>
-        <li><a href="/contact.html">Contact</a></li>
-      </ul>
-      <!-- Aquí podrías agregar enlaces adicionales, formularios de búsqueda, etc. -->
-    </div>
-  </div>
+  <!-- Eliminar todo el contenido del overlay -->
 </div>
 
   <section id="about" class="about-page">
