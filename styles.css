@@ -3181,20 +3181,23 @@ header {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   transition: all 0.3s ease;
+  height: auto;
+  min-height: var(--header-height);
 }
 
 .header-container {
-  max-width: 1400px;
+  max-width: var(--container-width);
   margin: 0 auto;
-  padding: clamp(0.5rem, 2vw, 1.5rem) clamp(1rem, 3vw, 2rem);
+  padding: clamp(0.5rem, 2vw, 1.5rem);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 100%;
 }
 
 .header-logo {
-  width: clamp(50px, 8vw, 80px);
-  height: clamp(50px, 8vw, 80px);
+  width: clamp(32px, 8vw, 80px);
+  height: clamp(32px, 8vw, 80px);
   transition: all 0.3s ease;
 }
 
@@ -3207,22 +3210,25 @@ header {
 nav {
   display: flex;
   align-items: center;
+  height: 100%;
 }
 
 nav ul {
   display: flex;
-  gap: clamp(1rem, 2vw, 2rem);
+  gap: clamp(0.3rem, 2vw, 2rem);
   list-style: none;
   margin: 0;
   padding: 0;
+  height: 100%;
+  align-items: center;
 }
 
 nav ul li a {
   color: #ccd6f6;
   text-decoration: none;
-  font-size: clamp(0.875rem, 1.5vw, 1rem);
+  font-size: clamp(0.7rem, 1.5vw, 1rem);
   font-weight: 500;
-  padding: clamp(0.5rem, 1vw, 0.8rem) clamp(0.8rem, 1.5vw, 1.2rem);
+  padding: clamp(0.25rem, 1vw, 0.8rem) clamp(0.4rem, 1.5vw, 1.2rem);
   border-radius: 4px;
   transition: all 0.3s ease;
   white-space: nowrap;
@@ -3239,18 +3245,13 @@ header.scrolled {
   box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
 }
 
-header.scrolled .header-logo {
-  width: clamp(45px, 7vw, 70px);
-  height: clamp(45px, 7vw, 70px);
+/* Ajuste del contenido principal para el header fijo */
+main {
+  padding-top: var(--header-height);
 }
 
 /* Media Queries */
 @media (min-width: 2560px) {
-  .header-container {
-    max-width: 1800px;
-    padding: 1.5rem 3rem;
-  }
-  
   nav ul li a {
     font-size: 1.2rem;
     padding: 1rem 1.5rem;
@@ -3259,125 +3260,63 @@ header.scrolled .header-logo {
 
 @media (max-width: 1440px) {
   .header-container {
-    padding: 1rem 2rem;
-  }
-  
-  .header-logo {
-    width: clamp(45px, 7vw, 70px);
-    height: clamp(45px, 7vw, 70px);
+    padding: 0.8rem;
   }
 }
 
 @media (max-width: 1024px) {
   .header-container {
-    padding: 0.8rem 1.5rem;
-  }
-  
-  nav ul {
-    gap: 1rem;
+    padding: 0.6rem;
   }
 }
 
 @media (max-width: 768px) {
-  header {
-    position: fixed;
-    top: 0;
-    height: auto;
-    min-height: 60px;
-  }
-
   .header-container {
-    padding: 0.6rem;
-    height: 100%;
+    padding: 0.5rem;
   }
   
   .header-logo {
-    width: 40px;
-    height: 40px;
     margin-right: 0.5rem;
   }
-  
-  nav {
-    height: 100%;
-  }
-  
-  nav ul {
-    gap: 0.5rem;
-    height: 100%;
-    align-items: center;
-  }
-  
-  nav ul li a {
-    font-size: 0.8rem;
-    padding: 0.4rem 0.6rem;
-  }
 }
 
-@media (max-width: 480px) {
+/* Soporte para dispositivos de alta densidad */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   header {
-    min-height: 50px;
-  }
-
-  .header-container {
-    padding: 0.4rem;
+    backdrop-filter: blur(12px);
   }
   
-  .header-logo {
-    width: 35px;
-    height: 35px;
-  }
-  
-  nav ul {
-    gap: 0.3rem;
-  }
-  
-  nav ul li a {
-    font-size: 0.75rem;
-    padding: 0.3rem 0.5rem;
+  .header-logo img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
   }
 }
 
-@media (max-width: 360px) {
+/* Optimizaciones de rendimiento */
+.header-logo img {
+  will-change: transform;
+}
+
+header {
+  will-change: transform, background;
+  transform: translateZ(0);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Ajustes de accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  header,
+  .header-logo,
+  nav ul li a {
+    transition: none;
+  }
+}
+
+/* Soporte para navegadores antiguos */
+@supports not (backdrop-filter: blur(10px)) {
   header {
-    min-height: 45px;
-  }
-
-  .header-container {
-    padding: 0.3rem;
-  }
-  
-  .header-logo {
-    width: 32px;
-    height: 32px;
-  }
-  
-  nav ul li a {
-    font-size: 0.7rem;
-    padding: 0.25rem 0.4rem;
+    background: rgba(9, 16, 28, 0.95);
   }
 }
 
-/* Ajuste del contenido principal para el header fijo */
-main {
-  padding-top: clamp(60px, 10vh, 80px);
-}
-
-@media (max-width: 768px) {
-  main {
-    padding-top: 60px;
-  }
-}
-
-@media (max-width: 480px) {
-  main {
-    padding-top: 50px;
-  }
-}
-
-@media (max-width: 360px) {
-  main {
-    padding-top: 45px;
-  }
-}
-
-// ... resto del código existente ...
