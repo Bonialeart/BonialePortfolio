@@ -927,32 +927,6 @@ a:hover {
   }
 }
 
-/* Footer Styles */
-footer {
-  padding: 20px;
-  margin-top: auto; /* Sticky footer */
-  text-align: center;
-}
-
-.social-icons {
-  margin-top: 10px;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-}
-
-.social-icons a {
-  font-size: 2rem;
-  color: #64ffda;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-social-icons a:hover {
-  color: #ccd6f6;
-}
-
-/* Contact Page Styles */
 .contact {
   padding: 60px 20px;
   max-width: 600px;
