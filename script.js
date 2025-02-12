@@ -158,6 +158,65 @@ document.addEventListener('DOMContentLoaded', () => {
       element.style.transform = `translateX(${x}px) translateY(${y}px)`;
     });
   });
+
+  // Inicializar partículas en el hero
+  particlesJS('hero', {
+    particles: {
+      number: { value: 80 },
+      color: { value: '#ffffff' },
+      opacity: { value: 0.5 },
+      size: { value: 3 },
+      line_linked: {
+        enable: true,
+        distance: 150,
+        color: '#ffffff',
+        opacity: 0.4,
+        width: 1
+      },
+      move: {
+        enable: true,
+        speed: 2
+      }
+    }
+  });
+});
+
+// Efecto de aparición al scroll
+const observerOptions = {
+  threshold: 0.1
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, observerOptions);
+
+document.querySelectorAll('.project-item, .about-container, .instagram-showcase').forEach(el => {
+  el.classList.add('fade-in');
+  observer.observe(el);
+});
+
+// Cursor personalizado
+const cursor = document.createElement('div');
+cursor.classList.add('custom-cursor');
+document.body.appendChild(cursor);
+
+document.addEventListener('mousemove', (e) => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top = e.clientY + 'px';
+});
+
+// Efecto de parallax suave
+document.addEventListener('scroll', () => {
+  const parallaxElements = document.querySelectorAll('[data-parallax]');
+  parallaxElements.forEach(element => {
+    const speed = element.dataset.parallax;
+    const yPos = -(window.pageYOffset * speed);
+    element.style.transform = `translateY(${yPos}px)`;
+  });
 });
 
 // Service Worker para cache
@@ -189,4 +248,4 @@ window.addEventListener('load', function() {
       }, 500);
     }
   }, 1000);
-}); 
+});

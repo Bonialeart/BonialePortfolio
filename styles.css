@@ -323,6 +323,87 @@ a:hover {
   transform: scale(1.05);
 }
 
+.single-page-gallery .gallery-item {
+  position: relative;
+  overflow: hidden;
+  width: 70%;
+  box-shadow: none;
+  transition: none;
+}
+
+.single-page-gallery .gallery-item-info {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(10, 25, 47, 0.95),
+    rgba(10, 25, 47, 0.8)
+  );
+  padding: 2rem;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.3s ease;
+}
+
+.single-page-gallery .gallery-item:hover .gallery-item-info {
+  opacity: 1;
+}
+
+.single-page-gallery .gallery-item-info h3 {
+  color: #64ffda;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+
+.single-page-gallery .gallery-item-info .software {
+  color: #fff;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: all 0.4s ease 0.1s;
+}
+
+.single-page-gallery .gallery-item-info .description {
+  color: #ccd6f6;
+  font-size: 1rem;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: all 0.4s ease 0.2s;
+}
+
+.single-page-gallery .gallery-item:hover .gallery-item-info h3,
+.single-page-gallery .gallery-item:hover .gallery-item-info .software,
+.single-page-gallery .gallery-item:hover .gallery-item-info .description {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Ajustes responsive */
+@media (max-width: 768px) {
+  .single-page-gallery .gallery-item-info {
+    padding: 1.5rem;
+  }
+
+  .single-page-gallery .gallery-item-info h3 {
+    font-size: 1.5rem;
+  }
+
+  .single-page-gallery .gallery-item-info .software {
+    font-size: 1rem;
+  }
+
+  .single-page-gallery .gallery-item-info .description {
+    font-size: 0.9rem;
+  }
+}
+
 /* Header Responsive */
 .main-header {
   position: fixed !important;
@@ -867,7 +948,7 @@ footer {
   transition: color 0.3s ease;
 }
 
-.social-icons a:hover {
+social-icons a:hover {
   color: #ccd6f6;
 }
 
@@ -3320,5 +3401,63 @@ header {
   header {
     background: rgba(9, 16, 28, 0.95);
   }
+}
+
+/* Efecto de texto revelado */
+.reveal-text {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: revealText 1s ease forwards;
+}
+
+@keyframes revealText {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Efecto de desenfoque al hacer hover en proyectos */
+.project-item {
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.project-item:hover {
+  transform: scale(1.02);
+  filter: brightness(1.1);
+}
+
+/* Efecto de desvanecimiento para secciones */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Efecto de cursor personalizado */
+.custom-cursor {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--accent-color);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+}
+
+/* Efecto de partículas en hero */
+.particles-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
 }
 
