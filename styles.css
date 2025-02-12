@@ -2407,6 +2407,20 @@ body.menu-open .main-content {
   .project-meta-item {
     width: 100%;
   }
+  
+  .card {
+    padding: 10px;
+    gap: 15px;
+  }
+  
+  .socialContainer {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .socialSvg {
+    width: 14px;
+  }
 }
 
 /* Efectos de deslizamiento */
