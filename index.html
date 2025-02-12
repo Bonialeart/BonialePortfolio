@@ -48,40 +48,847 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap" rel="stylesheet">
-
-  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   
-</head>
-<body>
+ <!-- Estilos para la pantalla de carga, menú y transformación de la hamburguesa -->
+ <style>
+  /* --- Pantalla de carga --- */
+  #loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #09101c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+  }
+  .loading-logo {
+    width: 135px;
+    height: 145px;
+    background-image: url("images/logo.png"); /* Coloca aquí tu imagen o código SVG */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+  }
+  /* --- Circular Progress Indicator --- */
+  .loading-circle {
+    position: absolute;
+    top: 48.9%;
+    left: 50.8%;
+    transform: translate(-50%, -50%);
+    width: 150px;
+    height: 150px;
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><radialGradient id="a10" cx=".66" fx=".66" cy=".3125" fy=".3125" gradientTransform="scale(1.5)"><stop offset="0" stop-color="%23FFFFFF"></stop><stop offset=".3" stop-color="%23FFFFFF" stop-opacity=".9"></stop><stop offset=".6" stop-color="%23FFFFFF" stop-opacity=".6"></stop><stop offset=".8" stop-color="%23FFFFFF" stop-opacity=".3"></stop><stop offset="1" stop-color="%23FFFFFF" stop-opacity="0"></stop></radialGradient><circle transform-origin="center" fill="none" stroke="url(%23a10)" stroke-width="5" stroke-linecap="round" stroke-dasharray="200 1000" stroke-dashoffset="0" cx="100" cy="100" r="70"><animateTransform type="rotate" attributeName="transform" calcMode="spline" dur="2" values="360;0" keyTimes="0;1" keySplines="0 0 1 1" repeatCount="indefinite"></animateTransform></circle><circle transform-origin="center" fill="none" opacity=".2" stroke="%23FFFFFF" stroke-width="5" stroke-linecap="round" cx="100" cy="100" r="70"></circle></svg>');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    animation: none;
+  }
+  @keyframes rotate {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+  
+  /* --- Ocultar el botón de menú mientras carga --- */
+  /* Se agrega la clase "loading" al <body> para ocultar el menú durante la carga */
+    body.loading .menu-toggle {
+      display: none !important;
+    }
+  
+  /* --- Estilos para el menú hamburguesa y su transformación --- */
+  .menu-toggle {
+    display: block;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    position: relative;
+    z-index: 1100;
+    padding: 10px;
+  }
+  .menu-toggle-line {
+    background-color: #fff;
+    height: 4px;
+    width: 100%;
+    margin: 8px 0;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    position: relative;
+  }
+  /* Transformación de las líneas cuando el menú está abierto */
+  .menu-toggle.open .menu-toggle-line:first-child {
+    transform: translateY(12px) rotate(45deg);
+    background-color: #64ffda;
+  }
+  .menu-toggle.open .menu-toggle-line:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  .menu-toggle.open .menu-toggle-line:last-child {
+    transform: translateY(-12px) rotate(-45deg);
+    background-color: #64ffda;
+  }
+  /* Efecto hover cuando el menú está cerrado */
+  .menu-toggle:hover .menu-toggle-line {
+    background-color: #64ffda;
+  }
+  .menu-toggle:hover .menu-toggle-line:first-child {
+    transform: translateX(8px);
+  }
+  .menu-toggle:hover .menu-toggle-line:nth-child(2) {
+    transform: translateX(-8px);
+  }
+  .menu-toggle:hover .menu-toggle-line:last-child {
+    transform: translateX(8px);
+  }
 
-  <!-- Reemplazar el header existente con el nuevo -->
+    /* ------------------------------
+       Menu Overlay (pestaña de menú) 
+    ------------------------------- */
+    .menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(9, 16, 28, 0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      display: none;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      z-index: 9998;
+    }
+    .menu-overlay.open {
+      display: block;
+      opacity: 1;
+    }
+    .menu-overlay .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      color: #fff;
+    }
+    /* Barra de navegación interna */
+    .navigation-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 40px;
+    }
+    .navigation-bar img {
+      max-height: 50px;
+    }
+    .nav-title-container {
+      text-align: center;
+      top: 30%; /* Ajusta el valor según sea necesario */
+  left: 160px; /* Ajusta el valor según sea necesario */
+  position: relative; /* Asegúrate de que la posición sea relativa o absoluta */
+}
+    
+    .nav-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+    .nav-subtitle {
+      font-size: 1rem;
+      opacity: 0.8;
+    }
+    /* Botón de cierre en el overlay */
+    .menu-toggle-close {
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+      position: relative;
+      transition: transform 0.3s ease;
+    }
+    .menu-toggle-close .menu-toggle-line {
+      background-color: #fff;
+      height: 4px;
+      width: 100%;
+      margin: 6px 0;
+      transition: all 0.3s ease;
+    }
+    /* ------------------------------
+       Menú de enlaces en el overlay 
+    ------------------------------- */
+    .nav-block {
+      position: relative; /* Asegura que no haya elementos superpuestos */
+      text-align: center;
+      font-family: "Rubik Mono One", serif;
+      z-index: 1; /* Asegura que esté por encima de otros elementos */
+}
+    .navigation-menu {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .navigation-menu li {
+      margin: 20px 0;
+    }
+    .navigation-menu li a {
+  display: inline-block; /* Permite aplicar transformaciones correctamente */
+  color: #fff;
+  font-size: 2rem;
+  text-decoration: none;
+  transition: transform 0.3s ease, color 0.3s ease; /* Añadimos transición para transform y color */
+}
+    .navigation-menu li a:hover {
+.navigation-menu li a:hover {
+  transform: scale(1.1); /* Escala el enlace al 110% de su tamaño original */
+  color: #64ffda;
+}
+    } 
+
+    /* Puedes agregar estilos adicionales para otros enlaces, búsqueda, etc. */
+
+    /* ------------------------------
+       Opcional: Ajustes para el body y contenido
+    ------------------------------- */
+    body {
+      margin: 0;
+      font-family: "Work Sans", serif;
+    }
+
+  .scroll-arrow {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    color: #fff;
+    transition: all 0.3s ease;
+    z-index: 10;
+    /* Nueva animación de pulso */
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .scroll-arrow:hover {
+    color: #64ffda;
+    transform: translateX(-50%) translateY(-5px);
+  }
+
+  /* Nueva animación de pulso */
+  @keyframes pulse {
+    0% {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0) scale(1);
+    }
+    50% {
+      opacity: 0.7;
+      transform: translateX(-50%) translateY(-10px) scale(1.05);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0) scale(1);
+    }
+  }
+
+  .about-container {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .about-image-container {
+    flex: 0 0 40%;
+  }
+
+  .about-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+
+  .about-text {
+    flex: 0 0 60%;
+  }
+
+  @media (max-width: 768px) {
+    .about-container {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .about-image-container {
+      flex: 0 0 100%;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .about-text {
+      flex: 0 0 100%;
+    }
+  }
+
+  /* Ajustes generales de espaciado para secciones */
+  section {
+    padding: 100px 0;
+    position: relative;
+  }
+
+  /* Espaciado específico para la sección hero */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin-bottom: 50px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  /* Ajustes para la sección about */
+  .about {
+    background-color: #f8f9fa;
+    margin: 100px 0;
+    padding: 120px 0;
+  }
+
+  /* Ajustes para la sección projects */
+  .projects {
+    padding: 120px 0;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-bottom: 60px;
+  }
+
+  .project-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    aspect-ratio: 4/3;
+  }
+
+  .project-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .project-item-link {
+    text-decoration: none;
+    color: #fff;
+    display: block;
+  }
+
+  .project-item-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 2rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    transform: translateY(100%);
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .project-item-type {
+    font-size: 0.9rem;
+    color: #64ffda;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .project-item-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .project-item-link:hover .project-item-content {
+    transform: translateY(0);
+  }
+
+  .project-item-link:hover img {
+    transform: scale(1.1);
+  }
+
+  .projects-header {
+    text-align: left;
+    margin-bottom: 3rem;
+  }
+
+  .projects-title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-family: "Rubik Mono One", serif;
+  }
+
+  .see-all-link {
+    display: inline-block;
+    color: #64ffda;
+    text-decoration: none;
+    font-size: 1rem;
+    margin-top: 2rem;
+    transition: color 0.3s ease;
+  }
+
+  .see-all-link:hover {
+    color: #fff;
+  }
+
+  @media (max-width: 768px) {
+    .project-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .projects {
+      padding: 60px 20px;
+    }
+    
+    .projects-title {
+      font-size: 2rem;
+    }
+  }
+
+  /* Ajustes para la sección de Instagram */
+  .instagram-showcase {
+    padding: 120px 0;
+    background-color: transparent;
+    margin-top: 100px;
+  }
+
+  .instagram-header {
+    margin-bottom: 60px;
+    text-align: center;
+  }
+
+  .instagram-title {
+    color: #fff;
+    font-family: "Rubik Mono One", serif;
+    margin-bottom: 15px;
+  }
+
+  .instagram-subtitle {
+    color: #64ffda;
+    font-family: "Work Sans", serif;
+    opacity: 0.8;
+  }
+
+  .instagram-container {
+    margin-bottom: 60px;
+  }
+
+  /* Ajustes para el footer */
+  footer {
+    padding: 80px 0;
+    margin-top: 100px;
+  }
+
+  /* Ajustes de espaciado para dispositivos móviles */
+  @media (max-width: 768px) {
+    section {
+      padding: 60px 0;
+    }
+
+    .about, .projects, .instagram-showcase {
+      padding: 80px 0;
+    }
+
+    .projects h2 {
+      margin-bottom: 40px;
+    }
+
+    footer {
+      padding: 60px 0;
+    }
+  }
+
+  .main-content {
+    transition: filter 0.4s ease;
+  }
+
+  body.menu-open .main-content {
+    filter: blur(5px);
+  }
+
+  /* --- Estilos para el botón de cierre --- */
+  .close-btn {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    z-index: 1100;
+  }
+
+  .close-btn-line {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    height: 3px;
+    background-color: #fff;
+    transition: transform 0.3s ease;
+  }
+
+  .close-btn-line:first-child {
+    transform: rotate(45deg);
+  }
+
+  .close-btn-line:last-child {
+    transform: rotate(-45deg);
+  }
+
+  .close-btn:hover .close-btn-line {
+    background-color: #64ffda;
+    transform-origin: center;
+  }
+
+  .close-btn:hover .close-btn-line:first-child {
+    transform: rotate(225deg);
+  }
+
+  .close-btn:hover .close-btn-line:last-child {
+    transform: rotate(135deg);
+  }
+
+  .main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(9, 16, 28, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 1000;
+    padding: 1rem 0;
+    transition: all 0.3s ease;
+  }
+
+  .nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
+  }
+
+  .logo {
+    position: absolute;
+    left: -120%;
+    top: 65%;
+    transform: translateY(-50%);
+    z-index: 1001;
+  }
+
+  .logo img {
+    height: 85px;
+    width: auto;
+    transition: transform 0.3s ease;
+  }
+
+  .logo img:hover {
+    transform: scale(1.05);
+  }
+
+  .nav-links {
+    margin-left: auto;
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    padding: 0;
+  }
+
+  .nav-links .has-dropdown {
+    position: relative;
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(9, 16, 28, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 0.8rem 0;
+    border-radius: 4px;
+    min-width: 150px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+    z-index: 1000;
+  }
+
+  .dropdown-menu::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid rgba(9, 16, 28, 0.95);
+  }
+
+  .has-dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    margin-top: 0.5rem;
+  }
+
+  .dropdown-menu li {
+    padding: 0.5rem 1.5rem;
+  }
+
+  .dropdown-menu a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.95rem;
+    white-space: nowrap;
+    display: block;
+    transition: color 0.3s ease;
+  }
+
+  .dropdown-menu a:hover {
+    color: #64ffda;
+  }
+
+  .dropdown-menu a::after {
+    display: none;
+  }
+
+  /* Mantener los estilos existentes para los enlaces principales */
+  .nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-family: "Work Sans", serif;
+    font-size: 1rem;
+    position: relative;
+    padding: 0.5rem 0;
+    transition: color 0.3s ease;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #64ffda;
+    transition: width 0.3s ease;
+  }
+
+  .nav-links a:hover {
+    color: #64ffda;
+  }
+
+  .nav-links a:hover::after {
+    width: 100%;
+  }
+
+  /* Efecto de scroll */
+  .main-header.scrolled {
+    padding: 0.5rem 0;
+    background: rgba(9, 16, 28, 0.95);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .nav-container {
+      padding: 0 1rem;
+    }
+    
+    .nav-links {
+      gap: 1rem;
+    }
+    
+    .nav-links a {
+      font-size: 0.9rem;
+    }
+  }
+
+  /* Efecto de desenfoque al hacer scroll */
+  .blur-header {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background: rgba(9, 16, 28, 0.85);
+    transition: all 0.3s ease;
+  }
+
+  /* Efecto de revelación al scroll */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+  }
+
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Efecto de texto gradiente animado */
+  .gradient-text {
+    background: linear-gradient(45deg, #64ffda, #0a192f, #64ffda);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient 3s linear infinite;
+  }
+
+  @keyframes gradient {
+    to {
+      background-position: 200% center;
+    }
+  }
+
+  /* Efecto hover para imágenes */
+  .hover-effect {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hover-effect::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(100, 255, 218, 0.2);
+    transform: translateY(100%);
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .hover-effect:hover::after {
+    transform: translateY(0);
+  }
+
+    .main-header, .logo, .logo img {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+  }
+ </style>
+
+  <!-- Precargar fuentes críticas -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap" as="style">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;700&display=swap" as="style">
+  
+  <!-- Consolidar las fuentes en una sola llamada -->
+  <link href="https://fonts.googleapis.com/css2?family=Rubik+Mono+One&family=Work+Sans:wght@400;700&family=Lato:wght@400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  
+  <!-- Precargar imágenes críticas -->
+  <link rel="preload" as="image" href="images/logo.png">
+  
+  <!-- Agregar lazy loading para imágenes -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const images = document.querySelectorAll('img[data-src]');
+      const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            img.src = img.dataset.src;
+            img.removeAttribute('data-src');
+            imageObserver.unobserve(img);
+          }
+        });
+      });
+      
+      images.forEach(img => imageObserver.observe(img));
+    });
+  </script>
+</head>
+<body class="loading">
+  <!-- Pantalla de carga -->
+  <div id="loading-screen">
+    <div class="loading-logo">
+      <div class="loading-circle"></div>
+    </div>
+  </div>
+  
+  <!-- Resto del contenido -->
+  <div class="main-content">
+    <!-- Tu contenido aquí -->
+  </div>
+
+  <!-- Header y menú hamburguesa -->
   <header class="main-header">
     <div class="nav-container">
-      <a href="/" class="logo">
+      <a class='logo' href='/index.html' style='opacity: 1 !important; visibility: visible !important;'>
         <img 
           src="images/logo.png" 
           alt="Boniale Logo" 
           width="85" 
           height="85" 
           fetchpriority="high"
+          style="opacity: 1 !important; visibility: visible !important;"
         >
       </a>
-      <nav>
-        <ul class="nav-links">
-          <li><a href="/">Home</a></li>
-          <li class="has-dropdown">
-            <a href="/Gallery.html">Gallery</a>
-            <ul class="dropdown-menu">
-              <li><a href="/photos.html">Photos</a></li>
-            </ul>
-          </li>
-          <li><a href="/about.html">About</a></li>
-          <li><a href="/contact.html">Contact</a></li>
-        </ul>
+      <ul class="nav-links">
+        <li><a href="/index.html">Home</a></li>
+        <li class="has-dropdown">
+          <a href='/Gallery.html'>Gallery</a>
+          <ul class="dropdown-menu">
+            <li><a href='/photos'>Photos</a></li>
+          </ul>
+        </li>
+        <li><a href='/about'>About</a></li>
+        <li><a href='/contact'>Contact</a></li>
+      </ul>
+    </div>
+  </header>
+  
+<!-- Overlay del menú (inicialmente oculto) -->
+<div class="menu-overlay" id="menu-overlay">
+  <div class="container menu-overlay-container">
+    <div class="nav-section">
+      <div class="navigation-bar">
+        <a href="/" class="w-inline-block">
+          <!-- Puedes usar tu logo o un icono aquí -->
+                 </a>
+        <div class="nav-title-container">
+          <div class="nav-title">Boniale Portfolio</div>
+          <div class="nav-subtitle">Concept/illustrations</div>
+        </div>
+        <!-- Botón de cierre actualizado -->
+        <div class="close-btn" id="menu-overlay-close">
+          <span class="close-btn-line"></span>
+          <span class="close-btn-line"></span>
+        </div>
       </div>
-    </header>
+    </div>
+    <!-- Menú de enlaces -->
+    <div class="nav-block">
+      <ul class="navigation-menu">
+        <li><a href="/">Home</a></li>
+        <li><a href='/gallery'>Gallery</a></li>
+        <li><a href='/photos'>Photos</a></li>
+        <li><a href='/about'>About</a></li>
+        <li><a href='/contact'>Contact</a></li>
+      </ul>
+      <!-- Aquí podrías agregar enlaces adicionales, formularios de búsqueda, etc. -->
+    </div>
+  </div>
+</div>
 
-    <!-- Sección Hero -->
+  <!-- Sección Hero -->
   <section class="hero">
     <div class="hero-content">
       <h1 class="gradient-text">Boniale Portfolio</h1>
@@ -116,11 +923,11 @@
   <section id="projects" class="projects">
     <div class="projects-header">
       <h2 class="projects-title">Selected Work</h2>
-      <a href="/Gallery.html" class="see-all-link">See all</a>
+      <a class='see-all-link' href='/gallery'>See all</a>
     </div>
     
     <div class="project-grid">
-      <a href="imagen1-detalles.html" class="project-item-link reveal">
+      <a class='project-item-link reveal' href='/imagen1-detalles'>
         <div class="project-item hover-effect">
           <img src="images/Monja.jpg" alt="Crimson Requiem" loading="lazy">
           <div class="project-item-content">
@@ -130,7 +937,7 @@
         </div>
       </a>
       
-      <a href="imagen2-detalles.html" class="project-item-link reveal">
+      <a class='project-item-link reveal' href='/imagen2-detalles'>
         <div class="project-item hover-effect">
           <img src="images/robot.jpg" alt="AURORA" loading="lazy">
           <div class="project-item-content">
@@ -140,7 +947,7 @@
         </div>
       </a>
       
-      <a href="imagen3-detalles.html" class="project-item-link reveal">
+      <a class='project-item-link reveal' href='/imagen3-detalles'>
         <div class="project-item hover-effect">
           <img src="images/Collage.jpg" alt="Sketches/Portraits" loading="lazy">
           <div class="project-item-content">
@@ -299,5 +1106,6 @@
   <div class="decorative-element parallax" data-speed="2">
     <!-- Elemento decorativo -->
   </div>
+
 </body>
 </html>
