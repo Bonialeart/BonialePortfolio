@@ -2843,12 +2843,14 @@ body.menu-open .main-content {
   
   /* Ajustes para móviles */
   .gallery {
-    grid-template-columns: 1fr;
-    gap: var(--spacing-base);
+    grid-template-columns: repeat(3, 1fr) !important;
+    padding: 2rem;
+    margin: 0; /* Sin márgenes para que ocupe todo el ancho */
+    width: 100vw; /* Asegura que se extienda al 100% del viewport */
   }
   
   .gallery-item {
-    aspect-ratio: 16/9;
+    aspect-ratio: 1/1;
   }
   
   .project-meta-container {
