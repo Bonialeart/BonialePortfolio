@@ -145,40 +145,38 @@ a:hover {
   transform: translateY(0);
 }
 
-/* Filtros Modernizados */
+
+/* Nueva sección de filtros sobre la galería */
 .gallery-filters {
-  margin: 3rem auto;
-  padding: 0 2rem;
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
+  padding: 15px 20px;
+  margin: 120px auto 40px;
+  background-color: transparent;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
-
+/* Estilos para los botones de filtro */
 .filter-btn {
-  background: transparent;
-  border: 2px solid #64ffda;
-  color: #64ffda;
-  padding: 0.8rem 1.5rem;
+  background-color: transparent;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: #ffffff;
   cursor: pointer;
-  font-family: "Work Sans", sans-serif;
-  font-size: 0.9rem;
-  font-weight: 500;
-  letter-spacing: 1px;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border-radius: 8px;
 }
 
-.filter-btn:hover {
-  background: rgba(100, 255, 218, 0.1);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(100, 255, 218, 0.15);
-}
-
+/* Efecto hover y estado activo */
+.filter-btn:hover,
 .filter-btn.active {
-  background: #64ffda;
-  color: #0a192f;
-  font-weight: 600;
-  box-shadow: 0 4px 12px rgba(100, 255, 218, 0.25);
+  background-color: #64ffda;
+  color: #fff;
 }
 
 /* Estilos para el overlay de las imágenes */
