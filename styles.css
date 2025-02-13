@@ -3525,3 +3525,55 @@ header {
     opacity: 1;
   }
 }
+.instagram-showcase {
+  max-width: 1200px;
+  margin: 3rem auto;
+  padding: 0 2rem;
+  background-color: transparent; /* Fondo transparente para heredar el color de la página */
+}
+
+.instagram-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.instagram-title {
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.instagram-subtitle {
+  font-size: 1.4rem;
+  color: #666;
+}
+
+.instagram-container {
+  border-radius: 12px;
+  overflow: hidden;
+  background: transparent; /* Eliminado el fondo blanco */
+  box-shadow: none; /* Eliminada la sombra */
+  padding: 2rem;
+}
+
+.instagram-follow-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin: 2rem auto 0;
+  padding: 1rem 2rem;
+  border-radius: 30px;
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+  transition: transform 0.2s;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.instagram-follow-button:hover {
+  transform: translateY(-2px);
+}
